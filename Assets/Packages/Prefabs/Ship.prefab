@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3182244307561480726}
   - component: {fileID: 8107836648985986991}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95,7 +95,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8534523527289685664}
   - component: {fileID: 6385393830051617783}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Glass
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -180,7 +180,9 @@ GameObject:
   - component: {fileID: 3747249834948143457}
   - component: {fileID: 728990081606781385}
   - component: {fileID: 593143919316531384}
-  m_Layer: 0
+  - component: {fileID: 1493365427258912825}
+  - component: {fileID: 7740980002021239105}
+  m_Layer: 6
   m_Name: Ship
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -221,6 +223,10 @@ MonoBehaviour:
   _maxSpeed: 13
   _movementTurnSpeed: 200
   _stillTurnSpeed: 350
+  _fireDelay: 0.5
+  _cannonFire:
+  - {fileID: 8030989230633254646}
+  - {fileID: 1202345070373162197}
 --- !u!50 &593143919316531384
 Rigidbody2D:
   serializedVersion: 4
@@ -248,6 +254,86 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!58 &1493365427258912825
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 956187921354076467}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.22466898}
+  serializedVersion: 2
+  m_Radius: 0.7093887
+--- !u!61 &7740980002021239105
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 956187921354076467}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.330499}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.5775708, y: 1.0192524}
+  m_EdgeRadius: 0
 --- !u!1 &1272038142542809609
 GameObject:
   m_ObjectHideFlags: 0
@@ -258,7 +344,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1633704858429643022}
   - component: {fileID: 1330568614512108063}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Wing_Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -343,7 +429,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2833784038098241274}
   - component: {fileID: 1770192557509788440}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cannon_Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -362,7 +448,8 @@ Transform:
   m_LocalPosition: {x: 0.185, y: 0.29, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1202345070373162197}
   m_Father: {fileID: 1633704858429643022}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
 --- !u!212 &1770192557509788440
@@ -427,7 +514,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1835377137746956583}
   - component: {fileID: 5428177659363066219}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Wing_Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -502,6 +589,68 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &3807766852435631276
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8030989230633254646}
+  m_Layer: 6
+  m_Name: Cannon
+  m_TagString: Untagged
+  m_Icon: {fileID: 3443629218296621865, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8030989230633254646
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3807766852435631276}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.335, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 9015298722366111519}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &3856171113442471570
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1202345070373162197}
+  m_Layer: 6
+  m_Name: Cannon (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 3443629218296621865, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1202345070373162197
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3856171113442471570}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.335, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2833784038098241274}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3890523295329261888
 GameObject:
   m_ObjectHideFlags: 0
@@ -512,7 +661,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2238873353083937290}
   - component: {fileID: 95178534133111980}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Propeller_Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -596,7 +745,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2741179530742137427}
   - component: {fileID: 1871537307805633050}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Propeller_Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -679,7 +828,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 496062392148149215}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -716,7 +865,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9015298722366111519}
   - component: {fileID: 4840626888013907181}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cannon_Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -735,7 +884,8 @@ Transform:
   m_LocalPosition: {x: -0.185, y: 0.29, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 8030989230633254646}
   m_Father: {fileID: 1835377137746956583}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
 --- !u!212 &4840626888013907181

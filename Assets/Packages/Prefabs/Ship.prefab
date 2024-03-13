@@ -324,6 +324,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3747249834948143457}
   - component: {fileID: 728990081606781385}
+  - component: {fileID: 5139472673969076282}
   - component: {fileID: 593143919316531384}
   - component: {fileID: 1493365427258912825}
   - component: {fileID: 7740980002021239105}
@@ -375,6 +376,21 @@ MonoBehaviour:
   - {fileID: 8030989230633254646}
   - {fileID: 1202345070373162197}
   _projectilePrefab: {fileID: 5462330328631289347, guid: c1bcd4c4509f3194dbf99337f111823f, type: 3}
+--- !u!114 &5139472673969076282
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 956187921354076467}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6eefa05b4d1148928f8bd8d6a0ca4880, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _trails:
+  - {fileID: 3240425509277548953}
+  - {fileID: 181568394396952284}
 --- !u!50 &593143919316531384
 Rigidbody2D:
   serializedVersion: 4

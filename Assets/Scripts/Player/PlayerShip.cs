@@ -20,7 +20,7 @@ public class PlayerShip : MonoBehaviour
     [SerializeField] private float _fireDelay = 0.5f;
     [SerializeField] private Transform[] _cannonFire;
     [SerializeField] private Projectile _projectilePrefab;
-
+    
 
     //Input
     private Vector2 _input = Vector2.zero;
@@ -37,10 +37,21 @@ public class PlayerShip : MonoBehaviour
     //Fire
     private float _nextFireAt;
 
-    private float GetMaxMovementSpeed() => _isShooting ? _maxShootingSpeed : _maxSpeed;
-    
+    private float GetMaxMovementSpeed()
+    {
+        //No shooting custom movement
+        if (!GameManager.Instance.JuiceConfig.ShootingMovementRestrictionEnabled)
+            return _maxSpeed;
+        
+        return _isShooting ? _maxShootingSpeed : _maxSpeed;
+    }
+
     private float GetTurnSpeed()
     {
+        //No shooting custom movement
+        if (!GameManager.Instance.JuiceConfig.ShootingMovementRestrictionEnabled)
+            return _isAccelerating ? _movementTurnSpeed : _stillTurnSpeed;
+        
         if (_isAccelerating)
             return _isShooting ? _movementTurnShootingSpeed : _movementTurnSpeed;
         return _isShooting ? _movementTurnShootingSpeed : _stillTurnSpeed;
@@ -108,7 +119,9 @@ public class PlayerShip : MonoBehaviour
         _nextFireAt = Time.time + _fireDelay;
         
         //TODO: Expose it
-        var accuracy = Quaternion.Euler(0, 0, Random.Range(-4, 4));
+        var accuracy = Quaternion.identity;
+        if(GameManager.Instance.JuiceConfig.ShootingAccuracyEnabled)
+            accuracy = Quaternion.Euler(0, 0, Random.Range(-4, 4));
 
         foreach (var cannon in _cannonFire)
         {

@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Projectile : MonoBehaviour
@@ -13,6 +10,15 @@ public class Projectile : MonoBehaviour
     private void Start()
     {
         _timeToDisable = Time.time + _lifeTime;
+    }
+
+    public void Init(Vector3 dir, float extraSpeed, float lifeTime = 3)
+    {
+        _speed += extraSpeed;
+        _lifeTime = lifeTime;
+        _timeToDisable = Time.time + _lifeTime;
+        
+        transform.up = dir;
     }
 
     void Update()

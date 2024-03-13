@@ -307,18 +307,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 728990081606781385, guid: 60ff8f5562f323042b942c1aaca850f4, type: 3}
-      propertyPath: _turnSpeed
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 728990081606781385, guid: 60ff8f5562f323042b942c1aaca850f4, type: 3}
-      propertyPath: _curProgression
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 728990081606781385, guid: 60ff8f5562f323042b942c1aaca850f4, type: 3}
-      propertyPath: _projectilePrefab
-      value: 
-      objectReference: {fileID: 5462330328631289347, guid: c1bcd4c4509f3194dbf99337f111823f, type: 3}
     - target: {fileID: 956187921354076467, guid: 60ff8f5562f323042b942c1aaca850f4, type: 3}
       propertyPath: m_Name
       value: Ship

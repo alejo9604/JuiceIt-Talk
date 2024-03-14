@@ -19,8 +19,7 @@ public class PlayerShip : MonoBehaviour
     [Header("Fire")]
     [SerializeField] private float _fireDelay = 0.5f;
     [SerializeField] private Transform[] _cannonFire;
-    [SerializeField] private Projectile _projectilePrefab;
-    
+
 
     //Input
     private Vector2 _input = Vector2.zero;
@@ -123,11 +122,13 @@ public class PlayerShip : MonoBehaviour
         if(GameManager.Instance.JuiceConfig.ShootingAccuracyEnabled)
             accuracy = Quaternion.Euler(0, 0, Random.Range(-4, 4));
 
+        Projectile projectilePrefab = GameManager.Instance.GetCurrentProjectile();
+
         foreach (var cannon in _cannonFire)
         {
             var dir = accuracy * cannon.transform.up;
-            Projectile projectile = Instantiate( _projectilePrefab, cannon.position, Quaternion.identity); ;
-            projectile.Init(dir, _currentSpeed);
+            Projectile projectile = Instantiate( projectilePrefab, cannon.position, Quaternion.identity); ;
+            projectile.Init(dir, _currentSpeed, true);
         }
     }
 }

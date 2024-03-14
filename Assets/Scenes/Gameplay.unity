@@ -352,6 +352,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 728990081606781385, guid: 60ff8f5562f323042b942c1aaca850f4, type: 3}
+      propertyPath: _projectilePrefab
+      value: 
+      objectReference: {fileID: 4875225825700702124, guid: 8c7e4a60f076f6a47a76bac8f13a778a, type: 3}
     - target: {fileID: 956187921354076467, guid: 60ff8f5562f323042b942c1aaca850f4, type: 3}
       propertyPath: m_Name
       value: Ship
@@ -362,7 +366,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3747249834948143457, guid: 60ff8f5562f323042b942c1aaca850f4, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -3.48
       objectReference: {fileID: 0}
     - target: {fileID: 3747249834948143457, guid: 60ff8f5562f323042b942c1aaca850f4, type: 3}
       propertyPath: m_LocalPosition.z
@@ -464,6 +468,6 @@ SceneRoots:
   m_Roots:
   - {fileID: 1387227989}
   - {fileID: 519420032}
-  - {fileID: 2370939780430175739}
   - {fileID: 666037712}
+  - {fileID: 2370939780430175739}
   - {fileID: 3837316374147456513}

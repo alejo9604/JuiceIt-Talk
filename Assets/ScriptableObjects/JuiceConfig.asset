@@ -12,3 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b66c6759556a0f48b7fea96d787df35, type: 3}
   m_Name: JuiceConfig
   m_EditorClassIdentifier: 
+  TrailEnabled: 1
+  ShootingMovementRestrictionEnabled: 1
+  ShootingAccuracyEnabled: 1
+  ImpactPauseEnabled: 0
+  ImpactPauseDurationFramesPercent: 0.1
+  ImpactPauseDurationMaxFrames: 12
+  ProjectilePrefabs:
+  - {fileID: 5462330328631289347, guid: fdce87e5430397744a97209582a80dff, type: 3}
+  - {fileID: 5462330328631289347, guid: c1bcd4c4509f3194dbf99337f111823f, type: 3}
+  - {fileID: 4875225825700702124, guid: 8c7e4a60f076f6a47a76bac8f13a778a, type: 3}

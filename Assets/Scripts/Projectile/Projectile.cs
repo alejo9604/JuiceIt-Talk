@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    [SerializeField] private float _speed = 50f;
-    [SerializeField] private float _lifeTime = 3;
-
+    private float _speed = 18f;
+    private float _lifeTime = 3;
+    
     private float _timeToDisable = -1;
     private bool _isPlayer = false;
     private LayerMask _collisionMask;
@@ -13,9 +13,9 @@ public class Projectile : MonoBehaviour
     
     private const float SKIN_WIDTH = 0.1f;
     
-    public void Init(Vector3 dir, float extraSpeed, bool isPlayer, float lifeTime = 3)
+    public void Init(Vector3 dir, float speed, bool isPlayer, float lifeTime = 3)
     {
-        _speed += extraSpeed;
+        _speed = speed;
         _isPlayer = isPlayer;
         _lifeTime = lifeTime;
         _timeToDisable = Time.time + _lifeTime;

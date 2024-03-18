@@ -19,18 +19,37 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space))
-            NextWeapon();
+        if(Input.GetKeyDown(KeyCode.T))
+            NextProjectilePrefab();
+        
+        if(Input.GetKeyDown(KeyCode.Y))
+            NextProjectileSpeed();
+        
+        if(Input.GetKeyDown(KeyCode.U))
+            NextProjectileNextTime();
     }
 
-
-    private int _currentProjectile = 0;
-    private void NextWeapon()
+    
+    private void NextProjectilePrefab()
     {
-        _currentProjectile = (_currentProjectile + 1) % JuiceConfig.ProjectilePrefabs.Length;
+        JuiceConfig.CurrentProjectilePrefab = (JuiceConfig.CurrentProjectilePrefab + 1) % JuiceConfig.ProjectilePrefabs.Length;
     }
 
-    public Projectile GetCurrentProjectile() => JuiceConfig.ProjectilePrefabs[_currentProjectile];
+    public Projectile GetCurrentProjectile() => JuiceConfig.ProjectilePrefabs[JuiceConfig.CurrentProjectilePrefab];
+    
+    private void NextProjectileSpeed()
+    {
+        JuiceConfig.CurrentProjectileSpeed = (JuiceConfig.CurrentProjectileSpeed + 1) % JuiceConfig.ProjectileSpeed.Length;
+    }
+
+    public float GetCurrentProjectileSpeed() => JuiceConfig.ProjectileSpeed[JuiceConfig.CurrentProjectileSpeed];
+    
+    private void NextProjectileNextTime()
+    {
+        JuiceConfig.CurrentProjectileNextFireTime = (JuiceConfig.CurrentProjectileNextFireTime + 1) % JuiceConfig.ProjectileNextFireTime.Length;
+    }
+
+    public float GetCurrentProjectileNextTime() => JuiceConfig.ProjectileNextFireTime[JuiceConfig.CurrentProjectileNextFireTime];
 
 
     //Impact pause - Hit Stop

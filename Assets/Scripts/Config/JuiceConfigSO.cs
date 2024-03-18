@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,8 +18,14 @@ public class JuiceConfigSO : ScriptableObject
     public int ImpactPauseDurationMaxFrames = 15;
 
 
-    [Header("Projectiles")]
+    [Header("Projectiles")] 
+    public float[] ProjectileSpeed;
+    public float[] ProjectileNextFireTime;
     public Projectile[] ProjectilePrefabs;
+    //Current selected:
+    [NonSerialized] public int CurrentProjectileNextFireTime;
+    [NonSerialized] public int CurrentProjectileSpeed;
+    [NonSerialized] public int CurrentProjectilePrefab;
 
 
     [ContextMenu("Reset to Defaults")]

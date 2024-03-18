@@ -17,7 +17,6 @@ public class PlayerShip : MonoBehaviour
     [SerializeField] private float _stillTurnSpeed = 350f;
 
     [Header("Fire")]
-    [SerializeField] private float _fireDelay = 0.5f;
     [SerializeField] private Transform[] _cannonFire;
 
 
@@ -115,7 +114,7 @@ public class PlayerShip : MonoBehaviour
         if(Time.time < _nextFireAt)
             return;
 
-        _nextFireAt = Time.time + _fireDelay;
+        _nextFireAt = Time.time + GameManager.Instance.GetCurrentProjectileNextTime();
         
         //TODO: Expose it
         var accuracy = Quaternion.identity;
@@ -123,12 +122,13 @@ public class PlayerShip : MonoBehaviour
             accuracy = Quaternion.Euler(0, 0, Random.Range(-4, 4));
 
         Projectile projectilePrefab = GameManager.Instance.GetCurrentProjectile();
+        float projectileSpeed = GameManager.Instance.GetCurrentProjectileSpeed();
 
         foreach (var cannon in _cannonFire)
         {
             var dir = accuracy * cannon.transform.up;
             Projectile projectile = Instantiate( projectilePrefab, cannon.position, Quaternion.identity); ;
-            projectile.Init(dir, _currentSpeed, true);
+            projectile.Init(dir, projectileSpeed, true);
         }
     }
 }

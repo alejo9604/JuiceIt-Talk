@@ -18,6 +18,11 @@ MonoBehaviour:
   ImpactPauseEnabled: 0
   ImpactPauseDurationFramesPercent: 0.1
   ImpactPauseDurationMaxFrames: 12
+  ProjectileSpeed:
+  - 18
+  - 25
+  - 35
+  ProjectileNextFireTime: []
   ProjectilePrefabs:
   - {fileID: 5462330328631289347, guid: fdce87e5430397744a97209582a80dff, type: 3}
   - {fileID: 5462330328631289347, guid: c1bcd4c4509f3194dbf99337f111823f, type: 3}

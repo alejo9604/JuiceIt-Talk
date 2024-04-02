@@ -1,28 +1,31 @@
 ﻿using UnityEngine;
 
-public class TrailController : MonoBehaviour
+namespace AllieJoe.JuiceIt
 {
-    [SerializeField] private GameObject[] _trails;
-
-    private bool _trailEnabled;
-
-    private void Start()
+    public class TrailController : MonoBehaviour
     {
-        UpdateTrails(GameManager.Instance.JuiceConfig.TrailEnabled);
-    }
+        [SerializeField] private GameObject[] _trails;
 
-    private void Update()
-    {
-        if(_trailEnabled == GameManager.Instance.JuiceConfig.TrailEnabled)
-            return;
-        
-        UpdateTrails(GameManager.Instance.JuiceConfig.TrailEnabled);
-    }
+        private bool _trailEnabled;
 
-    private void UpdateTrails(bool enable)
-    {
-        _trailEnabled = enable;
-        foreach (var t in _trails)
-            t.SetActive(enable);
+        private void Start()
+        {
+            UpdateTrails(GameManager.Instance.JuiceConfig.TrailEnabled);
+        }
+
+        private void Update()
+        {
+            if (_trailEnabled == GameManager.Instance.JuiceConfig.TrailEnabled)
+                return;
+
+            UpdateTrails(GameManager.Instance.JuiceConfig.TrailEnabled);
+        }
+
+        private void UpdateTrails(bool enable)
+        {
+            _trailEnabled = enable;
+            foreach (var t in _trails)
+                t.SetActive(enable);
+        }
     }
 }

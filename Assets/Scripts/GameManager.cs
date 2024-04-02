@@ -19,51 +19,29 @@ namespace AllieJoe.JuiceIt
                 Destroy(gameObject);
         }
 
+        private void Start()
+        {
+            JuiceConfig.ResetToDefault();
+        }
+
         private void Update()
         {
             if (Input.GetKeyDown(KeyCode.T))
-                NextProjectilePrefab();
+                JuiceConfig.TryNext(EConfigKey.ProjectilePrefab);;
 
             if (Input.GetKeyDown(KeyCode.Y))
-                NextProjectileSpeed();
+                JuiceConfig.TryNext(EConfigKey.ProjectileSpeed);
 
             if (Input.GetKeyDown(KeyCode.U))
-                NextProjectileNextTime();
+                JuiceConfig.TryNext(EConfigKey.ProjectileRateFire);;
         }
-
-
-        private void NextProjectilePrefab()
-        {
-            JuiceConfig.CurrentProjectilePrefab =
-                (JuiceConfig.CurrentProjectilePrefab + 1) % JuiceConfig.ProjectilePrefabs.Length;
-        }
-
-        public Projectile GetCurrentProjectile() => JuiceConfig.ProjectilePrefabs[JuiceConfig.CurrentProjectilePrefab];
-
-        private void NextProjectileSpeed()
-        {
-            JuiceConfig.CurrentProjectileSpeed =
-                (JuiceConfig.CurrentProjectileSpeed + 1) % JuiceConfig.ProjectileSpeed.Length;
-        }
-
-        public float GetCurrentProjectileSpeed() => JuiceConfig.ProjectileSpeed[JuiceConfig.CurrentProjectileSpeed];
-
-        private void NextProjectileNextTime()
-        {
-            JuiceConfig.CurrentProjectileNextFireTime = (JuiceConfig.CurrentProjectileNextFireTime + 1) %
-                                                        JuiceConfig.ProjectileNextFireTime.Length;
-        }
-
-        public float GetCurrentProjectileNextTime() =>
-            JuiceConfig.ProjectileNextFireTime[JuiceConfig.CurrentProjectileNextFireTime];
-
-
+        
         //Impact pause - Hit Stop
         private bool _isOnImpactPause;
 
         public void DoImpactPause()
         {
-            if (!JuiceConfig.ImpactPauseEnabled)
+            if (!JuiceConfig.GetValue<bool>(EConfigKey.ImpactPause))
                 return;
 
             if (_isOnImpactPause)

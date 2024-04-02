@@ -12,18 +12,65 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b66c6759556a0f48b7fea96d787df35, type: 3}
   m_Name: JuiceConfig
   m_EditorClassIdentifier: 
-  TrailEnabled: 1
-  ShootingMovementRestrictionEnabled: 1
-  ShootingAccuracyEnabled: 1
-  ImpactPauseEnabled: 0
+  EnableSequence:
+  - rid: 2534765774161575936
+  - rid: 2534765774161575937
+  - rid: 2534765774161575939
+  - rid: 2534765774161575940
+  - rid: 2534765774161575943
+  - rid: 2534765774161575945
+  - rid: 2534765774161575947
   ImpactPauseDurationFramesPercent: 0.1
   ImpactPauseDurationMaxFrames: 12
-  ProjectileSpeed:
-  - 18
-  - 25
-  - 35
-  ProjectileNextFireTime: []
-  ProjectilePrefabs:
-  - {fileID: 5462330328631289347, guid: fdce87e5430397744a97209582a80dff, type: 3}
-  - {fileID: 5462330328631289347, guid: c1bcd4c4509f3194dbf99337f111823f, type: 3}
-  - {fileID: 4875225825700702124, guid: 8c7e4a60f076f6a47a76bac8f13a778a, type: 3}
+  references:
+    version: 2
+    RefIds:
+    - rid: 2534765774161575936
+      type: {class: ConfigEnabledValue, ns: AllieJoe.JuiceIt, asm: Assembly-CSharp}
+      data:
+        Key: 0
+        Comments: Enable/Disable Ship trails
+        Enabled: 1
+    - rid: 2534765774161575937
+      type: {class: ConfigEnabledValue, ns: AllieJoe.JuiceIt, asm: Assembly-CSharp}
+      data:
+        Key: 1
+        Comments: Enable/Disable Less movement when shooting
+        Enabled: 1
+    - rid: 2534765774161575939
+      type: {class: ConfigEnabledValue, ns: AllieJoe.JuiceIt, asm: Assembly-CSharp}
+      data:
+        Key: 2
+        Comments: Enable/Disable Less accuracy when shooting
+        Enabled: 0
+    - rid: 2534765774161575940
+      type: {class: ConfigEnabledValue, ns: AllieJoe.JuiceIt, asm: Assembly-CSharp}
+      data:
+        Key: 3
+        Comments: Enable/Disable Pause when impact an enemy
+        Enabled: 0
+    - rid: 2534765774161575943
+      type: {class: ConfigFloatOptionsValue, ns: AllieJoe.JuiceIt, asm: Assembly-CSharp}
+      data:
+        Key: 4
+        Comments: Projectile speed
+        Options:
+        - 18
+        - 25
+        - 35
+    - rid: 2534765774161575945
+      type: {class: ConfigPrefabOptionsValue, ns: AllieJoe.JuiceIt, asm: Assembly-CSharp}
+      data:
+        Key: 6
+        Comments: Projectile prefabs
+        Options:
+        - {fileID: 5462330328631289347, guid: fdce87e5430397744a97209582a80dff, type: 3}
+        - {fileID: 5462330328631289347, guid: c1bcd4c4509f3194dbf99337f111823f, type: 3}
+        - {fileID: 4875225825700702124, guid: 8c7e4a60f076f6a47a76bac8f13a778a, type: 3}
+    - rid: 2534765774161575947
+      type: {class: ConfigFloatOptionsValue, ns: AllieJoe.JuiceIt, asm: Assembly-CSharp}
+      data:
+        Key: 5
+        Comments: Projectile rate fire (next bullet timer)
+        Options:
+        - 0.5

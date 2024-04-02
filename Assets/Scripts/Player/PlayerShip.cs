@@ -37,7 +37,7 @@ namespace AllieJoe.JuiceIt
         private float GetMaxMovementSpeed()
         {
             //No shooting custom movement
-            if (!GameManager.Instance.JuiceConfig.ShootingMovementRestrictionEnabled)
+            if (!GameManager.Instance.JuiceConfig.GetValue<bool>(EConfigKey.ShootingMovementRestriction))
                 return _maxSpeed;
 
             return _isShooting ? _maxShootingSpeed : _maxSpeed;
@@ -46,7 +46,7 @@ namespace AllieJoe.JuiceIt
         private float GetTurnSpeed()
         {
             //No shooting custom movement
-            if (!GameManager.Instance.JuiceConfig.ShootingMovementRestrictionEnabled)
+            if (!GameManager.Instance.JuiceConfig.GetValue<bool>(EConfigKey.ShootingMovementRestriction))
                 return _isAccelerating ? _movementTurnSpeed : _stillTurnSpeed;
 
             if (_isAccelerating)
@@ -113,15 +113,15 @@ namespace AllieJoe.JuiceIt
             if (Time.time < _nextFireAt)
                 return;
 
-            _nextFireAt = Time.time + GameManager.Instance.GetCurrentProjectileNextTime();
+            _nextFireAt = Time.time + GameManager.Instance.JuiceConfig.GetValue<float>(EConfigKey.ProjectileRateFire);
 
-            //TODO: Expose it
+            //TODO: Expose accuracy range
             var accuracy = Quaternion.identity;
-            if (GameManager.Instance.JuiceConfig.ShootingAccuracyEnabled)
+            if (GameManager.Instance.JuiceConfig.GetValue<bool>(EConfigKey.ShootingAccuracy))
                 accuracy = Quaternion.Euler(0, 0, Random.Range(-4, 4));
 
-            Projectile projectilePrefab = GameManager.Instance.GetCurrentProjectile();
-            float projectileSpeed = GameManager.Instance.GetCurrentProjectileSpeed();
+            Projectile projectilePrefab = GameManager.Instance.JuiceConfig.GetValue<Projectile>(EConfigKey.ProjectilePrefab);
+            float projectileSpeed = GameManager.Instance.JuiceConfig.GetValue<float>(EConfigKey.ProjectileSpeed);
 
             foreach (var cannon in _cannonFire)
             {

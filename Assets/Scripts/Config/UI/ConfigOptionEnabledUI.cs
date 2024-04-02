@@ -22,6 +22,16 @@ namespace AllieJoe.JuiceIt
             
             _toggle.onValueChanged.AddListener(OnValueChange);
         }
+        
+        public override void Refresh()
+        {
+            base.Refresh();
+            
+            if(_option == null)
+                return;
+            
+            _toggle.SetIsOnWithoutNotify(_option.IsEnable());
+        }
 
         private void OnValueChange(bool enabled)
         {

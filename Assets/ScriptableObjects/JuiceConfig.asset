@@ -17,8 +17,8 @@ MonoBehaviour:
   - rid: 2534765774161575958
   - rid: 2534765774161575959
   - rid: 2534765774161575960
-  - rid: 2534765774161575961
   - rid: 2534765774161575962
+  - rid: 2534765774161575961
   - rid: 2534765774161575964
   ImpactPauseDurationFramesPercent: 0.1
   ImpactPauseDurationMaxFrames: 12
@@ -31,28 +31,28 @@ MonoBehaviour:
         Key: 0
         Label: Trail
         Comments: Enable/Disable Ship trails
-        Enabled: 0
+        Enabled: 1
     - rid: 2534765774161575958
       type: {class: ConfigEnabledValue, ns: AllieJoe.JuiceIt, asm: Assembly-CSharp}
       data:
         Key: 1
         Label: Shoot + Move
         Comments: Enable/Disable Less movement when shooting
-        Enabled: 0
+        Enabled: 1
     - rid: 2534765774161575959
       type: {class: ConfigEnabledValue, ns: AllieJoe.JuiceIt, asm: Assembly-CSharp}
       data:
         Key: 2
         Label: Shoot Accuracy
         Comments: Enable/Disable Less accuracy when shooting
-        Enabled: 0
+        Enabled: 1
     - rid: 2534765774161575960
       type: {class: ConfigEnabledValue, ns: AllieJoe.JuiceIt, asm: Assembly-CSharp}
       data:
         Key: 3
         Label: Impact Pause
         Comments: Enable/Disable Pause when hitting an enemy
-        Enabled: 0
+        Enabled: 1
     - rid: 2534765774161575961
       type: {class: ConfigSelectFloatOptionsValue, ns: AllieJoe.JuiceIt, asm: Assembly-CSharp}
       data:

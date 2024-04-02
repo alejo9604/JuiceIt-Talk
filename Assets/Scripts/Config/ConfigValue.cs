@@ -16,6 +16,8 @@ namespace AllieJoe.JuiceIt
         ProjectileSpeed,
         ProjectileRateFire,
         ProjectilePrefab,
+        
+        _INVALID
     }
     
     [Serializable]

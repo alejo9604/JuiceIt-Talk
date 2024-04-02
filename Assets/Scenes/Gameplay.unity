@@ -133,6 +133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 428316390}
   - component: {fileID: 428316391}
+  - component: {fileID: 428316392}
   m_Layer: 5
   m_Name: ConfigUI
   m_TagString: Untagged
@@ -174,9 +175,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _container: {fileID: 745389003}
+  _canvasGroup: {fileID: 428316392}
   _optionPrefab: {fileID: 2570182122933793035, guid: c97ef37848734c34eb454f92b0d4d45c, type: 3}
   _optionEnabledPrefab: {fileID: 2782332947362239588, guid: 3e5700f5596d5f84f86d4a206079c5bd, type: 3}
   _optionSelectPrefab: {fileID: 6072568594711436041, guid: 74e9e28addfa33b49bb5f0e3af6acf93, type: 3}
+--- !u!225 &428316392
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 428316389}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0

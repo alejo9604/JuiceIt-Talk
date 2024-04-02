@@ -26,6 +26,18 @@ namespace AllieJoe.JuiceIt
             _slider.onValueChanged.AddListener(OnValueChange);
         }
 
+        public override void Refresh()
+        {
+            base.Refresh();
+            
+            if(_option == null)
+                return;
+            
+            _slider.value = _option.CurrentSelected();
+            _slider.minValue = 0;
+            _slider.maxValue = _option.Max();
+        }
+
         private void OnValueChange(float index)
         {
             _option.SetSelected((int)index);

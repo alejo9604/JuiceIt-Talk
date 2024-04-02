@@ -11,6 +11,8 @@ namespace AllieJoe.JuiceIt
         public JuiceConfigSO JuiceConfig;
         public ConfigUI ConfigUI;
 
+        private int _currentStep = 0;
+        
         private void Awake()
         {
             //Quick "singleton"
@@ -28,15 +30,79 @@ namespace AllieJoe.JuiceIt
 
         private void Update()
         {
-            if (Input.GetKeyDown(KeyCode.T))
-                JuiceConfig.TryNext(EConfigKey.ProjectilePrefab);;
+            if(Input.GetKeyDown(KeyCode.Escape))
+                ConfigUI.ToggleHide();
 
-            if (Input.GetKeyDown(KeyCode.Y))
-                JuiceConfig.TryNext(EConfigKey.ProjectileSpeed);
-
-            if (Input.GetKeyDown(KeyCode.U))
-                JuiceConfig.TryNext(EConfigKey.ProjectileRateFire);;
+            if (Input.GetKeyDown(KeyCode.P))
+                ToNextStep();
+            
+            if (Input.GetKeyDown(KeyCode.O))
+                ToPrevStep();
         }
+
+        private void ToNextStep()
+        { 
+            if(_currentStep >= JuiceConfig.EnableSequence.Count)
+                return;
+
+            if (_currentStep < 0)
+                _currentStep = 0;
+            
+            ConfigValue step = JuiceConfig.EnableSequence[_currentStep];
+            bool nextStep = true;
+            
+            if (step is IConfigEnabledOption enabledOption)
+            {
+                //Enable the option and wait for next input to check the next one
+                if (!enabledOption.IsEnable())
+                    enabledOption.Set(true);
+            }
+            else if (step is IConfigSelectOption selectOption)
+            {
+                //Enable the option and wait for next input to check the next one
+                if (selectOption.CurrentSelected() < selectOption.Max())
+                    selectOption.Next();
+                
+                nextStep = selectOption.CurrentSelected() >= selectOption.Max();
+            }
+            
+            ConfigUI.Refresh(step);
+            
+            if(nextStep)
+                _currentStep++;
+        }
+
+        private void ToPrevStep()
+        {
+            if(_currentStep < 0)
+                return;
+            
+            //TODO: WIP, it's not reseting the proper one
+            ConfigValue step = JuiceConfig.EnableSequence[_currentStep];
+            bool goToPrevStep = true;
+            if (step is IConfigEnabledOption enabledOption)
+            {
+                //Enable the option and wait for next input to check the next one
+                if (enabledOption.IsEnable())
+                    enabledOption.Set(false);
+            }
+            else if (step is IConfigSelectOption selectOption)
+            {
+                //Enable the option and wait for next input to check the next one
+                if (selectOption.CurrentSelected() > 0)
+                    selectOption.Prev();
+                
+                goToPrevStep = selectOption.CurrentSelected() <= 0;
+            }
+            
+            ConfigUI.Refresh(step);
+            
+            if(goToPrevStep)
+                _currentStep--;
+        }
+
+
+#region ImpactPause
         
         //Impact pause - Hit Stop
         private bool _isOnImpactPause;
@@ -70,7 +136,7 @@ namespace AllieJoe.JuiceIt
 
             _isOnImpactPause = false;
         }
-
+#endregion
 
     }
 }

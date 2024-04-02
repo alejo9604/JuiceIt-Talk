@@ -6,6 +6,8 @@ namespace AllieJoe.JuiceIt
     public class ConfigUI : MonoBehaviour
     {
         [SerializeField] private RectTransform _container;
+        [SerializeField] private CanvasGroup _canvasGroup;
+        [Space(20)]
         [SerializeField] private ConfigOptionUI _optionPrefab;
         [SerializeField] private ConfigOptionEnabledUI _optionEnabledPrefab;
         [SerializeField] private ConfigOptionSelectUI _optionSelectPrefab;
@@ -23,6 +25,23 @@ namespace AllieJoe.JuiceIt
             }
         }
 
+        public void ToggleHide() => Hide(_canvasGroup.interactable);
+        public void Hide(bool hide)
+        {
+            _canvasGroup.alpha = hide ? 0 : 1;
+            _canvasGroup.interactable = !hide;
+            _canvasGroup.blocksRaycasts = !hide;
+        }
+
+        public void Refresh(ConfigValue config)
+        {
+            foreach (ConfigOptionUI optionUI in _options)
+            {
+                if(optionUI.ConfigKey == config.Key)
+                    optionUI.Refresh();
+            }
+        }
+        
         private ConfigOptionEnabledUI CreateEnabledOption(ConfigValue configValue)
         {
             var option = Instantiate(_optionEnabledPrefab, _container);

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace AllieJoe.JuiceIt
 {
@@ -58,7 +59,8 @@ namespace AllieJoe.JuiceIt
         {
             _input.x = Input.GetAxisRaw("Horizontal");
             _input.y = Input.GetAxisRaw("Vertical");
-            _isShooting = Input.GetMouseButton(0) || Input.GetKey(KeyCode.Space);
+            _isShooting = !EventSystem.current.IsPointerOverGameObject() && 
+                (Input.GetMouseButton(0) || Input.GetKey(KeyCode.Space));
 
             //TODO: Do we need to normalize? Not for now
             _input.x *= -1; //Invert X-axis. We have our ship rotated 180deg
@@ -127,7 +129,6 @@ namespace AllieJoe.JuiceIt
             {
                 var dir = accuracy * cannon.transform.up;
                 Projectile projectile = Instantiate(projectilePrefab, cannon.position, Quaternion.identity);
-                ;
                 projectile.Init(dir, projectileSpeed, true);
             }
         }

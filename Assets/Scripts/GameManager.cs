@@ -9,6 +9,7 @@ namespace AllieJoe.JuiceIt
         public static GameManager Instance;
 
         public JuiceConfigSO JuiceConfig;
+        public ConfigUI ConfigUI;
 
         private void Awake()
         {
@@ -22,6 +23,7 @@ namespace AllieJoe.JuiceIt
         private void Start()
         {
             JuiceConfig.ResetToDefault();
+            ConfigUI.Init(JuiceConfig.EnableSequence);
         }
 
         private void Update()

@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -43,7 +42,7 @@ namespace AllieJoe.JuiceIt
         {
             foreach (ConfigValue configValue in EnableSequence)
             {
-                if(configValue.Key == key && configValue is IConfigOption option)
+                if(configValue.Key == key && configValue is IConfigSelectOption option)
                     option.Next();
             }
         }
@@ -52,7 +51,7 @@ namespace AllieJoe.JuiceIt
         {
             foreach (ConfigValue configValue in EnableSequence)
             {
-                if(configValue.Key == key && configValue is IConfigOption option)
+                if(configValue.Key == key && configValue is IConfigSelectOption option)
                     option.Prev();
             }
         }

@@ -117,19 +117,22 @@ namespace AllieJoe.JuiceIt
 
             _nextFireAt = Time.time + GameManager.Instance.JuiceConfig.GetValue<float>(EConfigKey.ProjectileRateFire);
 
-            //TODO: Expose accuracy range
             var accuracy = Quaternion.identity;
-            if (GameManager.Instance.JuiceConfig.GetValue<bool>(EConfigKey.ShootingAccuracy))
-                accuracy = Quaternion.Euler(0, 0, Random.Range(-4, 4));
+            float accuracyBaseValue = GameManager.Instance.JuiceConfig.GetValue<float>(EConfigKey.ProjectileAccuracy);
+            bool accuracyEnabled = GameManager.Instance.JuiceConfig.GetValue<bool>(EConfigKey.ShootingAccuracy);
+            if(accuracyEnabled && !GameManager.Instance.JuiceConfig.ShootAccuracyPerCannon)
+                accuracy = Quaternion.Euler(0, 0, Random.Range(-accuracyBaseValue, accuracyBaseValue));
 
             Projectile projectilePrefab = GameManager.Instance.JuiceConfig.GetValue<Projectile>(EConfigKey.ProjectilePrefab);
             float projectileSpeed = GameManager.Instance.JuiceConfig.GetValue<float>(EConfigKey.ProjectileSpeed);
 
             foreach (var cannon in _cannonFire)
             {
+                if (accuracyEnabled && !GameManager.Instance.JuiceConfig.ShootAccuracyPerCannon)
+                    accuracy = Quaternion.Euler(0, 0, Random.Range(-accuracyBaseValue, accuracyBaseValue));
                 var dir = accuracy * cannon.transform.up;
                 Projectile projectile = Instantiate(projectilePrefab, cannon.position, Quaternion.identity);
-                projectile.Init(dir, projectileSpeed, true);
+                projectile.Init(dir, projectileSpeed, true, extraSpeed: _currentSpeed);
             }
         }
     }

@@ -13,6 +13,9 @@ namespace AllieJoe.JuiceIt
         [Range(0, 1)] public float ImpactPauseDurationFramesPercent = 0.1f;
         public int ImpactPauseDurationMaxFrames = 15;
 
+        [Header("Accuracy")]
+        public bool ShootAccuracyPerCannon = false;
+
         public T GetValue<T>(EConfigKey key)
         {
             foreach (ConfigValue configValue in EnableSequence)

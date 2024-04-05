@@ -15,9 +15,9 @@ namespace AllieJoe.JuiceIt
 
         private const float SKIN_WIDTH = 0.1f;
 
-        public void Init(Vector3 dir, float speed, bool isPlayer, float lifeTime = 3)
+        public void Init(Vector3 dir, float speed, bool isPlayer, float lifeTime = 3, float extraSpeed = 0)
         {
-            _speed = speed;
+            _speed = speed + extraSpeed;
             _isPlayer = isPlayer;
             _lifeTime = lifeTime;
             _timeToDisable = Time.time + _lifeTime;

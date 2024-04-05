@@ -9,8 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3639598995223481607}
-  - component: {fileID: 5530730172498631807}
   - component: {fileID: 5860190273009809689}
+  - component: {fileID: 4047482559493353581}
   m_Layer: 7
   m_Name: Enemy_UFO
   m_TagString: Untagged
@@ -34,18 +34,6 @@ Transform:
   - {fileID: 5567108577582990657}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5530730172498631807
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6081405672307001695}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f19bdc62bab00bd4dbb4458501c833a4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!58 &5860190273009809689
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -81,6 +69,21 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 1.0891266
+--- !u!114 &4047482559493353581
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6081405672307001695}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1705635025984fd895039796679c7124, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxSpeed: 5
+  _maxSeekForce: 5
+  _target: {fileID: 0}
 --- !u!1 &8519018151461791811
 GameObject:
   m_ObjectHideFlags: 0

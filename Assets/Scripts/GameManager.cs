@@ -8,8 +8,12 @@ namespace AllieJoe.JuiceIt
     {
         public static GameManager Instance;
 
+        [Header("Config")]
         public JuiceConfigSO JuiceConfig;
         public ConfigUI ConfigUI;
+
+        [Header("Player")] 
+        public PlayerShip Player;
 
         private int _currentStep = 0;
         

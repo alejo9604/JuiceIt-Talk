@@ -23,6 +23,8 @@ namespace AllieJoe.JuiceIt
                 else if(config is IConfigSelectOption)
                     _options.Add(CreateSelectOption(config));
             }
+
+            Hide(true);
         }
 
         public void ToggleHide() => Hide(_canvasGroup.interactable);

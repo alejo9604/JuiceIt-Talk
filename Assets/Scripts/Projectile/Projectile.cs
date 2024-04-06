@@ -6,6 +6,7 @@ namespace AllieJoe.JuiceIt
     {
         private float _speed = 18f;
         private float _lifeTime = 3;
+        private int _damage = 1;
 
         private float _timeToDisable = -1;
         private bool _isPlayer = false;
@@ -66,7 +67,6 @@ namespace AllieJoe.JuiceIt
         private void OnHitObject(Collider2D collision, Vector2 hitPoint, Vector2 normalHitPoint)
         {
             TryToApplyDamageToTarget(collision.transform, hitPoint);
-            Debug.Log($"Hit {collision.gameObject.name}");
 
             GameManager.Instance.DoImpactPause();
 
@@ -75,13 +75,14 @@ namespace AllieJoe.JuiceIt
 
         private void TryToApplyDamageToTarget(Transform target, Vector2 hitPoint)
         {
-
+            if (target.TryGetComponent(out Health targetHealth))
+                targetHealth.TakeDamage(_damage, hitPoint);
         }
 
         private void DestroyProjectile()
         {
             Destroy(gameObject);
-            //PoolManager.Destroy(gameObject);
+            //TODO: PoolManager.Destroy(gameObject);
         }
     }
 }

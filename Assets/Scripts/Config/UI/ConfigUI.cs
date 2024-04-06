@@ -27,6 +27,7 @@ namespace AllieJoe.JuiceIt
             Hide(true);
         }
 
+        [ContextMenu("Toggle Hide")]
         public void ToggleHide() => Hide(_canvasGroup.interactable);
         public void Hide(bool hide)
         {

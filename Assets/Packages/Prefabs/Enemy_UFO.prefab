@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3639598995223481607}
   - component: {fileID: 5860190273009809689}
   - component: {fileID: 4047482559493353581}
+  - component: {fileID: 1153756741634254687}
   m_Layer: 7
   m_Name: Enemy_UFO
   m_TagString: Untagged
@@ -83,7 +84,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxSpeed: 5
   _maxSeekForce: 5
-  _target: {fileID: 0}
+--- !u!114 &1153756741634254687
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6081405672307001695}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e81c29f87f54754c84ab6f94ac5f6fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _totalHealth: 5
+  _currentHealth: 5
+  OnTakeDamage:
+    m_PersistentCalls:
+      m_Calls: []
+  OnDeath:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &8519018151461791811
 GameObject:
   m_ObjectHideFlags: 0

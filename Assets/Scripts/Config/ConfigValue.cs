@@ -17,6 +17,7 @@ namespace AllieJoe.JuiceIt
         ProjectileRateFire,
         ProjectilePrefab,
         ProjectileAccuracy,
+        ProjectileHitVFX,
         
         WeaponType,
         

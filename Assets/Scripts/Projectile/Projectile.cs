@@ -4,9 +4,13 @@ namespace AllieJoe.JuiceIt
 {
     public class Projectile : MonoBehaviour
     {
+        private const float SKIN_WIDTH = 0.1f;
+        
+        [SerializeField] private GameObject _hitPrefab;
+        
         private float _speed = 18f;
         private float _lifeTime = 3;
-        private int _damage = 1;
+        private int _damage = 0;
 
         private float _timeToDisable = -1;
         private bool _isPlayer = false;
@@ -14,7 +18,6 @@ namespace AllieJoe.JuiceIt
         private ContactFilter2D _contactFilter;
         private readonly RaycastHit2D[] _cachedContactHit = new RaycastHit2D[1];
 
-        private const float SKIN_WIDTH = 0.1f;
 
         public void Init(Vector3 dir, float speed, bool isPlayer, float lifeTime = 3, float extraSpeed = 0)
         {
@@ -35,6 +38,8 @@ namespace AllieJoe.JuiceIt
             _contactFilter.useLayerMask = true;
             _contactFilter.useTriggers = true;
         }
+
+        public void SetDamage(int damage) => _damage = damage;
 
         void Update()
         {
@@ -67,8 +72,10 @@ namespace AllieJoe.JuiceIt
         private void OnHitObject(Collider2D collision, Vector2 hitPoint, Vector2 normalHitPoint)
         {
             TryToApplyDamageToTarget(collision.transform, hitPoint);
-
+            
             GameManager.Instance.DoImpactPause();
+
+            SpawnImpactVFX(hitPoint, normalHitPoint);
 
             DestroyProjectile();
         }
@@ -77,6 +84,14 @@ namespace AllieJoe.JuiceIt
         {
             if (target.TryGetComponent(out Health targetHealth))
                 targetHealth.TakeDamage(_damage, hitPoint);
+        }
+
+        private void SpawnImpactVFX(Vector2 hitPoint, Vector2 normal)
+        {
+            if(_hitPrefab == null || !GameManager.Instance.JuiceConfig.GetValue<bool>(EConfigKey.ProjectileHitVFX))
+                return;
+            GameObject vfx = Instantiate(_hitPrefab, hitPoint, Quaternion.Euler(0, 0, 180) * transform.rotation);
+            Destroy(vfx, 3);
         }
 
         private void DestroyProjectile()

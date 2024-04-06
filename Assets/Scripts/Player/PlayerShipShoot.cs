@@ -35,6 +35,7 @@ namespace AllieJoe.JuiceIt
         
         [SerializeField] private WeaponPreset[] _weaponPresets;
 
+        private int _damage = 0;
         private int _bulletsToShootAmount = 1;
         private int _maxAngleToShoot = 90;
         private int _currentWeaponPreset = 0;
@@ -93,6 +94,7 @@ namespace AllieJoe.JuiceIt
                     
                     Projectile projectile = Instantiate(projectilePrefab, cannon.position, Quaternion.identity);
                     projectile.Init(dir, projectileSpeed, true, extraSpeed: extraSpeed);
+                    projectile.SetDamage(_damage);
                 }
             }
         }
@@ -122,6 +124,7 @@ namespace AllieJoe.JuiceIt
                 
                 preset.Set(tuning);
                 _currentWeaponPreset = i;
+                _damage = tuning.Damage;
                 _bulletsToShootAmount = tuning.BulletsToShoot;
                 _maxAngleToShoot = tuning.MaxAngleToShoot;
             }

@@ -16,14 +16,15 @@ MonoBehaviour:
   - rid: 2534765774161575957
   - rid: 2534765774161575958
   - rid: 2534765774161575959
-  - rid: 2534765883193294850
   - rid: 2534765774161575962
   - rid: 2534765774161575961
   - rid: 2534765774161575964
   - rid: 2534765844572667904
+  - rid: 2534765883193294852
+  - rid: 2534765883193294853
   - rid: 2534765883193294851
   ImpactPauseDurationFramesPercent: 0.1
-  ImpactPauseDurationMaxFrames: 12
+  ImpactPauseDurationMaxFrames: 5
   ShootAccuracyPerCannon: 0
   references:
     version: 2
@@ -35,7 +36,7 @@ MonoBehaviour:
         Key: 0
         Label: Trail
         Comments: Enable/Disable Ship trails
-        Enabled: 1
+        Enabled: 0
     - rid: 2534765774161575958
       type: {class: ConfigEnabledValue, ns: AllieJoe.JuiceIt, asm: Assembly-CSharp}
       data:
@@ -96,21 +97,27 @@ MonoBehaviour:
         - 2
         - 4
         - 5
-    - rid: 2534765883193294850
-      type: {class: ConfigFloatValue, ns: AllieJoe.JuiceIt, asm: Assembly-CSharp}
+    - rid: 2534765883193294851
+      type: {class: ConfigSelectWeaponOptionsValue, ns: AllieJoe.JuiceIt, asm: Assembly-CSharp}
+      data:
+        name: WeaponType
+        Key: 9
+        Label: Weapon
+        Comments: Weapon Type
+        Options: 0000000001000000
+    - rid: 2534765883193294852
+      type: {class: ConfigEnabledValue, ns: AllieJoe.JuiceIt, asm: Assembly-CSharp}
+      data:
+        name: ProjectileHitVFX
+        Key: 8
+        Label: Hit VFX
+        Comments: Projectile Hit VFX
+        Enabled: 1
+    - rid: 2534765883193294853
+      type: {class: ConfigEnabledValue, ns: AllieJoe.JuiceIt, asm: Assembly-CSharp}
       data:
         name: ImpactPause
         Key: 3
         Label: Impact Pause
         Comments: Enable/Disable Pause when hitting an enemy
         Enabled: 0
-        ActiveValue: 0
-        DisableValue: 0
-    - rid: 2534765883193294851
-      type: {class: ConfigSelectWeaponOptionsValue, ns: AllieJoe.JuiceIt, asm: Assembly-CSharp}
-      data:
-        name: WeaponType
-        Key: 8
-        Label: Weapon
-        Comments: Weapon Type
-        Options: 0000000001000000

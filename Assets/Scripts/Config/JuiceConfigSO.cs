@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -41,22 +42,28 @@ namespace AllieJoe.JuiceIt
                 configValue.FullActive();
         }
 
-        public void TryNext(EConfigKey key)
+        // public void TryNext(EConfigKey key)
+        // {
+        //     foreach (ConfigValue configValue in EnableSequence)
+        //     {
+        //         if(configValue.Key == key && configValue is IConfigSelectOption option)
+        //             option.Next();
+        //     }
+        // }
+        //
+        // public void TryPrev(EConfigKey key)
+        // {
+        //     foreach (ConfigValue configValue in EnableSequence)
+        //     {
+        //         if(configValue.Key == key && configValue is IConfigSelectOption option)
+        //             option.Prev();
+        //     }
+        // }
+
+        private void OnValidate()
         {
-            foreach (ConfigValue configValue in EnableSequence)
-            {
-                if(configValue.Key == key && configValue is IConfigSelectOption option)
-                    option.Next();
-            }
-        }
-        
-        public void TryPrev(EConfigKey key)
-        {
-            foreach (ConfigValue configValue in EnableSequence)
-            {
-                if(configValue.Key == key && configValue is IConfigSelectOption option)
-                    option.Prev();
-            }
+            foreach (var config in EnableSequence)
+                config?.OnValidate();
         }
     }
 }

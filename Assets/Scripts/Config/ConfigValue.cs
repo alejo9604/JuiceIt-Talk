@@ -18,12 +18,15 @@ namespace AllieJoe.JuiceIt
         ProjectilePrefab,
         ProjectileAccuracy,
         
+        WeaponType,
+        
         _INVALID
     }
     
     [Serializable]
     public abstract class ConfigValue
     {
+        [HideInInspector] public string name;
         public EConfigKey Key;
         public string Label;
         [TextArea]
@@ -31,6 +34,11 @@ namespace AllieJoe.JuiceIt
 
         public abstract void Reset();
         public abstract void FullActive();
+
+        public void OnValidate()
+        {
+            name = Key.ToString();
+        }
     }
 
     public interface IConfigEnabledOption
@@ -109,5 +117,8 @@ namespace AllieJoe.JuiceIt
     
     [Serializable]
     public class ConfigSelectPrefabOptionsValue : ConfigSelectOptionsValue<Projectile> { }
+    
+    [Serializable]
+    public class ConfigSelectWeaponOptionsValue : ConfigSelectOptionsValue<WeaponTuning.EType> { }
     
 }

@@ -18,5 +18,10 @@ namespace AllieJoe.JuiceIt
         }
 
         public virtual void Refresh(){}
+
+        protected void OnValueUpdated()
+        {
+            GameManager.Instance.GameDelegates.EmitOnConfigUpdated(ConfigKey);
+        }
     }
 }

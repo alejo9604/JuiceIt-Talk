@@ -10,9 +10,13 @@ namespace AllieJoe.JuiceIt
 
         [Header("Config")]
         public JuiceConfigSO JuiceConfig;
+        public WeaponTuningLibrary WeaponTuningLibrary;
+        
+        [Header("UI")]
         public ConfigUI ConfigUI;
 
-        [Header("Player")] 
+        [Header("Game")] 
+        public GameDelegates GameDelegates;
         public PlayerShip Player;
 
         private int _currentStep = 0;
@@ -54,19 +58,26 @@ namespace AllieJoe.JuiceIt
             
             ConfigValue step = JuiceConfig.EnableSequence[_currentStep];
             bool nextStep = true;
+            EConfigKey updatedKey = EConfigKey._INVALID;
             
             if (step is IConfigEnabledOption enabledOption)
             {
                 //Enable the option and wait for next input to check the next one
                 if (!enabledOption.IsEnable())
+                {
                     enabledOption.Set(true);
+                    updatedKey = step.Key;
+                }
             }
             else if (step is IConfigSelectOption selectOption)
             {
                 //Enable the option and wait for next input to check the next one
                 if (selectOption.CurrentSelected() < selectOption.Max())
+                {
                     selectOption.Next();
-                
+                    updatedKey = step.Key;
+                }
+
                 nextStep = selectOption.CurrentSelected() >= selectOption.Max();
             }
             
@@ -74,6 +85,9 @@ namespace AllieJoe.JuiceIt
             
             if(nextStep)
                 _currentStep++;
+            
+            if(updatedKey != EConfigKey._INVALID)
+                GameDelegates.EmitOnConfigUpdated(updatedKey);
         }
 
         private void ToPrevStep()
@@ -105,6 +119,11 @@ namespace AllieJoe.JuiceIt
                 _currentStep--;
         }
 
+        public WeaponTuning GetWeaponTuningSelected()
+        {
+            WeaponTuning.EType type = JuiceConfig.GetValue<WeaponTuning.EType>(EConfigKey.WeaponType);
+            return WeaponTuningLibrary.GetTuning(type);
+        }
 
 #region ImpactPause
         

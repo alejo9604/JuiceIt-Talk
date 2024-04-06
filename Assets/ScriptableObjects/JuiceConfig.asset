@@ -16,26 +16,30 @@ MonoBehaviour:
   - rid: 2534765774161575957
   - rid: 2534765774161575958
   - rid: 2534765774161575959
-  - rid: 2534765774161575960
+  - rid: 2534765883193294850
   - rid: 2534765774161575962
   - rid: 2534765774161575961
   - rid: 2534765774161575964
   - rid: 2534765844572667904
+  - rid: 2534765883193294851
   ImpactPauseDurationFramesPercent: 0.1
   ImpactPauseDurationMaxFrames: 12
+  ShootAccuracyPerCannon: 0
   references:
     version: 2
     RefIds:
     - rid: 2534765774161575957
       type: {class: ConfigEnabledValue, ns: AllieJoe.JuiceIt, asm: Assembly-CSharp}
       data:
+        name: Trail
         Key: 0
         Label: Trail
         Comments: Enable/Disable Ship trails
-        Enabled: 0
+        Enabled: 1
     - rid: 2534765774161575958
       type: {class: ConfigEnabledValue, ns: AllieJoe.JuiceIt, asm: Assembly-CSharp}
       data:
+        name: ShootingMovementRestriction
         Key: 1
         Label: Shoot + Move
         Comments: Enable/Disable Less movement when shooting
@@ -43,20 +47,15 @@ MonoBehaviour:
     - rid: 2534765774161575959
       type: {class: ConfigEnabledValue, ns: AllieJoe.JuiceIt, asm: Assembly-CSharp}
       data:
+        name: ShootingAccuracy
         Key: 2
         Label: Shoot Accuracy
         Comments: Enable/Disable Less accuracy when shooting
         Enabled: 0
-    - rid: 2534765774161575960
-      type: {class: ConfigEnabledValue, ns: AllieJoe.JuiceIt, asm: Assembly-CSharp}
-      data:
-        Key: 3
-        Label: Impact Pause
-        Comments: Enable/Disable Pause when hitting an enemy
-        Enabled: 0
     - rid: 2534765774161575961
       type: {class: ConfigSelectFloatOptionsValue, ns: AllieJoe.JuiceIt, asm: Assembly-CSharp}
       data:
+        name: ProjectileSpeed
         Key: 4
         Label: Projectile speed
         Comments: Projectile speed
@@ -67,6 +66,7 @@ MonoBehaviour:
     - rid: 2534765774161575962
       type: {class: ConfigSelectPrefabOptionsValue, ns: AllieJoe.JuiceIt, asm: Assembly-CSharp}
       data:
+        name: ProjectilePrefab
         Key: 6
         Label: Projectile prefabs
         Comments: Projectile prefabs
@@ -77,6 +77,7 @@ MonoBehaviour:
     - rid: 2534765774161575964
       type: {class: ConfigSelectFloatOptionsValue, ns: AllieJoe.JuiceIt, asm: Assembly-CSharp}
       data:
+        name: ProjectileRateFire
         Key: 5
         Label: Rate Fire
         Comments: Projectile rate fire (next bullet timer)
@@ -87,6 +88,7 @@ MonoBehaviour:
     - rid: 2534765844572667904
       type: {class: ConfigSelectFloatOptionsValue, ns: AllieJoe.JuiceIt, asm: Assembly-CSharp}
       data:
+        name: ProjectileAccuracy
         Key: 7
         Label: Accuracy
         Comments: Projectile accuracy
@@ -94,3 +96,21 @@ MonoBehaviour:
         - 2
         - 4
         - 5
+    - rid: 2534765883193294850
+      type: {class: ConfigFloatValue, ns: AllieJoe.JuiceIt, asm: Assembly-CSharp}
+      data:
+        name: ImpactPause
+        Key: 3
+        Label: Impact Pause
+        Comments: Enable/Disable Pause when hitting an enemy
+        Enabled: 0
+        ActiveValue: 0
+        DisableValue: 0
+    - rid: 2534765883193294851
+      type: {class: ConfigSelectWeaponOptionsValue, ns: AllieJoe.JuiceIt, asm: Assembly-CSharp}
+      data:
+        name: WeaponType
+        Key: 8
+        Label: Weapon
+        Comments: Weapon Type
+        Options: 0000000001000000

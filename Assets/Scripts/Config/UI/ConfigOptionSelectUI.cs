@@ -41,6 +41,7 @@ namespace AllieJoe.JuiceIt
         private void OnValueChange(float index)
         {
             _option.SetSelected((int)index);
+            OnValueUpdated();
         }
     }
 }

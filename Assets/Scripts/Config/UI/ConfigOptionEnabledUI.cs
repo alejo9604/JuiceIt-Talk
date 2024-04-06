@@ -38,6 +38,7 @@ namespace AllieJoe.JuiceIt
             if(_option == null)
                 return;
             _option.Set(enabled);
+            OnValueUpdated();
         }
     }
 }

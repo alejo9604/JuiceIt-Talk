@@ -98,6 +98,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _totalHealth: 5
   _currentHealth: 5
+  _invisibilityTime: 0.15
   OnTakeDamage:
     m_PersistentCalls:
       m_Calls: []

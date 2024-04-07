@@ -16,6 +16,9 @@ namespace AllieJoe.JuiceIt
 
         [Header("Accuracy")]
         public bool ShootAccuracyPerCannon = false;
+        
+        [Header("Muzzle Flash")]
+        public float MuzzleFlashTime = 0.35f;
 
         public T GetValue<T>(EConfigKey key)
         {

@@ -19,6 +19,7 @@ namespace AllieJoe.JuiceIt
         ProjectileAccuracy,
         ProjectileHitVFX,
         
+        MuzzleFlash,
         WeaponType,
         
         _INVALID

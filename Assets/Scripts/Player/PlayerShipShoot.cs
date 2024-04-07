@@ -12,7 +12,10 @@ namespace AllieJoe.JuiceIt
             public WeaponTuning.ESubType Type;
             public SpriteRenderer[] CannonSprites;
             public Transform[] CannonFire;
+            public GameObject[] MuzzleFlash;
 
+            private bool _areMuzzleFlashActive;
+            
             public void Set(WeaponTuning tuning)
             {
                 foreach (SpriteRenderer sprite in CannonSprites)
@@ -22,6 +25,8 @@ namespace AllieJoe.JuiceIt
                 }
                 foreach (Transform cannon in CannonFire)
                     cannon.gameObject.SetActive(true);
+                foreach (GameObject muzzleFlash in MuzzleFlash)
+                    muzzleFlash.SetActive(false);
             }
 
             public void Hide()
@@ -30,8 +35,27 @@ namespace AllieJoe.JuiceIt
                     sprite.gameObject.SetActive(false);
                 foreach (Transform cannon in CannonFire)
                     cannon.gameObject.SetActive(false);
+                foreach (GameObject muzzleFlash in MuzzleFlash)
+                    muzzleFlash.SetActive(false);
+            }
+
+            public void HideMuzzleFlash()
+            {
+                if(!_areMuzzleFlashActive)
+                    return;
+                _areMuzzleFlashActive = false;
+                foreach (GameObject muzzleFlash in MuzzleFlash)
+                    muzzleFlash.SetActive(false);
+            }
+
+            public void ShowMuzzleFlash()
+            {
+                _areMuzzleFlashActive = true;
+                foreach (GameObject muzzleFlash in MuzzleFlash)
+                    muzzleFlash.SetActive(true);
             }
         }
+        
         
         [SerializeField] private WeaponPreset[] _weaponPresets;
 
@@ -40,11 +64,18 @@ namespace AllieJoe.JuiceIt
         private int _maxAngleToShoot = 90;
         private int _currentWeaponPreset = 0;
         private float _nextFireAt;
+        private float _lastFireAt;
 
         private void Start()
         {
             RefreshSelectedWeapon();
             GameManager.Instance.GameDelegates.OnConfigUpdated += OnConfigUpdated;
+        }
+
+        private void Update()
+        {
+            if (Time.time > _lastFireAt + GameManager.Instance.JuiceConfig.MuzzleFlashTime)
+                GetCurrentPresetActive().HideMuzzleFlash();
         }
 
         private void OnDestroy()
@@ -65,6 +96,7 @@ namespace AllieJoe.JuiceIt
                 return;
 
             _nextFireAt = Time.time + GameManager.Instance.JuiceConfig.GetValue<float>(EConfigKey.ProjectileRateFire);
+            _lastFireAt = Time.time;
 
             WeaponPreset weaponPresetData = GetCurrentPresetActive();
             
@@ -97,6 +129,9 @@ namespace AllieJoe.JuiceIt
                     projectile.SetDamage(_damage);
                 }
             }
+
+            if(GameManager.Instance.JuiceConfig.GetValue<bool>(EConfigKey.MuzzleFlash))
+                weaponPresetData.ShowMuzzleFlash();
         }
 
         private void RefreshSelectedWeapon()

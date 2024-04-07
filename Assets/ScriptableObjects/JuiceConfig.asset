@@ -22,6 +22,7 @@ MonoBehaviour:
   - rid: 2534765844572667904
   - rid: 2534765883193294852
   - rid: 2534765883193294853
+  - rid: 2534765883193294854
   - rid: 2534765883193294851
   ImpactPauseDurationFramesPercent: 0.1
   ImpactPauseDurationMaxFrames: 5
@@ -101,7 +102,7 @@ MonoBehaviour:
       type: {class: ConfigSelectWeaponOptionsValue, ns: AllieJoe.JuiceIt, asm: Assembly-CSharp}
       data:
         name: WeaponType
-        Key: 9
+        Key: 10
         Label: Weapon
         Comments: Weapon Type
         Options: 0000000001000000
@@ -120,4 +121,12 @@ MonoBehaviour:
         Key: 3
         Label: Impact Pause
         Comments: Enable/Disable Pause when hitting an enemy
+        Enabled: 0
+    - rid: 2534765883193294854
+      type: {class: ConfigEnabledValue, ns: AllieJoe.JuiceIt, asm: Assembly-CSharp}
+      data:
+        name: MuzzleFlash
+        Key: 9
+        Label: Muzzle Flash
+        Comments: Muzzle Flash
         Enabled: 0

@@ -3,7 +3,7 @@ using UnityEngine.Events;
 
 namespace AllieJoe.JuiceIt
 {
-    public class Health : MonoBehaviour
+    public class Health : MonoBehaviour, IDamageable
     {
         [SerializeField] private int _totalHealth = 5;
         [SerializeField] private int _currentHealth = 5;

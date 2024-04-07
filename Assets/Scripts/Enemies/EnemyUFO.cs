@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace AllieJoe.JuiceIt
 {
@@ -6,9 +8,19 @@ namespace AllieJoe.JuiceIt
     {
         [SerializeField] private float _maxSpeed = 5;
         [SerializeField] private float _maxSeekForce = 0.25f;
+        
+        [Header("Body")]
+        [SerializeField] private Transform _body;
+        [SerializeField] private float _bodyMaxDistance = 0.5f;
+        [SerializeField] private float _bodySpeed = 5;
+        [SerializeField] private float _bodyRefreshTime = 1f;
+        [SerializeField] private float _bodyRotSpeedDeg = 5;
 
         private Vector3 _velocity;
         private Vector3 _acceleration;
+
+        private Vector3 _targetBodyDirection;
+        private float _nextBodyPositionRefresh;
         
         private void ApplyForce(Vector3 force)
         {
@@ -20,6 +32,7 @@ namespace AllieJoe.JuiceIt
         {
             Seek(base.Player);
             Move();
+            MoveBody();
         }
 
         private void Move()
@@ -35,6 +48,19 @@ namespace AllieJoe.JuiceIt
             _acceleration *= 0;
         }
 
+        private void MoveBody()
+        {
+            if (Time.time > _nextBodyPositionRefresh || _body.localPosition.sqrMagnitude > _bodyMaxDistance * _bodyMaxDistance)
+            {
+                _targetBodyDirection = (Random.insideUnitCircle * _bodyMaxDistance).normalized;
+                _nextBodyPositionRefresh = Time.time + _bodyRefreshTime;
+            }
+
+            _body.localPosition += _targetBodyDirection * _bodySpeed * Time.deltaTime;
+            _body.Rotate(Vector3.forward, _bodyRotSpeedDeg * Time.deltaTime);
+            
+        }
+
         private void Seek(Transform target)
         {
             Vector3 desired = (target.position - transform.position).normalized * _maxSpeed;
@@ -46,6 +72,11 @@ namespace AllieJoe.JuiceIt
             Debug.DrawLine(transform.position + _velocity, transform.position + _velocity + steer, Color.blue);
 
             ApplyForce(steer);
+        }
+
+        private void OnDrawGizmos()
+        {
+            Gizmos.DrawWireSphere(transform.position, _bodyMaxDistance);
         }
     }
 }

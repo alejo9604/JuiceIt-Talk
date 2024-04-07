@@ -82,7 +82,7 @@ namespace AllieJoe.JuiceIt
 
         private void TryToApplyDamageToTarget(Transform target, Vector2 hitPoint)
         {
-            if (target.TryGetComponent(out Health targetHealth))
+            if (target.TryGetComponent(out IDamageable targetHealth))
                 targetHealth.TakeDamage(_damage, hitPoint);
         }
 

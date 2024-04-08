@@ -22,6 +22,8 @@ namespace AllieJoe.JuiceIt
         MuzzleFlash,
         WeaponType,
         
+        EnemyHitImpact,
+        
         _INVALID
     }
     

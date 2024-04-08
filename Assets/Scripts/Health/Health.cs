@@ -11,18 +11,21 @@ namespace AllieJoe.JuiceIt
         [Space]
         [SerializeField] private float _invisibilityTime = 0;
         
-        [Space]
+        [Space(20)]
         public UnityEvent OnTakeDamage;
         public UnityEvent OnDeath;
         
         private bool _isDeath;
         private float _nextHitAt;
 
+        public float InvisibilityTime => _invisibilityTime;
+
         public void Start()
         {
             Reset();
         }
-
+        
+        [ContextMenu("Reset Health")]
         public void Reset()
         {
             _currentHealth = _totalHealth;

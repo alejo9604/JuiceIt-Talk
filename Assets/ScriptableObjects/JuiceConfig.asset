@@ -24,6 +24,7 @@ MonoBehaviour:
   - rid: 2534765883193294853
   - rid: 2534765883193294854
   - rid: 2534765883193294851
+  - rid: 2534765911603412992
   ImpactPauseDurationFramesPercent: 0.1
   ImpactPauseDurationMaxFrames: 5
   ShootAccuracyPerCannon: 0
@@ -130,4 +131,12 @@ MonoBehaviour:
         Key: 9
         Label: Muzzle Flash
         Comments: Muzzle Flash
+        Enabled: 0
+    - rid: 2534765911603412992
+      type: {class: ConfigEnabledValue, ns: AllieJoe.JuiceIt, asm: Assembly-CSharp}
+      data:
+        name: EnemyHitImpact
+        Key: 11
+        Label: Hit Impact
+        Comments: Enemy Hit Impact
         Enabled: 0

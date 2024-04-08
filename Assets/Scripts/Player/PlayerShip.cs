@@ -36,7 +36,7 @@ namespace AllieJoe.JuiceIt
         private float GetMaxMovementSpeed()
         {
             //No shooting custom movement
-            if (!GameManager.Instance.JuiceConfig.GetValue<bool>(EConfigKey.ShootingMovementRestriction))
+            if (!GameManager.Instance.GetConfigValue<bool>(EConfigKey.ShootingMovementRestriction))
                 return _maxSpeed;
 
             return _isShooting ? _maxShootingSpeed : _maxSpeed;
@@ -45,7 +45,7 @@ namespace AllieJoe.JuiceIt
         private float GetTurnSpeed()
         {
             //No shooting custom movement
-            if (!GameManager.Instance.JuiceConfig.GetValue<bool>(EConfigKey.ShootingMovementRestriction))
+            if (!GameManager.Instance.GetConfigValue<bool>(EConfigKey.ShootingMovementRestriction))
                 return _isAccelerating ? _movementTurnSpeed : _stillTurnSpeed;
 
             if (_isAccelerating)

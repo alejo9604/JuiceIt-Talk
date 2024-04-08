@@ -48,6 +48,8 @@ namespace AllieJoe.JuiceIt
                 ToPrevStep();
         }
 
+        public T GetConfigValue<T>(EConfigKey key) => JuiceConfig.GetValue<T>(key);
+
         private void ToNextStep()
         { 
             if(_currentStep >= JuiceConfig.EnableSequence.Count)

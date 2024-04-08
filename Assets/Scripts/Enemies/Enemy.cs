@@ -29,7 +29,7 @@ namespace AllieJoe.JuiceIt
         {
             Debug.Log("[Enemy] Take damage. TODO: animation");
 
-            if (GameManager.Instance.JuiceConfig.GetValue<bool>(EConfigKey.EnemyHitImpact))
+            if (GameManager.Instance.GetConfigValue<bool>(EConfigKey.EnemyHitImpact))
             {
                 _animator.ResetTrigger(Hit_AnimHash);
                 _animator.SetTrigger(Hit_AnimHash);

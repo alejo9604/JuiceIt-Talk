@@ -95,19 +95,19 @@ namespace AllieJoe.JuiceIt
             if (Time.time < _nextFireAt)
                 return;
 
-            _nextFireAt = Time.time + GameManager.Instance.JuiceConfig.GetValue<float>(EConfigKey.ProjectileRateFire);
+            _nextFireAt = Time.time + GameManager.Instance.GetConfigValue<float>(EConfigKey.ProjectileRateFire);
             _lastFireAt = Time.time;
 
             WeaponPreset weaponPresetData = GetCurrentPresetActive();
             
             float accuracy = 0;
-            float accuracyBaseValue = GameManager.Instance.JuiceConfig.GetValue<float>(EConfigKey.ProjectileAccuracy);
-            bool accuracyEnabled = GameManager.Instance.JuiceConfig.GetValue<bool>(EConfigKey.ShootingAccuracy);
+            float accuracyBaseValue = GameManager.Instance.GetConfigValue<float>(EConfigKey.ProjectileAccuracy);
+            bool accuracyEnabled = GameManager.Instance.GetConfigValue<bool>(EConfigKey.ShootingAccuracy);
             if(accuracyEnabled && !GameManager.Instance.JuiceConfig.ShootAccuracyPerCannon)
                 accuracy = Random.Range(-accuracyBaseValue, accuracyBaseValue);
 
-            Projectile projectilePrefab = GameManager.Instance.JuiceConfig.GetValue<Projectile>(EConfigKey.ProjectilePrefab);
-            float projectileSpeed = GameManager.Instance.JuiceConfig.GetValue<float>(EConfigKey.ProjectileSpeed);
+            Projectile projectilePrefab = GameManager.Instance.GetConfigValue<Projectile>(EConfigKey.ProjectilePrefab);
+            float projectileSpeed = GameManager.Instance.GetConfigValue<float>(EConfigKey.ProjectileSpeed);
 
             foreach (var cannon in weaponPresetData.CannonFire)
             {
@@ -130,7 +130,7 @@ namespace AllieJoe.JuiceIt
                 }
             }
 
-            if(GameManager.Instance.JuiceConfig.GetValue<bool>(EConfigKey.MuzzleFlash))
+            if(GameManager.Instance.GetConfigValue<bool>(EConfigKey.MuzzleFlash))
                 weaponPresetData.ShowMuzzleFlash();
         }
 

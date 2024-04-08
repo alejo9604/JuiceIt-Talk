@@ -132,6 +132,8 @@ namespace AllieJoe.JuiceIt
 
             if(GameManager.Instance.GetConfigValue<bool>(EConfigKey.MuzzleFlash))
                 weaponPresetData.ShowMuzzleFlash();
+            
+            GameManager.Instance.AddTrauma(GameManager.Instance.JuiceConfig.TraumaAddPerShoot);
         }
 
         private void RefreshSelectedWeapon()

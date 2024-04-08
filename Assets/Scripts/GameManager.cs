@@ -14,13 +14,15 @@ namespace AllieJoe.JuiceIt
         
         [Header("UI")]
         public ConfigUI ConfigUI;
+        public TraumaUI TraumaUI;
 
         [Header("Game")] 
         public GameDelegates GameDelegates;
         public PlayerShip Player;
 
-        private int _currentStep = 0;
-        
+        [Header("Trauma System")] 
+        [Min(1)] public float _traumaDecreaseSpeed = 0.5f;
+
         private void Awake()
         {
             //Quick "singleton"
@@ -38,18 +40,31 @@ namespace AllieJoe.JuiceIt
 
         private void Update()
         {
+            // UI
             if(Input.GetKeyDown(KeyCode.Escape))
                 ConfigUI.ToggleHide();
+            if(Input.GetKey(KeyCode.LeftShift) && Input.GetKeyDown(KeyCode.Alpha1))
+                TraumaUI.ToggleHide();
 
+            // Sequence
             if (Input.GetKeyDown(KeyCode.P))
                 ToNextStep();
-            
             if (Input.GetKeyDown(KeyCode.O))
                 ToPrevStep();
+
+            //Trauma-Shake
+            if(Input.GetKeyDown(KeyCode.Space))
+                AddTrauma();
+            if(Input.GetKeyDown(KeyCode.B))
+                AddTrauma(1f);
+            
+            ReduceTrauma(Time.deltaTime);
         }
 
         public T GetConfigValue<T>(EConfigKey key) => JuiceConfig.GetValue<T>(key);
 
+#region Sequence
+        private int _currentStep = 0;
         private void ToNextStep()
         { 
             if(_currentStep >= JuiceConfig.EnableSequence.Count)
@@ -126,7 +141,25 @@ namespace AllieJoe.JuiceIt
             WeaponTuning.EType type = JuiceConfig.GetValue<WeaponTuning.EType>(EConfigKey.WeaponType);
             return WeaponTuningLibrary.GetTuning(type);
         }
+#endregion      
 
+#region Trauma
+        private float _trauma;
+        public float TraumaValue => _trauma;
+        public float ShakeValue => _trauma * _trauma * _trauma;
+
+        public void AddTrauma(float amount = 0.3f)
+        {
+            if(JuiceConfig.GetValue<bool>(EConfigKey.CameraShake))
+                _trauma = Mathf.Clamp01(_trauma + amount);
+        }
+
+        private void ReduceTrauma(float deltaTime)
+        {
+            _trauma = Mathf.Lerp(_trauma, 0, _traumaDecreaseSpeed * deltaTime);
+        }
+#endregion
+        
 #region ImpactPause
         
         //Impact pause - Hit Stop

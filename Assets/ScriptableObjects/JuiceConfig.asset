@@ -25,10 +25,12 @@ MonoBehaviour:
   - rid: 2534765883193294854
   - rid: 2534765883193294851
   - rid: 2534765911603412992
+  - rid: 2534765911603412993
   ImpactPauseDurationFramesPercent: 0.1
   ImpactPauseDurationMaxFrames: 5
   ShootAccuracyPerCannon: 0
   MuzzleFlashTime: 0.07
+  TraumaAddPerShoot: 0.2
   references:
     version: 2
     RefIds:
@@ -131,7 +133,7 @@ MonoBehaviour:
         Key: 9
         Label: Muzzle Flash
         Comments: Muzzle Flash
-        Enabled: 0
+        Enabled: 1
     - rid: 2534765911603412992
       type: {class: ConfigEnabledValue, ns: AllieJoe.JuiceIt, asm: Assembly-CSharp}
       data:
@@ -139,4 +141,12 @@ MonoBehaviour:
         Key: 11
         Label: Hit Impact
         Comments: Enemy Hit Impact
+        Enabled: 0
+    - rid: 2534765911603412993
+      type: {class: ConfigEnabledValue, ns: AllieJoe.JuiceIt, asm: Assembly-CSharp}
+      data:
+        name: CameraShake
+        Key: 13
+        Label: Shake
+        Comments: Camera Shake
         Enabled: 0

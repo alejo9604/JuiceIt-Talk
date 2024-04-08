@@ -14,11 +14,10 @@ namespace AllieJoe.JuiceIt
         [Range(0, 1)] public float ImpactPauseDurationFramesPercent = 0.1f;
         public int ImpactPauseDurationMaxFrames = 15;
 
-        [Header("Accuracy")]
+        [Header("Shooting")]
         public bool ShootAccuracyPerCannon = false;
-        
-        [Header("Muzzle Flash")]
         public float MuzzleFlashTime = 0.35f;
+        public float TraumaAddPerShoot = 0.2f;
 
         public T GetValue<T>(EConfigKey key)
         {

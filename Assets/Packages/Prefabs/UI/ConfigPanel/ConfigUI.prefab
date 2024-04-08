@@ -126,8 +126,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb9bbd96dbcd48fdacb7745d84571e9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _container: {fileID: 2307570702057102173}
   _canvasGroup: {fileID: 3573765795688608684}
+  _startHide: 1
+  _container: {fileID: 2307570702057102173}
   _optionPrefab: {fileID: 2570182122933793035, guid: c97ef37848734c34eb454f92b0d4d45c, type: 3}
   _optionEnabledPrefab: {fileID: 2782332947362239588, guid: 3e5700f5596d5f84f86d4a206079c5bd, type: 3}
   _optionSelectPrefab: {fileID: 6072568594711436041, guid: 74e9e28addfa33b49bb5f0e3af6acf93, type: 3}

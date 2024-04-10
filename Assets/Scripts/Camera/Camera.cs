@@ -42,8 +42,10 @@ namespace AllieJoe.JuiceIt
                 _LastMovementDirection = GameManager.Instance.Player.AimDirection;
             }
 
+            // TODO: Only move if accelerating?
+            // TODO: Weight system?
             UpdateTargetOffsetByPrediction(_targetMovementDirection, movementPredictionPercent, _LastMovementDirection, _stationaryPredictionAmount);
-            
+
             var pos = TargetPos + _targetOffset;
             //Ensure Z-Offset
             pos.z = _initPosition.z;

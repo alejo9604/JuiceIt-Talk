@@ -294,7 +294,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _lerpSpeed: 3
   _stopLerpSpeed: 5
-  _stationaryPredictionAmount: 0
+  _stationaryPredictionAmount: 0.5
   _movementPredictionAmount: 10
   _maxAngle: 6
   _maxOffset: 1.2

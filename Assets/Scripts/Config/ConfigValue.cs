@@ -24,7 +24,7 @@ namespace AllieJoe.JuiceIt
         
         EnemyHitImpact,
         
-        CameraLerp,
+        CameraPrediction,
         CameraShake,
         
         _INVALID

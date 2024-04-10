@@ -26,6 +26,7 @@ MonoBehaviour:
   - rid: 2534765883193294851
   - rid: 2534765911603412992
   - rid: 2534765911603412993
+  - rid: 2534765957868158976
   ImpactPauseDurationFramesPercent: 0.1
   ImpactPauseDurationMaxFrames: 5
   ShootAccuracyPerCannon: 0
@@ -67,8 +68,8 @@ MonoBehaviour:
         Comments: Projectile speed
         Options:
         - 18
-        - 25
         - 35
+        - 50
     - rid: 2534765774161575962
       type: {class: ConfigSelectPrefabOptionsValue, ns: AllieJoe.JuiceIt, asm: Assembly-CSharp}
       data:
@@ -117,7 +118,7 @@ MonoBehaviour:
         Key: 8
         Label: Hit VFX
         Comments: Projectile Hit VFX
-        Enabled: 0
+        Enabled: 1
     - rid: 2534765883193294853
       type: {class: ConfigEnabledValue, ns: AllieJoe.JuiceIt, asm: Assembly-CSharp}
       data:
@@ -149,4 +150,12 @@ MonoBehaviour:
         Key: 13
         Label: Shake
         Comments: Camera Shake
+        Enabled: 1
+    - rid: 2534765957868158976
+      type: {class: ConfigEnabledValue, ns: AllieJoe.JuiceIt, asm: Assembly-CSharp}
+      data:
+        name: CameraPrediction
+        Key: 12
+        Label: Camera Lerp
+        Comments: Camera Lerp prediction
         Enabled: 0

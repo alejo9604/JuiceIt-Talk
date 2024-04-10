@@ -33,6 +33,12 @@ namespace AllieJoe.JuiceIt
         private float _changeDirectionDotValue;
         private float _rotAngleChange;
 
+        public bool IsAccelerating => _isAccelerating;
+        public Vector2 CurrentVelocity => _rb.velocity;
+        public Vector2 MovementDirection => _movementDir;
+        public float SpeedNormalize => _currentSpeed / _maxSpeed;
+        public Vector2 AimDirection => transform.up;
+        
         private float GetMaxMovementSpeed()
         {
             //No shooting custom movement
@@ -95,7 +101,7 @@ namespace AllieJoe.JuiceIt
                     _currentSpeed *= Mathf.Clamp(_changeDirectionDotValue, 0.1f, 1);
                 _wasAccelerating = true;
 
-                _movementDir = transform.up;
+                _movementDir = AimDirection;
                 _currentSpeed += _acceleration * deltaTime;
             }
             else

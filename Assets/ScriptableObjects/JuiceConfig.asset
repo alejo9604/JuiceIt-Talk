@@ -27,6 +27,7 @@ MonoBehaviour:
   - rid: 2534765911603412992
   - rid: 2534765911603412993
   - rid: 2534765957868158976
+  - rid: 2534766003270975488
   ImpactPauseDurationFramesPercent: 0.1
   ImpactPauseDurationMaxFrames: 5
   ShootAccuracyPerCannon: 0
@@ -158,4 +159,12 @@ MonoBehaviour:
         Key: 12
         Label: Camera Lerp
         Comments: Camera Lerp prediction
+        Enabled: 0
+    - rid: 2534766003270975488
+      type: {class: ConfigEnabledValue, ns: AllieJoe.JuiceIt, asm: Assembly-CSharp}
+      data:
+        name: CameraPerlinNoise
+        Key: 14
+        Label: Camera Perlin
+        Comments: Camera Shake with Perlin Noise
         Enabled: 0

@@ -102,7 +102,7 @@ namespace AllieJoe.JuiceIt
             
             float accuracy = 0;
             float accuracyBaseValue = GameManager.Instance.GetConfigValue<float>(EConfigKey.ProjectileAccuracy);
-            bool accuracyEnabled = GameManager.Instance.GetConfigValue<bool>(EConfigKey.ShootingAccuracy);
+            bool accuracyEnabled = GameManager.Instance.GetConfigValue(EConfigKey.ShootingAccuracy);
             if(accuracyEnabled && !GameManager.Instance.JuiceConfig.ShootAccuracyPerCannon)
                 accuracy = Random.Range(-accuracyBaseValue, accuracyBaseValue);
 
@@ -130,7 +130,7 @@ namespace AllieJoe.JuiceIt
                 }
             }
 
-            if(GameManager.Instance.GetConfigValue<bool>(EConfigKey.MuzzleFlash))
+            if(GameManager.Instance.GetConfigValue(EConfigKey.MuzzleFlash))
                 weaponPresetData.ShowMuzzleFlash();
             
             GameManager.Instance.AddTrauma(GameManager.Instance.JuiceConfig.TraumaAddPerShoot);

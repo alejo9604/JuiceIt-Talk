@@ -88,7 +88,7 @@ namespace AllieJoe.JuiceIt
 
         private void SpawnImpactVFX(Vector2 hitPoint, Vector2 normal)
         {
-            if(_hitPrefab == null || !GameManager.Instance.GetConfigValue<bool>(EConfigKey.ProjectileHitVFX))
+            if(_hitPrefab == null || !GameManager.Instance.GetConfigValue(EConfigKey.ProjectileHitVFX))
                 return;
             GameObject vfx = Instantiate(_hitPrefab, hitPoint, Quaternion.Euler(0, 0, 180) * transform.rotation);
             Destroy(vfx, 3);

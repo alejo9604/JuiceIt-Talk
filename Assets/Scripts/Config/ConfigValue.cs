@@ -3,33 +3,6 @@ using UnityEngine;
 
 namespace AllieJoe.JuiceIt
 {
-    public enum EConfigKey
-    {
-        Trail,
-        
-        ShootingMovementRestriction,
-        ShootingAccuracy,
-        
-        ImpactPause,
-        //ImpactPauseDuration,
-        
-        ProjectileSpeed,
-        ProjectileRateFire,
-        ProjectilePrefab,
-        ProjectileAccuracy,
-        ProjectileHitVFX,
-        
-        MuzzleFlash,
-        WeaponType,
-        
-        EnemyHitImpact,
-        
-        CameraPrediction,
-        CameraShake,
-        
-        _INVALID
-    }
-    
     [Serializable]
     public abstract class ConfigValue
     {

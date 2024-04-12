@@ -23,6 +23,7 @@
         
         CameraPrediction,
         CameraShake,
+        CameraPerlinNoise,
         
         _INVALID
     }

@@ -10,15 +10,15 @@ namespace AllieJoe.JuiceIt
 
         private void Start()
         {
-            UpdateTrails(GameManager.Instance.GetConfigValue<bool>(EConfigKey.Trail));
+            UpdateTrails(GameManager.Instance.GetConfigValue(EConfigKey.Trail));
         }
 
         private void Update()
         {
-            if (_trailEnabled == GameManager.Instance.GetConfigValue<bool>(EConfigKey.Trail))
+            if (_trailEnabled == GameManager.Instance.GetConfigValue(EConfigKey.Trail))
                 return;
 
-            UpdateTrails(GameManager.Instance.GetConfigValue<bool>(EConfigKey.Trail));
+            UpdateTrails(GameManager.Instance.GetConfigValue(EConfigKey.Trail));
         }
 
         private void UpdateTrails(bool enable)

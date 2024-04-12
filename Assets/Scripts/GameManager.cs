@@ -63,6 +63,8 @@ namespace AllieJoe.JuiceIt
 
         public T GetConfigValue<T>(EConfigKey key) => JuiceConfig.GetValue<T>(key);
 
+        public bool GetConfigValue(EConfigKey key) => JuiceConfig.GetValue<bool>(key);
+
 #region Sequence
         private int _currentStep = 0;
         private void ToNextStep()

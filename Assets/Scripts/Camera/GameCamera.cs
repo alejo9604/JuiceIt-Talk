@@ -3,7 +3,7 @@ using Random = UnityEngine.Random;
 
 namespace AllieJoe.JuiceIt
 {
-    public class Camera : MonoBehaviour
+    public class GameCamera : MonoBehaviour
     {
         [Header("Lerp")]
         [SerializeField] private float _lerpSpeed = 5;
@@ -14,6 +14,8 @@ namespace AllieJoe.JuiceIt
         [Header("Shake")] 
         [SerializeField] private float _maxAngle;
         [SerializeField] private float _maxOffset;
+        [SerializeField] private float _perlinNoiseMultiplier = 1;
+        private bool _usePerlinNoise;
 
         private Vector3 _initPosition;
         private Vector3 _targetOffset;
@@ -22,6 +24,10 @@ namespace AllieJoe.JuiceIt
         private Vector2 _LastMovementDirection;
         
         private Vector3 TargetPos => GameManager.Instance.Player.transform.position;
+
+        private const int ANGLE_PERLIN_SEED = 100;
+        private const int OFFSET_X_PERLIN_SEED = 200;
+        private const int OFFSET_Y_PERLIN_SEED = 300;
 
         private void Start()
         {
@@ -59,7 +65,7 @@ namespace AllieJoe.JuiceIt
         private void UpdateTargetOffsetByPrediction( Vector2 predictionDirection, float predictionAmount, Vector2 constantOffset, float constantOffsetAmount)
         {
             var offset = constantOffset * constantOffsetAmount;
-            if (GameManager.Instance.GetConfigValue<bool>(EConfigKey.CameraPrediction))
+            if (GameManager.Instance.GetConfigValue(EConfigKey.CameraPrediction))
             {
                 offset += predictionDirection * predictionAmount;
                 _targetOffset = Vector3.Lerp(_targetOffset, offset, _lerpSpeed * Time.deltaTime);
@@ -74,10 +80,12 @@ namespace AllieJoe.JuiceIt
         {
             if(shake <= 0)
                 return;
+
+            _usePerlinNoise = GameManager.Instance.GetConfigValue(EConfigKey.CameraPerlinNoise);
             
-            float angle = _maxAngle * shake * GetRandomFloatNegOneToOne();
-            float offsetX = _maxOffset * shake * GetRandomFloatNegOneToOne();
-            float offsetY = _maxOffset * shake * GetRandomFloatNegOneToOne();
+            float angle = _maxAngle * shake * (_usePerlinNoise ? GetPerlin(ANGLE_PERLIN_SEED) : GetRandomFloatNegOneToOne());
+            float offsetX = _maxOffset * shake * (_usePerlinNoise ? GetPerlin(OFFSET_X_PERLIN_SEED) : GetRandomFloatNegOneToOne());;
+            float offsetY = _maxOffset * shake * (_usePerlinNoise ? GetPerlin(OFFSET_Y_PERLIN_SEED) : GetRandomFloatNegOneToOne());;
 
             Vector3 rot = transform.eulerAngles;
             rot.z += angle;
@@ -89,11 +97,8 @@ namespace AllieJoe.JuiceIt
             transform.eulerAngles = rot;
             transform.position = pos;
         }
-        
 
-        private float GetRandomFloatNegOneToOne()
-        {
-            return Random.Range(-1f, 1f);
-        }
+        private float GetRandomFloatNegOneToOne() => Random.Range(-1f, 1f);
+        private float GetPerlin(float seed) => (Mathf.PerlinNoise(seed, Time.time * _perlinNoiseMultiplier) - 0.5f) * 2f;
     }
 }

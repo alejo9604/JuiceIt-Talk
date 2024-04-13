@@ -64,15 +64,14 @@ namespace AllieJoe.JuiceIt
 
         private void UpdateTargetOffsetByPrediction( Vector2 predictionDirection, float predictionAmount, Vector2 constantOffset, float constantOffsetAmount)
         {
-            var offset = constantOffset * constantOffsetAmount;
             if (GameManager.Instance.GetConfigValue(EConfigKey.CameraPrediction))
             {
-                offset += predictionDirection * predictionAmount;
+                var offset = constantOffset * constantOffsetAmount + predictionDirection * predictionAmount;
                 _targetOffset = Vector3.Lerp(_targetOffset, offset, _lerpSpeed * Time.deltaTime);
             }
             else
             {
-                _targetOffset = offset;
+                _targetOffset = Vector3.zero;
             }
         }
         

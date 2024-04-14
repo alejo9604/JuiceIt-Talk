@@ -1,5 +1,6 @@
 ﻿using TMPro;
 using UnityEngine;
+using DG.Tweening;
 
 namespace AllieJoe.JuiceIt
 {
@@ -12,6 +13,7 @@ namespace AllieJoe.JuiceIt
         public Vector2Int Axial_Coord;
 
         [SerializeField] private SpriteRenderer _spriteRenderer;
+        [SerializeField] private Transform _animatedParent;
         [SerializeField] private GameObject _selected;
         [SerializeField] private TextMeshPro _text;
 
@@ -25,5 +27,26 @@ namespace AllieJoe.JuiceIt
         }
 
         public void SetSelected(bool selected) => _selected.SetActive(selected);
+
+        [Header("Scale Animation")] 
+        public float _animScaleFrom = 0;
+        public float _animScaleDelay = 0;
+        public float _animScaleDuration = 0.1f;
+        public Ease _animScaleEase = Ease.Linear;
+        
+        [Header("Scale Animation")] 
+        public float _animMoveFrom = -.5f;
+        public float _animMoveDelay = 0;
+        public float _animMoveDuration = 0.1f;
+        public Ease _animMoveEase = Ease.Linear;
+
+        [ContextMenu("Animate")]
+        public void DebugAnimate() => Animate();
+        
+        public void Animate(float delay = 0)
+        {
+            _animatedParent.DOScale(1f, _animScaleDuration).From(_animScaleFrom).SetEase(_animScaleEase).SetDelay(delay * _animScaleDelay);
+            _animatedParent.DOLocalMoveY(0, _animMoveDuration).From(_animMoveFrom).SetEase(_animMoveEase).SetDelay(delay * _animMoveDelay);
+        }
     }
 }

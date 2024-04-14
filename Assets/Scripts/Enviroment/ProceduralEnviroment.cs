@@ -18,6 +18,7 @@ namespace AllieJoe.JuiceIt
         [Space]
         [SerializeField] private Camera _cam;
         [SerializeField] private Vector2 _safeZoneOffset;
+        [SerializeField] private Vector2 _tweenZoneOffset;
         
         //private readonly List<Tile> _tiles = new();
         private readonly Dictionary<Vector2Int, Tile> _tiles = new();
@@ -207,6 +208,9 @@ namespace AllieJoe.JuiceIt
             tile.transform.localScale = Vector3.one * _config.Scale;
             tile.transform.localPosition = AxialToPoint(q, r);
 
+            float disNormalize = tile.transform.localPosition.sqrMagnitude / 100f;
+            tile.Animate(1 + disNormalize);
+
             return tile;
         }
 
@@ -237,12 +241,7 @@ namespace AllieJoe.JuiceIt
             foreach (var k in _tiles.Keys)
             {
                 if (IsOutsideSafeZone(_tiles[k].transform.position, center, safeZone))
-                {
-                    //tile.gameObject.SetActive(false);
                     toRemove.Add(k);
-                }
-                // else
-                //     tile.gameObject.SetActive(true);
             }
 
             foreach (var i in toRemove)
@@ -281,6 +280,9 @@ namespace AllieJoe.JuiceIt
 
             Gizmos.color = Color.yellow;
             Gizmos.DrawWireCube(_cam.transform.position, GetSafeZone());
+            
+            Gizmos.color = Color.blue;
+            Gizmos.DrawWireCube(_cam.transform.position, GetSafeZone() - _tweenZoneOffset);
 
         }
     }

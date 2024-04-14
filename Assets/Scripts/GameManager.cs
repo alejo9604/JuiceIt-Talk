@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace AllieJoe.JuiceIt
 {
@@ -57,6 +58,9 @@ namespace AllieJoe.JuiceIt
                 AddTrauma();
             if(Input.GetKeyDown(KeyCode.B))
                 AddTrauma(1f);
+
+            if (Input.GetKeyDown(KeyCode.R))
+                ReloadScene();
             
             ReduceTrauma(Time.deltaTime);
         }
@@ -64,6 +68,11 @@ namespace AllieJoe.JuiceIt
         public T GetConfigValue<T>(EConfigKey key) => JuiceConfig.GetValue<T>(key);
 
         public bool GetConfigValue(EConfigKey key) => JuiceConfig.GetValue<bool>(key);
+
+        public void ReloadScene()
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
 
 #region Sequence
         private int _currentStep = 0;

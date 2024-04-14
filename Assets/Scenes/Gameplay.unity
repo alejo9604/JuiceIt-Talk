@@ -170,9 +170,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _config: {fileID: 11400000, guid: a33cfec8eff7f9b4da0d202d15396de1, type: 2}
   _container: {fileID: 2134668570}
-  _updateEachFrame: 1
-  _useAxial: 1
-  debugTr: {fileID: 203526572}
+  _cam: {fileID: 519420031}
+  _safeZoneOffset: {x: 10, y: 10}
+  _debugPoint: {fileID: 0}
 --- !u!1 &203526570
 GameObject:
   m_ObjectHideFlags: 0
@@ -348,7 +348,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.3
-  far clip plane: 1000
+  far clip plane: 150
   field of view: 60
   orthographic: 1
   orthographic size: 15

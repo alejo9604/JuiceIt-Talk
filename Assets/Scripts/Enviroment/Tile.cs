@@ -6,13 +6,10 @@ namespace AllieJoe.JuiceIt
     public class Tile : MonoBehaviour
     {
         // OddR Coordinates
-        public int X;
-        public int Y;
-        
+        public Vector2Int OddR_Coord;
+
         // Axial Coordinates
-        public int Q;
-        public int R;
-        
+        public Vector2Int Axial_Coord;
 
         [SerializeField] private SpriteRenderer _spriteRenderer;
         [SerializeField] private GameObject _selected;
@@ -20,10 +17,8 @@ namespace AllieJoe.JuiceIt
 
         public void SetData(int x, int y, Sprite sprite, int q, int r)
         {
-            X = x;
-            Y = y;
-            Q = q;
-            R = r;
+            OddR_Coord = new Vector2Int(x, y);
+            Axial_Coord = new Vector2Int(q, r);
             _spriteRenderer.sprite = sprite;
             //_text.text = $"{Q}, {R}\n{X}, {Y}";
             //_text.text = $"{Q}\n    {R}";

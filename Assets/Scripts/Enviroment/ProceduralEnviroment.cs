@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -12,18 +13,23 @@ namespace AllieJoe.JuiceIt
         
         [Space]
         [SerializeField] private Transform _container;
-
+        
         [Space]
-        // [SerializeField] private bool _updateEachFrame;
-        // [SerializeField] private bool _useAxial;
-
-        private readonly List<Tile> _tiles = new();
+        [SerializeField] private Camera _cam;
+        [SerializeField] private Vector2 _safeZoneOffset;
+        
+        //private readonly List<Tile> _tiles = new();
+        private readonly Dictionary<Vector2Int, Tile> _tiles = new();
         private Tile _lastSelected;
+
+        private Vector2 _lastSafeZoneCheck = Vector2.zero;
         
         private const float VERTICAL_DISTANCE_MULTIPLIER = 0.75f; //0.75 = 3f/4f
         private float CACHED_SQRT_3 = 1.732f; //Cache sqrt(3) in awake method
-        private float Height => 2 * _config.TileSize * _config.Scale;
-        private float Width => CACHED_SQRT_3 *  _config.TileSize * _config.Scale;
+        private float Height => 2 * _config.Size;
+        private float Width => CACHED_SQRT_3 *  _config.Size;
+
+        [Space] public Transform _debugPoint;
         
         private void Awake()
         {
@@ -32,15 +38,17 @@ namespace AllieJoe.JuiceIt
 
         private void Start()
         {
+            if (_cam == null)
+                _cam = Camera.main;
             Generate();
         }
 
         private void Update()
         {
-
+            CheckSafeZone();
             // if (Input.GetMouseButtonDown(0))
             // {
-            //     Vector2 mousePOs = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            //     Vector2 mousePOs = _cam.ScreenToWorldPoint(Input.mousePosition);
             //     debugTr.position = mousePOs;
             //     
             //     (int q, int r) = PointToAxial(mousePOs);
@@ -58,15 +66,6 @@ namespace AllieJoe.JuiceIt
             //         }
             //     }
             // }
-            
-            // if(!_updateEachFrame)
-            //     return;
-            //
-            // foreach (var tile in _tiles)
-            // {
-            //     tile.transform.localScale = Vector3.one * _config.Scale;
-            //     tile.transform.localPosition = _useAxial ? AxialToPoint(tile.Q, tile.R) : OddRToPoint(tile.X, tile.Y);
-            // }
         }
 
         [ContextMenu("Generate")]
@@ -81,21 +80,8 @@ namespace AllieJoe.JuiceIt
                 int currentX = initX;
                 for (int x = 0; x < _config.GridSize.x; x++)
                 {
-                    Tile tile = Instantiate(_config.TilePrefab, _container);
-
-                    // int r = currentX;
-                    // int q = currentY;
-                    // (int col, int row) = AxialToOddR(q, r);
-
-                    int col = currentX;
-                    int row = currentY;
-                    (int q, int r) = OddRToAxial(col, row);
-                    tile.SetData(col, row, _config.GetRandomTileSet(), q, r);
-
-                    tile.transform.localScale = Vector3.one * _config.Scale;
-                    tile.transform.localPosition = AxialToPoint(q, r);
-
-                    _tiles.Add(tile);
+                    
+                    _tiles.Add(new Vector2Int(currentX, currentY), GetNewTile(currentX, currentY));
 
                     currentX++;
                 }
@@ -106,7 +92,7 @@ namespace AllieJoe.JuiceIt
 
         private void ClearTiles()
         {
-            foreach (var tile in _tiles)
+            foreach (var tile in _tiles.Values)
             {
                 if(Application.isPlaying)
                     Destroy(tile.gameObject);
@@ -122,6 +108,7 @@ namespace AllieJoe.JuiceIt
             }
         }
 
+#region HexCoordinates
         //Axial Coordinates
         private Vector2 AxialToPoint(int q, int r)
         {
@@ -194,6 +181,97 @@ namespace AllieJoe.JuiceIt
             var r = row;
             return (q, r);
         }
+#endregion
+
+        private Tile GetNewTile(int col, int row)
+        {
+            Tile tile = Instantiate(_config.TilePrefab, _container);
+
+            // int r = currentX;
+            // int q = currentY;
+            // (int col, int row) = AxialToOddR(q, r);
+            
+            (int q, int r) = OddRToAxial(col, row);
+            tile.SetData(col, row, _config.GetRandomTileSet(), q, r);
+
+            tile.transform.localScale = Vector3.one * _config.Scale;
+            tile.transform.localPosition = AxialToPoint(q, r);
+
+            return tile;
+        }
+
+        private Vector2 GetSafeZone()
+        {
+            float worldHeight = _cam.orthographicSize * 2;
+            float worldWidth = worldHeight * _cam.aspect;
+
+            return new Vector2(worldWidth, worldHeight) + _safeZoneOffset;
+        }
+
+        private bool IsOutsideSafeZone(Vector2 pos, Vector2 center, Vector2 size)
+        {
+            return pos.x > center.x + size.x || pos.x < center.x - size.x ||
+                   pos.y > center.y + size.y || pos.y < center.y - size.y;
+        }
+
+        private void CheckSafeZone()
+        {
+            Vector2 center = _cam.transform.position;
+            if((center - _lastSafeZoneCheck).SqrMagnitude() < _config.Size * _config.Size)
+                return;
+
+            _lastSafeZoneCheck = _cam.transform.position;
+            
+            Vector2 safeZone = GetSafeZone() / 2f;
+            List<Vector2Int> toRemove = new();
+            foreach (var tile in _tiles.Values)
+            {
+                if (IsOutsideSafeZone(tile.transform.position, center, safeZone))
+                {
+                    tile.gameObject.SetActive(false);
+                    toRemove.Add(tile.OddR_Coord);
+                }
+                else
+                    tile.gameObject.SetActive(true);
+            }
+
+            foreach (var i in toRemove)
+            {
+                //Destroy(_tiles[i].gameObject);
+                //_tiles.Remove(i);
+            }
+            toRemove.Clear();
+            
+            //Fill missing
+            // Y-Axis is inverted in the Axial coordinates
+            (int initQ, int endR) = PointToAxial(center - safeZone);
+            (int initX, int endY) = AxialToOddR(initQ, endR);
+            
+            (int endQ, int initR) = PointToAxial(center + safeZone);
+            (int endX, int initY) = AxialToOddR(endQ, initR);
+
+            for (int y = initY; y < endY; y++)
+            {
+                for (int x = initX; x < endX; x++)
+                {
+                    if (_tiles.ContainsKey(new Vector2Int(x, y)))
+                        continue;
+                    
+                    _tiles.Add(new Vector2Int(x, y), GetNewTile(x, y));
+                }
+            }
+
+        }
         
+
+        private void OnDrawGizmos()
+        {
+            if (_cam == null)
+                return;
+
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawWireCube(_cam.transform.position, GetSafeZone());
+
+        }
     }
 }

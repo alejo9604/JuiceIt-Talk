@@ -20,9 +20,10 @@ namespace AllieJoe.JuiceIt
         public float TileSize = 0.7f; 
         public float Scale = 1;
 
+        public float Size => TileSize * Scale;
+
         [Space] 
         public Tile TilePrefab;
-        public Sprite[] TilesGroups = Array.Empty<Sprite>();
         public TileGroupWeight[] TilesGroupsWeights = Array.Empty<TileGroupWeight>();
 
         public Sprite GetRandomTileSet()

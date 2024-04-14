@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Pool;
 
 namespace AllieJoe.JuiceIt
 {
@@ -22,6 +23,8 @@ namespace AllieJoe.JuiceIt
         private readonly Dictionary<Vector2Int, Tile> _tiles = new();
         private Tile _lastSelected;
 
+        private IObjectPool<Tile> _tilePool;
+
         private Vector2 _lastSafeZoneCheck = Vector2.zero;
         
         private const float VERTICAL_DISTANCE_MULTIPLIER = 0.75f; //0.75 = 3f/4f
@@ -40,6 +43,13 @@ namespace AllieJoe.JuiceIt
         {
             if (_cam == null)
                 _cam = Camera.main;
+
+            _tilePool = new ObjectPool<Tile>(
+                () => Instantiate(_config.TilePrefab, _container),
+                tile => tile.gameObject.SetActive(true),
+                tile => tile.gameObject.SetActive(false),
+                tile => Destroy(tile.gameObject));
+                
             Generate();
         }
 
@@ -185,8 +195,8 @@ namespace AllieJoe.JuiceIt
 
         private Tile GetNewTile(int col, int row)
         {
-            Tile tile = Instantiate(_config.TilePrefab, _container);
-
+            Tile tile = _tilePool.Get();
+            
             // int r = currentX;
             // int q = currentY;
             // (int col, int row) = AxialToOddR(q, r);
@@ -224,26 +234,26 @@ namespace AllieJoe.JuiceIt
             
             Vector2 safeZone = GetSafeZone() / 2f;
             List<Vector2Int> toRemove = new();
-            foreach (var tile in _tiles.Values)
+            foreach (var k in _tiles.Keys)
             {
-                if (IsOutsideSafeZone(tile.transform.position, center, safeZone))
+                if (IsOutsideSafeZone(_tiles[k].transform.position, center, safeZone))
                 {
-                    tile.gameObject.SetActive(false);
-                    toRemove.Add(tile.OddR_Coord);
+                    //tile.gameObject.SetActive(false);
+                    toRemove.Add(k);
                 }
-                else
-                    tile.gameObject.SetActive(true);
+                // else
+                //     tile.gameObject.SetActive(true);
             }
 
             foreach (var i in toRemove)
             {
-                //Destroy(_tiles[i].gameObject);
-                //_tiles.Remove(i);
+                _tilePool.Release(_tiles[i]);
+                _tiles.Remove(i);
             }
             toRemove.Clear();
             
             //Fill missing
-            // Y-Axis is inverted in the Axial coordinates
+            // Y-Axis is inverted in the Axial coordinates, so end/int are swaped
             (int initQ, int endR) = PointToAxial(center - safeZone);
             (int initX, int endY) = AxialToOddR(initQ, endR);
             

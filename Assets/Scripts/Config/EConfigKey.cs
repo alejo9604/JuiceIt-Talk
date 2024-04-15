@@ -26,6 +26,7 @@
         CameraPerlinNoise,
         
         BackgroundSpawnTween,
+        Shadows,
         
         _INVALID
     }

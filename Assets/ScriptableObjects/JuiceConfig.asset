@@ -29,6 +29,7 @@ MonoBehaviour:
   - rid: 2534765957868158976
   - rid: 2534766003270975488
   - rid: 2534766069907980288
+  - rid: 2534766069907980289
   ImpactPauseDurationFramesPercent: 0.1
   ImpactPauseDurationMaxFrames: 5
   ShootAccuracyPerCannon: 0
@@ -192,3 +193,11 @@ MonoBehaviour:
         - {fileID: 11400000, guid: ef4cd70b19ddd904784bc3d48125a1ec, type: 2}
         - {fileID: 11400000, guid: c4c57d7d5f25a40428e3b8f00697c46c, type: 2}
         _useToggleGroup: 1
+    - rid: 2534766069907980289
+      type: {class: ConfigEnabledValue, ns: AllieJoe.JuiceIt, asm: Assembly-CSharp}
+      data:
+        name: Shadows
+        Key: 16
+        Label: Shadows
+        Comments: Shadows
+        Enabled: 0

@@ -540,6 +540,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _shadow: {fileID: 6710601777821914006}
+  _updateRotation: 1
 --- !u!1 &1272038142542809609
 GameObject:
   m_ObjectHideFlags: 0

@@ -34,6 +34,8 @@ namespace AllieJoe.JuiceIt
         public void Prev();
         public void SetSelected(int index);
         public int Max();
+        
+        public bool UseToggleGroup();
     }
 
     //=================================================================================================
@@ -50,6 +52,9 @@ namespace AllieJoe.JuiceIt
         [NonSerialized] 
         private int _currentSelected = 0;
 
+        [SerializeField]
+        private bool _useToggleGroup = false; 
+
         public int CurrentSelected() => _currentSelected;
         public void Next() => _currentSelected = Mathf.Min(_currentSelected + 1, Options.Length - 1);
         public void Prev() => _currentSelected = Mathf.Max(0, _currentSelected - 1);
@@ -63,6 +68,8 @@ namespace AllieJoe.JuiceIt
         public override T GetValue() => Options[_currentSelected];
         public override void Reset() => _currentSelected = 0;
         public override void FullActive() => _currentSelected = Options.Length - 1;
+        
+        public virtual bool UseToggleGroup() => _useToggleGroup;
     }
 
     //=================================================================================================
@@ -90,6 +97,7 @@ namespace AllieJoe.JuiceIt
         public override void FullActive() => Enabled = true;
         public void Set(bool enabled) => Enabled = enabled;
         public bool IsEnable() => Enabled;
+        
     }
 
     [Serializable]

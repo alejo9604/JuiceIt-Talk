@@ -10,6 +10,7 @@ namespace AllieJoe.JuiceIt
         [SerializeField] private ConfigOptionUI _optionPrefab;
         [SerializeField] private ConfigOptionEnabledUI _optionEnabledPrefab;
         [SerializeField] private ConfigOptionSelectUI _optionSelectPrefab;
+        [SerializeField] private ConfigOptionToggleGroupUI _optionSToggleGroupPrefab;
 
         private List<ConfigOptionUI> _options = new();
         
@@ -19,8 +20,13 @@ namespace AllieJoe.JuiceIt
             {
                 if(config is IConfigEnabledOption)
                     _options.Add(CreateEnabledOption(config));
-                else if(config is IConfigSelectOption)
-                    _options.Add(CreateSelectOption(config));
+                else if (config is IConfigSelectOption selectOption)
+                {
+                    if(selectOption.UseToggleGroup())
+                        _options.Add(CreateToggleGroupOption(config));
+                    else
+                        _options.Add(CreateSelectOption(config));
+                }
             }
         }
         
@@ -43,6 +49,13 @@ namespace AllieJoe.JuiceIt
         private ConfigOptionSelectUI CreateSelectOption(ConfigValue configValue)
         {
             var option = Instantiate(_optionSelectPrefab, _container);
+            option.Init(configValue);
+            return option;
+        }
+        
+        private ConfigOptionToggleGroupUI CreateToggleGroupOption(ConfigValue configValue)
+        {
+            var option = Instantiate(_optionSToggleGroupPrefab, _container);
             option.Init(configValue);
             return option;
         }

@@ -34,7 +34,7 @@ MonoBehaviour:
   ShootAccuracyPerCannon: 0
   MuzzleFlashTime: 0.07
   TraumaAddPerShoot: 0.2
-  InitExtraDelay: 0.25
+  InitExtraDelay: 0.15
   references:
     version: 2
     RefIds:
@@ -73,6 +73,7 @@ MonoBehaviour:
         - 18
         - 35
         - 50
+        _useToggleGroup: 0
     - rid: 2534765774161575962
       type: {class: ConfigSelectPrefabOptionsValue, ns: AllieJoe.JuiceIt, asm: Assembly-CSharp}
       data:
@@ -84,6 +85,7 @@ MonoBehaviour:
         - {fileID: 5462330328631289347, guid: fdce87e5430397744a97209582a80dff, type: 3}
         - {fileID: 5462330328631289347, guid: c1bcd4c4509f3194dbf99337f111823f, type: 3}
         - {fileID: 4875225825700702124, guid: 8c7e4a60f076f6a47a76bac8f13a778a, type: 3}
+        _useToggleGroup: 1
     - rid: 2534765774161575964
       type: {class: ConfigSelectFloatOptionsValue, ns: AllieJoe.JuiceIt, asm: Assembly-CSharp}
       data:
@@ -95,6 +97,7 @@ MonoBehaviour:
         - 0.5
         - 0.25
         - 0.15
+        _useToggleGroup: 0
     - rid: 2534765844572667904
       type: {class: ConfigSelectFloatOptionsValue, ns: AllieJoe.JuiceIt, asm: Assembly-CSharp}
       data:
@@ -106,6 +109,7 @@ MonoBehaviour:
         - 2
         - 4
         - 5
+        _useToggleGroup: 0
     - rid: 2534765883193294851
       type: {class: ConfigSelectWeaponOptionsValue, ns: AllieJoe.JuiceIt, asm: Assembly-CSharp}
       data:
@@ -114,6 +118,7 @@ MonoBehaviour:
         Label: Weapon
         Comments: Weapon Type
         Options: 0000000001000000
+        _useToggleGroup: 0
     - rid: 2534765883193294852
       type: {class: ConfigEnabledValue, ns: AllieJoe.JuiceIt, asm: Assembly-CSharp}
       data:
@@ -186,3 +191,4 @@ MonoBehaviour:
         - {fileID: 11400000, guid: 8ce96ad0945f1f44fa23bb5782f1b5d9, type: 2}
         - {fileID: 11400000, guid: ef4cd70b19ddd904784bc3d48125a1ec, type: 2}
         - {fileID: 11400000, guid: c4c57d7d5f25a40428e3b8f00697c46c, type: 2}
+        _useToggleGroup: 1

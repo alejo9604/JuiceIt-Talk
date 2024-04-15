@@ -132,6 +132,7 @@ MonoBehaviour:
   _optionPrefab: {fileID: 2570182122933793035, guid: c97ef37848734c34eb454f92b0d4d45c, type: 3}
   _optionEnabledPrefab: {fileID: 2782332947362239588, guid: 3e5700f5596d5f84f86d4a206079c5bd, type: 3}
   _optionSelectPrefab: {fileID: 6072568594711436041, guid: 74e9e28addfa33b49bb5f0e3af6acf93, type: 3}
+  _optionSToggleGroupPrefab: {fileID: 1186417516724314649, guid: 2b2c43ac3982b474182ccb721a7639a6, type: 3}
 --- !u!225 &3573765795688608684
 CanvasGroup:
   m_ObjectHideFlags: 0

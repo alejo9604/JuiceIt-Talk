@@ -221,14 +221,84 @@ MonoBehaviour:
   _animatedParent: {fileID: 2957193797301476412}
   _selected: {fileID: 2854222579170513399}
   _text: {fileID: 7351790955319982039}
+  _useScaleAnim: 1
+  _useScaleCustomEase: 0
   _animScaleFrom: 0
-  _animScaleDelay: 0.15
-  _animScaleDuration: 0.15
-  _animScaleEase: 9
-  _animMoveFrom: -0.8
+  _animScaleDelay: 0.1
+  _animScaleDuration: 0.1
+  _animScaleEase: 1
+  _animScaleCustomEase:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.5
+      value: 1
+      inSlope: 1.9546856
+      outSlope: -7.486124
+      tangentMode: 1
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.022263408
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 1.8676388
+      outSlope: 1.8676388
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.09806513
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _useMoveAnim: 1
+  _useMoveCustomEase: 0
+  _animMoveFrom: -1
   _animMoveDelay: 0.1
-  _animMoveDuration: 0.4
-  _animMoveEase: 24
+  _animMoveDuration: 0.1
+  _animMoveEase: 1
+  _animMoveCustomEase:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.65
+      value: 1
+      inSlope: 1.9546856
+      outSlope: -3.0681543
+      tangentMode: 1
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.23191094
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 1.8676388
+      outSlope: 1.8676388
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.09806513
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &8834437511376284656
 GameObject:
   m_ObjectHideFlags: 0

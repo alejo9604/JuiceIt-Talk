@@ -8,7 +8,6 @@ namespace AllieJoe.JuiceIt
     {
         // OddR Coordinates
         public Vector2Int OddR_Coord;
-
         // Axial Coordinates
         public Vector2Int Axial_Coord;
 
@@ -17,36 +16,43 @@ namespace AllieJoe.JuiceIt
         [SerializeField] private GameObject _selected;
         [SerializeField] private TextMeshPro _text;
 
-        public void SetData(int x, int y, Sprite sprite, int q, int r)
+        private void OnDisable()
         {
-            OddR_Coord = new Vector2Int(x, y);
+            DOTween.Kill(gameObject);
+        }
+
+        public void SetData(int q, int r, int x, int y, Sprite sprite)
+        {
             Axial_Coord = new Vector2Int(q, r);
+            OddR_Coord = new Vector2Int(x, y);
             _spriteRenderer.sprite = sprite;
             //_text.text = $"{Q}, {R}\n{X}, {Y}";
             //_text.text = $"{Q}\n    {R}";
         }
 
         public void SetSelected(bool selected) => _selected.SetActive(selected);
-
-        [Header("Scale Animation")] 
-        public float _animScaleFrom = 0;
-        public float _animScaleDelay = 0;
-        public float _animScaleDuration = 0.1f;
-        public Ease _animScaleEase = Ease.Linear;
         
-        [Header("Scale Animation")] 
-        public float _animMoveFrom = -.5f;
-        public float _animMoveDelay = 0;
-        public float _animMoveDuration = 0.1f;
-        public Ease _animMoveEase = Ease.Linear;
-
-        [ContextMenu("Animate")]
-        public void DebugAnimate() => Animate();
         
-        public void Animate(float delay = 0)
+        public void PlayStartAnimation(TileSpawnTuning tuning, float delayMultiplier = 0, float extraDelay = 0)
         {
-            _animatedParent.DOScale(1f, _animScaleDuration).From(_animScaleFrom).SetEase(_animScaleEase).SetDelay(delay * _animScaleDelay);
-            _animatedParent.DOLocalMoveY(0, _animMoveDuration).From(_animMoveFrom).SetEase(_animMoveEase).SetDelay(delay * _animMoveDelay);
+            if (tuning.UseScale)
+            {
+                _animatedParent.DOScale(1f, tuning.ScaleDuration)
+                    .From(tuning.ScaleFrom)
+                    .SetEase(tuning.ScaleEase)
+                    .SetDelay(delayMultiplier * tuning.ScaleDelayPerDistance + extraDelay)
+                    .SetId(gameObject);
+                
+            }
+
+            if (tuning.UseMove)
+            {
+                _animatedParent.DOLocalMoveY(0, tuning.MoveDuration)
+                    .From(tuning.MoveFrom)
+                    .SetEase(tuning.MoveEase)
+                    .SetDelay(delayMultiplier * tuning.MoveDelayPerDistance + extraDelay)
+                    .SetId(gameObject);
+            }
         }
     }
 }

@@ -173,7 +173,6 @@ MonoBehaviour:
   _cam: {fileID: 519420031}
   _safeZoneOffset: {x: 10, y: 10}
   _tweenZoneOffset: {x: 12, y: 12}
-  _debugPoint: {fileID: 0}
 --- !u!1 &203526570
 GameObject:
   m_ObjectHideFlags: 0
@@ -190,7 +189,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &203526571
 SpriteRenderer:
   m_ObjectHideFlags: 0

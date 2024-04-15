@@ -25,6 +25,8 @@
         CameraShake,
         CameraPerlinNoise,
         
+        BackgroundSpawnTween,
+        
         _INVALID
     }
 }

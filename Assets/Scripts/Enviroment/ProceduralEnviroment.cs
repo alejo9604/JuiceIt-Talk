@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Pool;
@@ -32,8 +31,6 @@ namespace AllieJoe.JuiceIt
         private float CACHED_SQRT_3 = 1.732f; //Cache sqrt(3) in awake method
         private float Height => 2 * _config.Size;
         private float Width => CACHED_SQRT_3 *  _config.Size;
-
-        [Space] public Transform _debugPoint;
         
         private void Awake()
         {
@@ -51,7 +48,20 @@ namespace AllieJoe.JuiceIt
                 tile => tile.gameObject.SetActive(false),
                 tile => Destroy(tile.gameObject));
                 
-            Generate();
+            GenerateInitGroup();
+            
+            GameManager.Instance.GameDelegates.OnResetLevel += OnOnResetLevel;
+        }
+
+        private void OnDestroy()
+        {
+            GameManager.Instance.GameDelegates.OnResetLevel -= OnOnResetLevel;
+        }
+
+        private void OnOnResetLevel()
+        {
+            ClearTiles();
+            GenerateInitGroup();
         }
 
         private void Update()
@@ -79,47 +89,7 @@ namespace AllieJoe.JuiceIt
             // }
         }
 
-        [ContextMenu("Generate")]
-        private void Generate()
-        {
-            ClearTiles();
-            int initX = (int)(_config.GridSize.x / 2) * -1;
-            int currentY = (int)(_config.GridSize.y / 2) * -1;
-            
-            for (int y = 0; y < _config.GridSize.y; y++)
-            {
-                int currentX = initX;
-                for (int x = 0; x < _config.GridSize.x; x++)
-                {
-                    
-                    _tiles.Add(new Vector2Int(currentX, currentY), GetNewTile(currentX, currentY));
-
-                    currentX++;
-                }
-                
-                currentY++;
-            }
-        }
-
-        private void ClearTiles()
-        {
-            foreach (var tile in _tiles.Values)
-            {
-                if(Application.isPlaying)
-                    Destroy(tile.gameObject);
-                else
-                    DestroyImmediate(tile.gameObject);
-            }
-            _tiles.Clear();
-
-            if (!Application.isPlaying)
-            {
-                for (int i = _container.childCount - 1; i >= 0; i--)
-                    DestroyImmediate(_container.GetChild(i).gameObject);
-            }
-        }
-
-#region HexCoordinates
+        #region HexCoordinates
         //Axial Coordinates
         private Vector2 AxialToPoint(int q, int r)
         {
@@ -194,38 +164,29 @@ namespace AllieJoe.JuiceIt
         }
 #endregion
 
-        private Tile GetNewTile(int col, int row)
+        private void GenerateInitGroup()
         {
-            Tile tile = _tilePool.Get();
-            
-            // int r = currentX;
-            // int q = currentY;
-            // (int col, int row) = AxialToOddR(q, r);
-            
-            (int q, int r) = OddRToAxial(col, row);
-            tile.SetData(col, row, _config.GetRandomTileSet(), q, r);
-
-            tile.transform.localScale = Vector3.one * _config.Scale;
-            tile.transform.localPosition = AxialToPoint(q, r);
-
-            float disNormalize = tile.transform.localPosition.sqrMagnitude / 100f;
-            tile.Animate(1 + disNormalize);
-
-            return tile;
+            TileSpawnTuning spawnTuning = GameManager.Instance.GetConfigValue<TileSpawnTuning>(EConfigKey.BackgroundSpawnTween);
+            float extraDelay = GameManager.Instance.JuiceConfig.InitExtraDelay;
+            FillGrid(_cam.transform.position,  GetSafeZone() / 2f, spawnTuning, extraDelay);
         }
 
-        private Vector2 GetSafeZone()
+        private void ClearTiles()
         {
-            float worldHeight = _cam.orthographicSize * 2;
-            float worldWidth = worldHeight * _cam.aspect;
+            foreach (var tile in _tiles.Values)
+            {
+                if(Application.isPlaying)
+                    Destroy(tile.gameObject);
+                else
+                    DestroyImmediate(tile.gameObject);
+            }
+            _tiles.Clear();
 
-            return new Vector2(worldWidth, worldHeight) + _safeZoneOffset;
-        }
-
-        private bool IsOutsideSafeZone(Vector2 pos, Vector2 center, Vector2 size)
-        {
-            return pos.x > center.x + size.x || pos.x < center.x - size.x ||
-                   pos.y > center.y + size.y || pos.y < center.y - size.y;
+            if (!Application.isPlaying)
+            {
+                for (int i = _container.childCount - 1; i >= 0; i--)
+                    DestroyImmediate(_container.GetChild(i).gameObject);
+            }
         }
 
         private void CheckSafeZone()
@@ -250,9 +211,14 @@ namespace AllieJoe.JuiceIt
                 _tiles.Remove(i);
             }
             toRemove.Clear();
-            
+
+            FillGrid(center, safeZone);
+        }
+
+        private void FillGrid(Vector2 center, Vector2 safeZone, TileSpawnTuning spawnTuning = null, float extraDelay = 0)
+        {
             //Fill missing
-            // Y-Axis is inverted in the Axial coordinates, so end/int are swaped
+            // Y-Axis is inverted in the Axial coordinates, so end/int are swapped
             (int initQ, int endR) = PointToAxial(center - safeZone);
             (int initX, int endY) = AxialToOddR(initQ, endR);
             
@@ -266,10 +232,47 @@ namespace AllieJoe.JuiceIt
                     if (_tiles.ContainsKey(new Vector2Int(x, y)))
                         continue;
                     
-                    _tiles.Add(new Vector2Int(x, y), GetNewTile(x, y));
+                    Tile tile = GetNewTile(x, y);
+                    _tiles.Add(new Vector2Int(x, y), tile);
+
+                    if (spawnTuning != null)
+                    {
+                        float disNormalize = (center - (Vector2) tile.transform.position).sqrMagnitude / 100f; // "Random" distance for a "normalize" value and better felling
+                        tile.PlayStartAnimation(spawnTuning, disNormalize + 1, extraDelay);
+                    }
                 }
             }
+        }
+        
+        private Tile GetNewTile(int col, int row)
+        {
+            Tile tile = _tilePool.Get();
+            
+            // int r = currentX;
+            // int q = currentY;
+            // (int col, int row) = AxialToOddR(q, r);
+            
+            (int q, int r) = OddRToAxial(col, row);
+            tile.SetData(q, r, col, row, _config.GetRandomTileSet() );
 
+            tile.transform.localScale = Vector3.one * _config.Scale;
+            tile.transform.localPosition = AxialToPoint(q, r);
+            
+            return tile;
+        }
+
+        private Vector2 GetSafeZone()
+        {
+            float worldHeight = _cam.orthographicSize * 2;
+            float worldWidth = worldHeight * _cam.aspect;
+
+            return new Vector2(worldWidth, worldHeight) + _safeZoneOffset;
+        }
+
+        private bool IsOutsideSafeZone(Vector2 pos, Vector2 center, Vector2 size)
+        {
+            return pos.x > center.x + size.x || pos.x < center.x - size.x ||
+                   pos.y > center.y + size.y || pos.y < center.y - size.y;
         }
         
 

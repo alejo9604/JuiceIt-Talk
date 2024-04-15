@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -8,7 +7,7 @@ namespace AllieJoe.JuiceIt
     public class GameManager : MonoBehaviour
     {
         public static GameManager Instance;
-
+        
         [Header("Config")]
         public JuiceConfigSO JuiceConfig;
         public WeaponTuningLibrary WeaponTuningLibrary;
@@ -60,7 +59,7 @@ namespace AllieJoe.JuiceIt
                 AddTrauma(1f);
 
             if (Input.GetKeyDown(KeyCode.R))
-                ReloadScene();
+                ReloadLevel();
             
             ReduceTrauma(Time.deltaTime);
         }
@@ -69,9 +68,10 @@ namespace AllieJoe.JuiceIt
 
         public bool GetConfigValue(EConfigKey key) => JuiceConfig.GetValue<bool>(key);
 
-        public void ReloadScene()
+        public void ReloadLevel()
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            GameDelegates.EmitOnResetLevel();
+            //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
 
 #region Sequence

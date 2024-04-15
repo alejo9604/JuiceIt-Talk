@@ -28,11 +28,13 @@ MonoBehaviour:
   - rid: 2534765911603412993
   - rid: 2534765957868158976
   - rid: 2534766003270975488
+  - rid: 2534766069907980288
   ImpactPauseDurationFramesPercent: 0.1
   ImpactPauseDurationMaxFrames: 5
   ShootAccuracyPerCannon: 0
   MuzzleFlashTime: 0.07
   TraumaAddPerShoot: 0.2
+  InitExtraDelay: 0.25
   references:
     version: 2
     RefIds:
@@ -119,7 +121,7 @@ MonoBehaviour:
         Key: 8
         Label: Hit VFX
         Comments: Projectile Hit VFX
-        Enabled: 1
+        Enabled: 0
     - rid: 2534765883193294853
       type: {class: ConfigEnabledValue, ns: AllieJoe.JuiceIt, asm: Assembly-CSharp}
       data:
@@ -135,7 +137,7 @@ MonoBehaviour:
         Key: 9
         Label: Muzzle Flash
         Comments: Muzzle Flash
-        Enabled: 1
+        Enabled: 0
     - rid: 2534765911603412992
       type: {class: ConfigEnabledValue, ns: AllieJoe.JuiceIt, asm: Assembly-CSharp}
       data:
@@ -151,7 +153,7 @@ MonoBehaviour:
         Key: 13
         Label: Shake
         Comments: Camera Shake
-        Enabled: 1
+        Enabled: 0
     - rid: 2534765957868158976
       type: {class: ConfigEnabledValue, ns: AllieJoe.JuiceIt, asm: Assembly-CSharp}
       data:
@@ -168,3 +170,19 @@ MonoBehaviour:
         Label: Camera Perlin
         Comments: Camera Shake with Perlin Noise
         Enabled: 0
+    - rid: 2534766069907980288
+      type: {class: ConfigSelectTileSpawnTweenOptionsValue, ns: AllieJoe.JuiceIt, asm: Assembly-CSharp}
+      data:
+        name: BackgroundSpawnTween
+        Key: 15
+        Label: Spawn Tween
+        Comments: Background Tiles Spawn Tweens
+        Options:
+        - {fileID: 11400000, guid: ee471bc3f03a7724690edc36c492e167, type: 2}
+        - {fileID: 11400000, guid: 0dc31b2ed7f47f64d96f39726ea74a93, type: 2}
+        - {fileID: 11400000, guid: 0a430507426cf4a4ebd0c5d86e786fe7, type: 2}
+        - {fileID: 11400000, guid: a2fd8de20df0bce4888ea642887c41b9, type: 2}
+        - {fileID: 11400000, guid: d6e2761c219f66449badd1811ddd151a, type: 2}
+        - {fileID: 11400000, guid: 8ce96ad0945f1f44fa23bb5782f1b5d9, type: 2}
+        - {fileID: 11400000, guid: ef4cd70b19ddd904784bc3d48125a1ec, type: 2}
+        - {fileID: 11400000, guid: c4c57d7d5f25a40428e3b8f00697c46c, type: 2}

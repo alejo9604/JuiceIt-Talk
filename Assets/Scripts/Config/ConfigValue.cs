@@ -101,4 +101,7 @@ namespace AllieJoe.JuiceIt
     [Serializable]
     public class ConfigSelectWeaponOptionsValue : ConfigSelectOptionsValue<WeaponTuning.EType> { }
     
+    [Serializable]
+    public class ConfigSelectTileSpawnTweenOptionsValue : ConfigSelectOptionsValue<TileSpawnTuning> { }
+    
 }

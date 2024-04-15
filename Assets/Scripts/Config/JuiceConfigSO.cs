@@ -19,6 +19,9 @@ namespace AllieJoe.JuiceIt
         public float MuzzleFlashTime = 0.35f;
         public float TraumaAddPerShoot = 0.2f;
 
+        [Header("Background/Tiles")] 
+        public float InitExtraDelay = 0.1f;
+
         public T GetValue<T>(EConfigKey key)
         {
             foreach (ConfigValue configValue in EnableSequence)

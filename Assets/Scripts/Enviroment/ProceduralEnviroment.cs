@@ -276,7 +276,7 @@ namespace AllieJoe.JuiceIt
         }
         
 
-        private void OnDrawGizmos()
+        private void OnDrawGizmosSelected()
         {
             if (_cam == null)
                 return;

@@ -18,8 +18,10 @@ namespace AllieJoe.JuiceIt
         private bool _usePerlinNoise;
 
         private Vector3 _initPosition;
-        private Vector3 _targetOffset;
+        private Vector3 _targetPosition;
+        private Quaternion _targetRotation;
         
+        private Vector3 _targetOffset;
         private Vector2 _targetMovementDirection;
         private Vector2 _LastMovementDirection;
         
@@ -32,6 +34,12 @@ namespace AllieJoe.JuiceIt
         private void Start()
         {
             _targetOffset = _initPosition = transform.position;
+        }
+
+        private void LateUpdate()
+        {
+            transform.position = _targetPosition;
+            transform.rotation = _targetRotation;
         }
 
         private void FixedUpdate()
@@ -56,8 +64,8 @@ namespace AllieJoe.JuiceIt
             //Ensure Z-Offset
             pos.z = _initPosition.z;
             
-            transform.position = pos;
-            transform.rotation = Quaternion.identity;
+            _targetPosition = pos;
+            _targetRotation = Quaternion.identity;
             
             ApplyShake(GameManager.Instance.ShakeValue);
         }
@@ -86,15 +94,13 @@ namespace AllieJoe.JuiceIt
             float offsetX = _maxOffset * shake * (_usePerlinNoise ? GetPerlin(OFFSET_X_PERLIN_SEED) : GetRandomFloatNegOneToOne());;
             float offsetY = _maxOffset * shake * (_usePerlinNoise ? GetPerlin(OFFSET_Y_PERLIN_SEED) : GetRandomFloatNegOneToOne());;
 
-            Vector3 rot = transform.eulerAngles;
+            
+            _targetPosition.x += offsetX;
+            _targetPosition.y += offsetY;
+            
+            Vector3 rot = _targetRotation.eulerAngles;
             rot.z += angle;
-
-            Vector3 pos = transform.position;
-            pos.x += offsetX;
-            pos.y += offsetY;
-
-            transform.eulerAngles = rot;
-            transform.position = pos;
+            _targetRotation = Quaternion.Euler(rot);
         }
 
         private float GetRandomFloatNegOneToOne() => Random.Range(-1f, 1f);

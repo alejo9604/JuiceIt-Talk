@@ -72,11 +72,11 @@ namespace AllieJoe.JuiceIt
                 (Input.GetMouseButton(0) || Input.GetKey(KeyCode.Space));
 
             //TODO: Do we need to normalize? Not for now
-            _input.x *= -1; //Invert X-axis. We have our ship rotated 180deg
+            _input.x *= -1; //Invert X-axis. We have our ship rotated 180 Deg
             _isAccelerating = _input.y != 0;
 
             if (_isShooting)
-                _shootComponent.Shoot();
+                _shootComponent.Shoot(_currentSpeed);
 
         }
 

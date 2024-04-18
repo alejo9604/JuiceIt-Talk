@@ -4,6 +4,7 @@ using UnityEngine.EventSystems;
 namespace AllieJoe.JuiceIt
 {
     [RequireComponent(typeof(PlayerShipShoot))]
+    [RequireComponent(typeof(Health))]
     public class PlayerShip : MonoBehaviour
     {
         [SerializeField] private Rigidbody2D _rb;
@@ -20,7 +21,8 @@ namespace AllieJoe.JuiceIt
         [SerializeField] private float _stillTurnSpeed = 350f;
         
         private PlayerShipShoot _shootComponent;
-
+        private Health _health;
+        
         //Input
         private Vector2 _input = Vector2.zero;
         private bool _isAccelerating;
@@ -62,6 +64,7 @@ namespace AllieJoe.JuiceIt
         private void Start()
         {
             _shootComponent = GetComponent<PlayerShipShoot>();
+            _health = GetComponent<Health>();
         }
 
         void Update()

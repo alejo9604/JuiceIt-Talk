@@ -10139,6 +10139,7 @@ GameObject:
   - component: {fileID: 1493365427258912825}
   - component: {fileID: 7740980002021239105}
   - component: {fileID: 5974705751633256286}
+  - component: {fileID: 7614966312384905598}
   m_Layer: 6
   m_Name: Ship
   m_TagString: Untagged
@@ -10349,6 +10350,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _shadow: {fileID: 6710601777821914006}
   _updateRotation: 1
+--- !u!114 &7614966312384905598
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 956187921354076467}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa4e103ed5eb429ba7c84c92c406c0ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _totalHealth: 5
+  _currentHealth: 5
+  _invisibilityTime: 1
+  OnTakeDamage:
+    m_PersistentCalls:
+      m_Calls: []
+  OnDeath:
+    m_PersistentCalls:
+      m_Calls: []
+  _recoverPerSecond: 0.25
+  _damageVFX: {fileID: 703135099317913494}
 --- !u!1 &1272038142542809609
 GameObject:
   m_ObjectHideFlags: 0

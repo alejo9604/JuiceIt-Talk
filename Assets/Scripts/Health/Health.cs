@@ -5,8 +5,8 @@ namespace AllieJoe.JuiceIt
 {
     public class Health : MonoBehaviour, IDamageable
     {
-        [SerializeField] private int _totalHealth = 5;
-        [SerializeField] private int _currentHealth = 5;
+        [SerializeField] protected int _totalHealth = 5;
+        [SerializeField] protected int _currentHealth = 5;
 
         [Space]
         [SerializeField] private float _invisibilityTime = 0;
@@ -18,7 +18,9 @@ namespace AllieJoe.JuiceIt
         private bool _isDeath;
         private float _nextHitAt;
 
+        public bool IsDeath => _isDeath;
         public float InvisibilityTime => _invisibilityTime;
+        public bool IsInvincible => _nextHitAt >= Time.time;
 
         public void Start()
         {
@@ -38,7 +40,7 @@ namespace AllieJoe.JuiceIt
             if(_isDeath || Time.time < _nextHitAt)
                 return;
             
-            _currentHealth = Mathf.Max(0, _currentHealth - damage);
+            SetHealth(_currentHealth - damage);
             if (_invisibilityTime > 0)
                 _nextHitAt = Time.time + _invisibilityTime;
             
@@ -48,6 +50,11 @@ namespace AllieJoe.JuiceIt
                 Death();
         }
 
+        protected virtual void SetHealth(int health)
+        {
+            _currentHealth = Mathf.Max(0, health);
+        }
+        
         private void Death()
         {
             if(_isDeath)

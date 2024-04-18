@@ -4,28 +4,39 @@ namespace AllieJoe.JuiceIt
 {
     public class TrailController : MonoBehaviour
     {
-        [SerializeField] private GameObject[] _trails;
+        [SerializeField] private ParticleSystem[] _trails;
 
-        private bool _trailEnabled;
+        private PlayerShip _playerShip;
 
         private void Start()
         {
+            _playerShip = GetComponent<PlayerShip>();
             UpdateTrails(GameManager.Instance.GetConfigValue(EConfigKey.Trail));
         }
 
         private void Update()
         {
-            if (_trailEnabled == GameManager.Instance.GetConfigValue(EConfigKey.Trail))
-                return;
-
             UpdateTrails(GameManager.Instance.GetConfigValue(EConfigKey.Trail));
         }
 
         private void UpdateTrails(bool enable)
         {
-            _trailEnabled = enable;
-            foreach (var t in _trails)
-                t.SetActive(enable);
+            if (_playerShip.IsAccelerating && enable)
+            {
+                foreach (var trail in _trails)
+                {
+                    if(!trail.isEmitting)
+                        trail.Play(true);
+                }
+            }
+            else
+            {
+                foreach (var trail in _trails)
+                {
+                    if(trail.isEmitting)
+                        trail.Stop();
+                }
+            }
         }
     }
 }

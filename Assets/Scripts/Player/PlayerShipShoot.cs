@@ -12,10 +12,8 @@ namespace AllieJoe.JuiceIt
             public WeaponTuning.ESubType Type;
             public SpriteRenderer[] CannonSprites;
             public Transform[] CannonFire;
-            public GameObject[] MuzzleFlash;
+            public ParticleSystem[] MuzzleFlash;
 
-            private bool _areMuzzleFlashActive;
-            
             public void Set(WeaponTuning tuning)
             {
                 foreach (SpriteRenderer sprite in CannonSprites)
@@ -25,8 +23,6 @@ namespace AllieJoe.JuiceIt
                 }
                 foreach (Transform cannon in CannonFire)
                     cannon.gameObject.SetActive(true);
-                foreach (GameObject muzzleFlash in MuzzleFlash)
-                    muzzleFlash.SetActive(false);
             }
 
             public void Hide()
@@ -35,24 +31,13 @@ namespace AllieJoe.JuiceIt
                     sprite.gameObject.SetActive(false);
                 foreach (Transform cannon in CannonFire)
                     cannon.gameObject.SetActive(false);
-                foreach (GameObject muzzleFlash in MuzzleFlash)
-                    muzzleFlash.SetActive(false);
-            }
 
-            public void HideMuzzleFlash()
-            {
-                if(!_areMuzzleFlashActive)
-                    return;
-                _areMuzzleFlashActive = false;
-                foreach (GameObject muzzleFlash in MuzzleFlash)
-                    muzzleFlash.SetActive(false);
             }
 
             public void ShowMuzzleFlash()
             {
-                _areMuzzleFlashActive = true;
-                foreach (GameObject muzzleFlash in MuzzleFlash)
-                    muzzleFlash.SetActive(true);
+                foreach (var muzzleFlash in MuzzleFlash)
+                    muzzleFlash.Emit(1);
             }
         }
         
@@ -71,12 +56,7 @@ namespace AllieJoe.JuiceIt
             RefreshSelectedWeapon();
             GameManager.Instance.GameDelegates.OnConfigUpdated += OnConfigUpdated;
         }
-
-        private void Update()
-        {
-            if (Time.time > _lastFireAt + GameManager.Instance.JuiceConfig.MuzzleFlashTime)
-                GetCurrentPresetActive().HideMuzzleFlash();
-        }
+        
 
         private void OnDestroy()
         {

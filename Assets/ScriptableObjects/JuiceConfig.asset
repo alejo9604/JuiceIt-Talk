@@ -13,29 +13,28 @@ MonoBehaviour:
   m_Name: JuiceConfig
   m_EditorClassIdentifier: 
   EnableSequence:
+  - rid: 2534766069907980289
   - rid: 2534765774161575957
-  - rid: 2534765774161575958
-  - rid: 2534765774161575959
-  - rid: 2534765774161575962
   - rid: 2534765774161575961
   - rid: 2534765774161575964
+  - rid: 2534765774161575962
+  - rid: 2534765883193294854
+  - rid: 2534765774161575958
+  - rid: 2534765774161575959
   - rid: 2534765844572667904
   - rid: 2534765883193294852
-  - rid: 2534765883193294853
-  - rid: 2534765883193294854
   - rid: 2534765883193294851
   - rid: 2534765911603412992
   - rid: 2534765911603412993
   - rid: 2534765957868158976
   - rid: 2534766003270975488
   - rid: 2534766069907980288
-  - rid: 2534766069907980289
+  - rid: 2534765883193294853
   ImpactPauseDurationFramesPercent: 0.1
   ImpactPauseDurationMaxFrames: 5
   ShootAccuracyPerCannon: 0
-  MuzzleFlashTime: 0.07
   TraumaAddPerShoot: 0.2
-  InitExtraDelay: 0.15
+  InitExtraDelay: 0.25
   references:
     version: 2
     RefIds:
@@ -43,7 +42,7 @@ MonoBehaviour:
       type: {class: ConfigEnabledValue, ns: AllieJoe.JuiceIt, asm: Assembly-CSharp}
       data:
         name: Trail
-        Key: 0
+        Key: 1
         Label: Trail
         Comments: Enable/Disable Ship trails
         Enabled: 0
@@ -51,7 +50,7 @@ MonoBehaviour:
       type: {class: ConfigEnabledValue, ns: AllieJoe.JuiceIt, asm: Assembly-CSharp}
       data:
         name: ShootingMovementRestriction
-        Key: 1
+        Key: 2
         Label: Shoot + Move
         Comments: Enable/Disable Less movement when shooting
         Enabled: 0
@@ -59,15 +58,15 @@ MonoBehaviour:
       type: {class: ConfigEnabledValue, ns: AllieJoe.JuiceIt, asm: Assembly-CSharp}
       data:
         name: ShootingAccuracy
-        Key: 2
+        Key: 3
         Label: Shoot Accuracy
         Comments: Enable/Disable Less accuracy when shooting
-        Enabled: 0
+        Enabled: 1
     - rid: 2534765774161575961
       type: {class: ConfigSelectFloatOptionsValue, ns: AllieJoe.JuiceIt, asm: Assembly-CSharp}
       data:
         name: ProjectileSpeed
-        Key: 4
+        Key: 5
         Label: Projectile speed
         Comments: Projectile speed
         Options:
@@ -79,7 +78,7 @@ MonoBehaviour:
       type: {class: ConfigSelectPrefabOptionsValue, ns: AllieJoe.JuiceIt, asm: Assembly-CSharp}
       data:
         name: ProjectilePrefab
-        Key: 6
+        Key: 7
         Label: Projectile prefabs
         Comments: Projectile prefabs
         Options:
@@ -91,7 +90,7 @@ MonoBehaviour:
       type: {class: ConfigSelectFloatOptionsValue, ns: AllieJoe.JuiceIt, asm: Assembly-CSharp}
       data:
         name: ProjectileRateFire
-        Key: 5
+        Key: 6
         Label: Rate Fire
         Comments: Projectile rate fire (next bullet timer)
         Options:
@@ -103,7 +102,7 @@ MonoBehaviour:
       type: {class: ConfigSelectFloatOptionsValue, ns: AllieJoe.JuiceIt, asm: Assembly-CSharp}
       data:
         name: ProjectileAccuracy
-        Key: 7
+        Key: 8
         Label: Accuracy
         Comments: Projectile accuracy
         Options:
@@ -115,7 +114,7 @@ MonoBehaviour:
       type: {class: ConfigSelectWeaponOptionsValue, ns: AllieJoe.JuiceIt, asm: Assembly-CSharp}
       data:
         name: WeaponType
-        Key: 10
+        Key: 11
         Label: Weapon
         Comments: Weapon Type
         Options: 0000000001000000
@@ -124,7 +123,7 @@ MonoBehaviour:
       type: {class: ConfigEnabledValue, ns: AllieJoe.JuiceIt, asm: Assembly-CSharp}
       data:
         name: ProjectileHitVFX
-        Key: 8
+        Key: 9
         Label: Hit VFX
         Comments: Projectile Hit VFX
         Enabled: 0
@@ -132,7 +131,7 @@ MonoBehaviour:
       type: {class: ConfigEnabledValue, ns: AllieJoe.JuiceIt, asm: Assembly-CSharp}
       data:
         name: ImpactPause
-        Key: 3
+        Key: 4
         Label: Impact Pause
         Comments: Enable/Disable Pause when hitting an enemy
         Enabled: 0
@@ -140,7 +139,7 @@ MonoBehaviour:
       type: {class: ConfigEnabledValue, ns: AllieJoe.JuiceIt, asm: Assembly-CSharp}
       data:
         name: MuzzleFlash
-        Key: 9
+        Key: 10
         Label: Muzzle Flash
         Comments: Muzzle Flash
         Enabled: 0
@@ -148,7 +147,7 @@ MonoBehaviour:
       type: {class: ConfigEnabledValue, ns: AllieJoe.JuiceIt, asm: Assembly-CSharp}
       data:
         name: EnemyHitImpact
-        Key: 11
+        Key: 12
         Label: Hit Impact
         Comments: Enemy Hit Impact
         Enabled: 0
@@ -156,7 +155,7 @@ MonoBehaviour:
       type: {class: ConfigEnabledValue, ns: AllieJoe.JuiceIt, asm: Assembly-CSharp}
       data:
         name: CameraShake
-        Key: 13
+        Key: 14
         Label: Shake
         Comments: Camera Shake
         Enabled: 0
@@ -164,7 +163,7 @@ MonoBehaviour:
       type: {class: ConfigEnabledValue, ns: AllieJoe.JuiceIt, asm: Assembly-CSharp}
       data:
         name: CameraPrediction
-        Key: 12
+        Key: 13
         Label: Camera Lerp
         Comments: Camera Lerp prediction
         Enabled: 0
@@ -172,7 +171,7 @@ MonoBehaviour:
       type: {class: ConfigEnabledValue, ns: AllieJoe.JuiceIt, asm: Assembly-CSharp}
       data:
         name: CameraPerlinNoise
-        Key: 14
+        Key: 15
         Label: Camera Perlin
         Comments: Camera Shake with Perlin Noise
         Enabled: 0
@@ -180,7 +179,7 @@ MonoBehaviour:
       type: {class: ConfigSelectTileSpawnTweenOptionsValue, ns: AllieJoe.JuiceIt, asm: Assembly-CSharp}
       data:
         name: BackgroundSpawnTween
-        Key: 15
+        Key: 16
         Label: Spawn Tween
         Comments: Background Tiles Spawn Tweens
         Options:
@@ -197,7 +196,7 @@ MonoBehaviour:
       type: {class: ConfigEnabledValue, ns: AllieJoe.JuiceIt, asm: Assembly-CSharp}
       data:
         name: Shadows
-        Key: 16
+        Key: 17
         Label: Shadows
         Comments: Shadows
         Enabled: 0

@@ -68,6 +68,8 @@ namespace AllieJoe.JuiceIt
 
         public bool GetConfigValue(EConfigKey key) => JuiceConfig.GetValue<bool>(key);
 
+        public string GetConfigLabel(EConfigKey key) => JuiceConfig.GetLabel(key);
+        
         public void ReloadLevel()
         {
             GameDelegates.EmitOnResetLevel();
@@ -125,26 +127,35 @@ namespace AllieJoe.JuiceIt
             
             //TODO: WIP, it's not reseting the proper one
             ConfigValue step = JuiceConfig.EnableSequence[_currentStep];
-            bool goToPrevStep = true;
+            
             if (step is IConfigEnabledOption enabledOption)
             {
-                //Enable the option and wait for next input to check the next one
-                if (enabledOption.IsEnable())
-                    enabledOption.Set(false);
+                //Already disabled. Reset next one
+                if (!enabledOption.IsEnable())
+                {
+                    _currentStep--;
+                    ToPrevStep();
+                    return;
+                }
+                
+                enabledOption.Set(false);
             }
             else if (step is IConfigSelectOption selectOption)
             {
-                //Enable the option and wait for next input to check the next one
-                if (selectOption.CurrentSelected() > 0)
-                    selectOption.Prev();
+                //Already in the min selection. Reset next one
+                if (selectOption.CurrentSelected() <= 0)
+                {
+                    _currentStep--;
+                    ToPrevStep();
+                    return;
+                }
                 
-                goToPrevStep = selectOption.CurrentSelected() <= 0;
+                selectOption.Prev();
             }
             
+            //Refresh UI
             ConfigUI.Refresh(step);
-            
-            if(goToPrevStep)
-                _currentStep--;
+            GameDelegates.EmitOnConfigUpdated(JuiceConfig.EnableSequence[_currentStep].Key);
         }
 
         public WeaponTuning GetWeaponTuningSelected()

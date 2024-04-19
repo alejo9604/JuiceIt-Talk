@@ -16,7 +16,6 @@ namespace AllieJoe.JuiceIt
 
         [Header("Shooting")]
         public bool ShootAccuracyPerCannon = false;
-        public float MuzzleFlashTime = 0.35f;
         public float TraumaAddPerShoot = 0.2f;
 
         [Header("Background/Tiles")] 
@@ -24,11 +23,23 @@ namespace AllieJoe.JuiceIt
 
         public T GetValue<T>(EConfigKey key)
         {
+            ConfigValue configValue = GetConfig(key);
+            if(configValue is ConfigValue<T> value)
+                return value.GetValue();
+
+            return default;
+        }
+        
+        public string GetLabel(EConfigKey key)
+        {
+            return GetConfig(key).Label;
+        }
+        
+        private ConfigValue GetConfig(EConfigKey key)
+        {
             foreach (ConfigValue configValue in EnableSequence)
-            {
-                if(configValue.Key == key && configValue is ConfigValue<T> value)
-                    return value.GetValue();
-            }
+                if(configValue.Key == key)
+                    return configValue;
 
             return default;
         }

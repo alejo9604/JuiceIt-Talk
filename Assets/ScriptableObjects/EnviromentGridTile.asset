@@ -16,14 +16,6 @@ MonoBehaviour:
   TileSize: 0.692
   Scale: 1.5
   TilePrefab: {fileID: 1829446852501011004, guid: e6a9b76508123fe408affe1d77baeea7, type: 3}
-  TilesGroups:
-  - {fileID: 21300000, guid: f92f3451dce419549b9007794f38fa67, type: 3}
-  - {fileID: 21300000, guid: b64939308d73de5418f6cd31b439e84a, type: 3}
-  - {fileID: 21300000, guid: d31b7caded98df747a73b320de908cc0, type: 3}
-  - {fileID: 21300000, guid: 724a43bf8816a5147b1a5fc8c95860f9, type: 3}
-  - {fileID: 21300000, guid: 6d7f5d401b78dfc46a9d7d2fd74bd5b4, type: 3}
-  - {fileID: 21300000, guid: ab2046c11871d5c4e81870921b9c867f, type: 3}
-  - {fileID: 21300000, guid: b413aa33f0cacd44793f1d15970dbbb9, type: 3}
   TilesGroupsWeights:
   - Sprite: {fileID: 21300000, guid: 0bcb954a3cdf2874a88344dba182efba, type: 3}
     Weight: 100

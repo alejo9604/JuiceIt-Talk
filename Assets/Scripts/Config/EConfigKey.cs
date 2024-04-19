@@ -2,6 +2,7 @@
 {
     public enum EConfigKey
     {
+        Intro,
         Trail,
         
         ShootingMovementRestriction,

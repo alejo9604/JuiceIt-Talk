@@ -97,7 +97,7 @@ namespace AllieJoe.JuiceIt
                 
                 for (int i = 0; i < _bulletsToShootAmount; i++)
                 {
-                    if (accuracyEnabled && !GameManager.Instance.JuiceConfig.ShootAccuracyPerCannon)
+                    if (accuracyEnabled && GameManager.Instance.JuiceConfig.ShootAccuracyPerCannon)
                         accuracy = Random.Range(-accuracyBaseValue, accuracyBaseValue);
                     
                     var initRotation = Vector3.forward * (initAngle - angle * i);

@@ -50,15 +50,23 @@ namespace AllieJoe.JuiceIt
                 
             GenerateInitGroup();
             
-            GameManager.Instance.GameDelegates.OnResetLevel += OnOnResetLevel;
+            GameManager.Instance.GameDelegates.OnConfigUpdated += OnConfigUpdated;
+            GameManager.Instance.GameDelegates.OnResetLevel += OnResetLevel;
         }
-
+        
         private void OnDestroy()
         {
-            GameManager.Instance.GameDelegates.OnResetLevel -= OnOnResetLevel;
+            GameManager.Instance.GameDelegates.OnResetLevel -= OnResetLevel;
+            GameManager.Instance.GameDelegates.OnConfigUpdated -= OnConfigUpdated;
         }
 
-        private void OnOnResetLevel()
+        private void OnConfigUpdated(EConfigKey key)
+        {
+            if (key == EConfigKey.BackgroundSpawnTween)
+                OnResetLevel();
+        }
+        
+        private void OnResetLevel()
         {
             ClearTiles();
             GenerateInitGroup();
@@ -176,7 +184,7 @@ namespace AllieJoe.JuiceIt
             foreach (var tile in _tiles.Values)
             {
                 if(Application.isPlaying)
-                    Destroy(tile.gameObject);
+                    _tilePool.Release(tile);
                 else
                     DestroyImmediate(tile.gameObject);
             }

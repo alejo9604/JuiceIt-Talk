@@ -267,6 +267,7 @@ GameObject:
   m_Component:
   - component: {fileID: 185257578}
   - component: {fileID: 185257579}
+  - component: {fileID: 185257580}
   m_Layer: 0
   m_Name: Enviroment
   m_TagString: Untagged
@@ -288,6 +289,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2134668570}
+  - {fileID: 1708068505}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &185257579
@@ -307,6 +309,58 @@ MonoBehaviour:
   _cam: {fileID: 519420031}
   _safeZoneOffset: {x: 10, y: 10}
   _tweenZoneOffset: {x: 12, y: 12}
+--- !u!114 &185257580
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 185257577}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58196a5b172460c4fb3628c705bcc37b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _cloudPrefab: {fileID: -6341717366825072493, guid: 2dc1bd2336e390f41b762ec1fedf0dec, type: 3}
+  _container: {fileID: 1708068505}
+  _maxClouds: 15
+  _cloudHeight:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: -0
+      outSlope: -0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.098330244
+    - serializedVersion: 3
+      time: 0.5
+      value: 0.9967308
+      inSlope: -0.02976637
+      outSlope: -0.02976637
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.11317253
+    - serializedVersion: 3
+      time: 1.0009766
+      value: 0
+      inSlope: -3.5111237
+      outSlope: -3.5111237
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.02972436
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _cloudScale: {x: 1, y: 3}
+  _cloudSpeed: {x: 0.25, y: 0.01}
+  _cam: {fileID: 519420031}
+  _safeZoneOffset: {x: 150, y: 100}
 --- !u!1 &203526570
 GameObject:
   m_ObjectHideFlags: 0
@@ -5840,17 +5894,6 @@ MonoBehaviour:
   _maxEnemiesSpawnTime: 90
   _minSpawnZone: {x: 5, y: 5}
   _maxSpawnZone: {x: 40, y: 30}
---- !u!114 &1437049491 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1153756741634254687, guid: 2142ec989b755a144ad260dab5e56f4c, type: 3}
-  m_PrefabInstance: {fileID: 3837316374147456513}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2e81c29f87f54754c84ab6f94ac5f6fd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1462051095
 GameObject:
   m_ObjectHideFlags: 0
@@ -5900,14 +5943,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a1857ac9a2c7ce4fba11fa11aaee75c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _anim: {fileID: 0}
   _animParent: {fileID: 1578118917}
   _titleText: {fileID: 63573827}
   _timeToHide: 2.5
-  moveTime: 0.65
-  moveEase: 30
-  moveOutTime: 0.5
-  moveOutEase: 26
 --- !u!1 &1578118916
 GameObject:
   m_ObjectHideFlags: 0
@@ -6063,6 +6101,37 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &1708068504
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1708068505}
+  m_Layer: 0
+  m_Name: Cloud
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1708068505
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1708068504}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 185257578}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &1747540977 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 628555236446149944, guid: 2142ec989b755a144ad260dab5e56f4c, type: 3}
@@ -6462,7 +6531,7 @@ PrefabInstance:
     - target: {fileID: 7394840499900130909, guid: 2142ec989b755a144ad260dab5e56f4c, type: 3}
       propertyPath: _parentHealth
       value: 
-      objectReference: {fileID: 1437049491}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

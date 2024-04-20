@@ -1,6 +1,5 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace AllieJoe.JuiceIt
 {
@@ -30,11 +29,11 @@ namespace AllieJoe.JuiceIt
                 Instance = this;
             else if (Instance != this)
                 Destroy(gameObject);
+            JuiceConfig.ResetToDefault();
         }
 
         private void Start()
         {
-            JuiceConfig.ResetToDefault();
             ConfigUI.Init(JuiceConfig.EnableSequence);
         }
 

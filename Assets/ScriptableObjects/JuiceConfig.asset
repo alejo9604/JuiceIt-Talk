@@ -30,6 +30,7 @@ MonoBehaviour:
   - rid: 2534766003270975488
   - rid: 2534766069907980288
   - rid: 2534765883193294853
+  - rid: 2534766198637461504
   ImpactPauseDurationFramesPercent: 0.1
   ImpactPauseDurationMaxFrames: 5
   ShootAccuracyPerCannon: 0
@@ -61,7 +62,7 @@ MonoBehaviour:
         Key: 3
         Label: Shoot Accuracy
         Comments: Enable/Disable Less accuracy when shooting
-        Enabled: 1
+        Enabled: 0
     - rid: 2534765774161575961
       type: {class: ConfigSelectFloatOptionsValue, ns: AllieJoe.JuiceIt, asm: Assembly-CSharp}
       data:
@@ -199,4 +200,12 @@ MonoBehaviour:
         Key: 17
         Label: Shadows
         Comments: Shadows
+        Enabled: 0
+    - rid: 2534766198637461504
+      type: {class: ConfigEnabledValue, ns: AllieJoe.JuiceIt, asm: Assembly-CSharp}
+      data:
+        name: Clouds
+        Key: 18
+        Label: Clouds
+        Comments: 
         Enabled: 0

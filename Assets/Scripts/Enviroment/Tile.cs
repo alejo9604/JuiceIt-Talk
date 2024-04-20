@@ -14,7 +14,6 @@ namespace AllieJoe.JuiceIt
         [SerializeField] private SpriteRenderer _spriteRenderer;
         [SerializeField] private Transform _animatedParent;
         [SerializeField] private GameObject _selected;
-        [SerializeField] private TextMeshPro _text;
 
         private void OnDisable()
         {
@@ -26,8 +25,6 @@ namespace AllieJoe.JuiceIt
             Axial_Coord = new Vector2Int(q, r);
             OddR_Coord = new Vector2Int(x, y);
             _spriteRenderer.sprite = sprite;
-            //_text.text = $"{Q}, {R}\n{X}, {Y}";
-            //_text.text = $"{Q}\n    {R}";
         }
 
         public void SetSelected(bool selected) => _selected.SetActive(selected);

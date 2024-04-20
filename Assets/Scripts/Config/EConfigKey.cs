@@ -28,6 +28,7 @@
         
         BackgroundSpawnTween,
         Shadows,
+        Clouds,
         
         _INVALID
     }

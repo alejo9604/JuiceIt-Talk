@@ -31,6 +31,7 @@ MonoBehaviour:
   - rid: 2534766069907980288
   - rid: 2534765883193294853
   - rid: 2534766198637461504
+  - rid: 2534766198637461505
   ImpactPauseDurationFramesPercent: 0.1
   ImpactPauseDurationMaxFrames: 5
   ShootAccuracyPerCannon: 0
@@ -207,5 +208,13 @@ MonoBehaviour:
         name: Clouds
         Key: 18
         Label: Clouds
+        Comments: 
+        Enabled: 0
+    - rid: 2534766198637461505
+      type: {class: ConfigEnabledValue, ns: AllieJoe.JuiceIt, asm: Assembly-CSharp}
+      data:
+        name: EnemyDeath
+        Key: 19
+        Label: Enemy Death
         Comments: 
         Enabled: 0

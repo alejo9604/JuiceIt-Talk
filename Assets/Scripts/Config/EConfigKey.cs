@@ -30,6 +30,8 @@
         Shadows,
         Clouds,
         
+        EnemyDeath,
+        
         _INVALID
     }
 }

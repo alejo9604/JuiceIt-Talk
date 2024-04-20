@@ -1,7 +1,6 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Pool;
 using Random = UnityEngine.Random;
 
 namespace AllieJoe.JuiceIt
@@ -25,13 +24,23 @@ namespace AllieJoe.JuiceIt
         private float _nextEnemySpawn = 0;
         private float _progressiveMaxEnemiesSpawnTime;
         private int _progressiveMaxEnemies;
+        
+        private IObjectPool<Enemy> _enemiesPool;
 
         private void Start()
         {
             if (_cam == null)
                 _cam = Camera.main;
+            
             _nextEnemySpawn = Time.time + _initDelay;
             _progressiveMaxEnemiesSpawnTime = Time.time + _maxEnemiesSpawnTime;
+            
+            _enemiesPool = new ObjectPool<Enemy>(
+                () => Instantiate(_enemyPrefab),
+                tile => tile.gameObject.SetActive(true),
+                tile => tile.gameObject.SetActive(false),
+                tile => Destroy(tile.gameObject),
+                defaultCapacity: _maxEnemies);
         }
 
         private void Update()
@@ -73,8 +82,16 @@ namespace AllieJoe.JuiceIt
 
             Enemy enemy = Instantiate(_enemyPrefab, _cam.transform.position + offset, Quaternion.identity);
             _enemies.Add(enemy);
+            enemy.OnSpawn();
+            enemy.SetDeathCallback(OnEnemyDeath);
             
             _nextEnemySpawn = Time.time + _nextEnemyDelay;
+        }
+
+        private void OnEnemyDeath(Enemy enemy)
+        {
+            _enemiesPool.Release(enemy);
+            _enemies.Remove(enemy);
         }
 
         private Vector2 GetRandomPointInZone(float minX, float maxX, float minY, float maxY)

@@ -1,11 +1,11 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using Random = UnityEngine.Random;
 
 namespace AllieJoe.JuiceIt
 {
     public class EnemyUFO : Enemy
     {
+        [Space]
         [SerializeField] private float _maxSpeed = 5;
         [SerializeField] private float _maxSeekForce = 0.25f;
         
@@ -15,7 +15,7 @@ namespace AllieJoe.JuiceIt
         [SerializeField] private float _bodySpeed = 5;
         [SerializeField] private float _bodyRefreshTime = 1f;
         [SerializeField] private float _bodyRotSpeedDeg = 5;
-
+        
         private Vector3 _velocity;
         private Vector3 _acceleration;
 

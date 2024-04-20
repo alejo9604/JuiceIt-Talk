@@ -22,6 +22,8 @@ namespace AllieJoe.JuiceIt
         [Header("Trauma System")] 
         [Min(1)] public float _traumaDecreaseSpeed = 0.5f;
 
+        private float _timeScale = 1;
+
         private void Awake()
         {
             //Quick "singleton"
@@ -30,6 +32,8 @@ namespace AllieJoe.JuiceIt
             else if (Instance != this)
                 Destroy(gameObject);
             JuiceConfig.ResetToDefault();
+
+            _timeScale = Time.timeScale;
         }
 
         private void Start()
@@ -185,6 +189,7 @@ namespace AllieJoe.JuiceIt
         
         //Impact pause - Hit Stop
         private bool _isOnImpactPause;
+        private float _impactPauseIntensity;
         private Coroutine _impactPauseCoroutine;
 
         public void DoImpactPause(bool isPlayer)
@@ -197,12 +202,14 @@ namespace AllieJoe.JuiceIt
             if (!isPlayer && !JuiceConfig.GetValue<bool>(EConfigKey.ShootImpactPause))
                 return;
 
-            //If player override the impact. If it's not player damage just ignore it
-            if (_isOnImpactPause && !isPlayer)
-                return;
-            
             float timeToPause = isPlayer ? JuiceConfig.PlayerImpactPauseDurationInSec : JuiceConfig.ShootImpactPauseDurationInSec;
+            
+            //If player override the impact. If it's not player damage just ignore it
+            if (_isOnImpactPause && timeToPause > _impactPauseIntensity)
+                return;
 
+            Debug.Log("Hit impact");
+            
             if(_impactPauseCoroutine != null)
                 StopCoroutine(_impactPauseCoroutine);
             _impactPauseCoroutine = StartCoroutine(DoImpactPause(timeToPause));
@@ -210,18 +217,19 @@ namespace AllieJoe.JuiceIt
 
         private IEnumerator DoImpactPause(float timeToPause)
         {
+            _impactPauseIntensity = timeToPause;
             _isOnImpactPause = true;
-
-            float originalTimeScale = Time.timeScale;
+            
             Time.timeScale = 0f;
             
-            yield return new WaitForSeconds(timeToPause);
+            yield return new WaitForSecondsRealtime(timeToPause);
             // for (int i = 0; i < frames; i++)
             //     yield return null;
 
-            Time.timeScale = originalTimeScale;
+            Time.timeScale = _timeScale;
 
             _isOnImpactPause = false;
+            _impactPauseIntensity = 0;
         }
 #endregion
 

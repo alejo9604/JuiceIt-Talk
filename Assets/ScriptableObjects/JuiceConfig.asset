@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: JuiceConfig
   m_EditorClassIdentifier: 
   EnableSequence:
+  - rid: 2534766198637461507
   - rid: 2534766069907980289
   - rid: 2534765774161575957
   - rid: 2534765774161575961
@@ -33,8 +34,8 @@ MonoBehaviour:
   - rid: 2534766198637461504
   - rid: 2534766198637461505
   - rid: 2534766198637461506
-  ImpactPauseDurationFramesPercent: 0.1
-  ImpactPauseDurationMaxFrames: 5
+  ShootImpactPauseDurationInSec: 0.05
+  PlayerImpactPauseDurationInSec: 0.25
   ShootAccuracyPerCannon: 0
   TraumaAddPerShoot: 0.2
   InitExtraDelay: 0.25
@@ -133,7 +134,7 @@ MonoBehaviour:
     - rid: 2534765883193294853
       type: {class: ConfigEnabledValue, ns: AllieJoe.JuiceIt, asm: Assembly-CSharp}
       data:
-        name: ImpactPause
+        name: ShootImpactPause
         Key: 4
         Label: Impact Pause
         Comments: Enable/Disable Pause when hitting an enemy
@@ -227,3 +228,11 @@ MonoBehaviour:
         Label: Enemy Sratches
         Comments: 
         Enabled: 0
+    - rid: 2534766198637461507
+      type: {class: ConfigEnabledValue, ns: AllieJoe.JuiceIt, asm: Assembly-CSharp}
+      data:
+        name: PlayerImpactPause
+        Key: 21
+        Label: Hit Pause
+        Comments: 
+        Enabled: 1

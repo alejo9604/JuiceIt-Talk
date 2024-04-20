@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace AllieJoe.JuiceIt
 {
@@ -15,6 +16,11 @@ namespace AllieJoe.JuiceIt
             _shadow.gameObject.SetActive(GameManager.Instance.GetConfigValue(EConfigKey.Shadows));
             
             GameManager.Instance.GameDelegates.OnConfigUpdated += OnOnConfigUpdated;
+        }
+
+        private void OnDestroy()
+        {
+            GameManager.Instance.GameDelegates.OnConfigUpdated -= OnOnConfigUpdated;
         }
 
         private void Update()

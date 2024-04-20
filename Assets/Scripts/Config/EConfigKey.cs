@@ -31,6 +31,7 @@
         Clouds,
         
         EnemyDeath,
+        EnemyScratch,
         
         _INVALID
     }

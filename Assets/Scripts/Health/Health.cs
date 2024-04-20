@@ -18,6 +18,9 @@ namespace AllieJoe.JuiceIt
         private bool _isDeath;
         private float _nextHitAt;
 
+        public int CurrentHealth => _currentHealth;
+        public int TotalHealth => _totalHealth;
+        public float HealthNormalize => Mathf.Clamp01(_currentHealth / (float)_totalHealth);
         public bool IsDeath => _isDeath;
         public float InvisibilityTime => _invisibilityTime;
         public bool IsInvincible => _nextHitAt >= Time.time;

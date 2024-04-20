@@ -32,6 +32,7 @@ MonoBehaviour:
   - rid: 2534765883193294853
   - rid: 2534766198637461504
   - rid: 2534766198637461505
+  - rid: 2534766198637461506
   ImpactPauseDurationFramesPercent: 0.1
   ImpactPauseDurationMaxFrames: 5
   ShootAccuracyPerCannon: 0
@@ -216,5 +217,13 @@ MonoBehaviour:
         name: EnemyDeath
         Key: 19
         Label: Enemy Death
+        Comments: 
+        Enabled: 0
+    - rid: 2534766198637461506
+      type: {class: ConfigEnabledValue, ns: AllieJoe.JuiceIt, asm: Assembly-CSharp}
+      data:
+        name: EnemyScratch
+        Key: 20
+        Label: Enemy Sratches
         Comments: 
         Enabled: 0

@@ -9,9 +9,10 @@ namespace AllieJoe.JuiceIt
     {
         [SerializeField] private Collider2D _collider;
         
-        [Header("Death")]
+        [Header("Damage")]
+        [SerializeField] private GameObject[] _scratch;
         [SerializeField] private GameObject _deathVFX;
-        
+
         protected Transform Player => GameManager.Instance.Player.transform;
 
         private Health _health;
@@ -45,12 +46,19 @@ namespace AllieJoe.JuiceIt
 
         protected virtual void OnTakeDamage()
         {
-            Debug.Log("[Enemy] Take damage. TODO: animation");
-
+            //Hit animation
             if (GameManager.Instance.GetConfigValue(EConfigKey.EnemyHitImpact))
             {
                 _animator.ResetTrigger(Hit_AnimHash);
                 _animator.SetTrigger(Hit_AnimHash);
+            }
+
+            //Enable Scratches
+            if (GameManager.Instance.GetConfigValue(EConfigKey.EnemyScratch))
+            {
+                int scratchToEnable = Mathf.RoundToInt((_scratch.Length + 2) * _health.HealthNormalize);
+                for (int i = 0; i < _scratch.Length; i++)
+                    _scratch[i].SetActive(i + 1 >= scratchToEnable);
             }
         }
         

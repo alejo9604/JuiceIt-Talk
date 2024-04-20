@@ -1,26 +1,12 @@
 ﻿using UnityEngine;
 
-namespace AllieJoe.JuiceIt.Utils
+namespace AllieJoe.JuiceIt
 {
-    public class ImpactDetector: MonoBehaviour, IDamageable
+    public class ImpactDetector : MonoBehaviour, IImpact
     {
-        [SerializeField] private Health _parentHealth;
+        [SerializeField] private int _damage;
 
-        private void Start()
-        {
-            if(_parentHealth == null)
-                _parentHealth = GetComponentInParent<Health>();
-        }
-
-        public void TakeDamage(int damage, Vector2 hitPoint)
-        {
-            if(_parentHealth)
-                _parentHealth.TakeDamage(damage, hitPoint);
-        }
-
-        private void OnValidate()
-        {
-            _parentHealth = GetComponentInParent<Health>();
-        }
+        public int GetDamage() => _damage;
+        public int SetDamage(int damage) => _damage = damage;
     }
 }

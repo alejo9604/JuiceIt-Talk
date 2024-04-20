@@ -11,8 +11,8 @@ namespace AllieJoe.JuiceIt
         public List<ConfigValue> EnableSequence = new();
 
         [Header("Impact Pause")]
-        [Range(0, 1)] public float ImpactPauseDurationFramesPercent = 0.1f;
-        public int ImpactPauseDurationMaxFrames = 15;
+        [Range(0, 1)] public float ShootImpactPauseDurationInSec = 0.05f;
+        [Range(0, 1)] public float PlayerImpactPauseDurationInSec = 0.15f;
 
         [Header("Shooting")]
         public bool ShootAccuracyPerCannon = false;

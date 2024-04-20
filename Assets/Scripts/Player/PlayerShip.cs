@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -65,6 +66,8 @@ namespace AllieJoe.JuiceIt
         {
             _shootComponent = GetComponent<PlayerShipShoot>();
             _health = GetComponent<RecoverHealthOverTime>();
+            
+            _health.OnTakeDamage.AddListener(OnTakeDamage);
         }
 
         void Update()
@@ -121,6 +124,17 @@ namespace AllieJoe.JuiceIt
             //Apply to RB
             _rb.rotation += _rotAngleChange;
             _rb.velocity = _movementDir * _currentSpeed;
+        }
+        
+        private void OnTakeDamage()
+        {
+            GameManager.Instance.DoImpactPause(true);
+        }
+
+        private void OnTriggerEnter2D(Collider2D other)
+        {
+            if(other.TryGetComponent(out IImpact impact))
+                _health.TakeDamage(impact.GetDamage(), other.ClosestPoint(transform.position));
         }
     }
 }

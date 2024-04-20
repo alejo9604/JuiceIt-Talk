@@ -185,31 +185,39 @@ namespace AllieJoe.JuiceIt
         
         //Impact pause - Hit Stop
         private bool _isOnImpactPause;
+        private Coroutine _impactPauseCoroutine;
 
-        public void DoImpactPause()
+        public void DoImpactPause(bool isPlayer)
         {
-            if (!JuiceConfig.GetValue<bool>(EConfigKey.ImpactPause))
+            //Impact pause for player damage
+            if (isPlayer && !JuiceConfig.GetValue<bool>(EConfigKey.PlayerImpactPause))
+                return;
+            
+            //Impact pause for projectile impact
+            if (!isPlayer && !JuiceConfig.GetValue<bool>(EConfigKey.ShootImpactPause))
                 return;
 
-            if (_isOnImpactPause)
+            //If player override the impact. If it's not player damage just ignore it
+            if (_isOnImpactPause && !isPlayer)
                 return;
+            
+            float timeToPause = isPlayer ? JuiceConfig.PlayerImpactPauseDurationInSec : JuiceConfig.ShootImpactPauseDurationInSec;
 
-            float dummyFps = (1 / Time.deltaTime);
-            int framesToPause = (int)(dummyFps * JuiceConfig.ImpactPauseDurationFramesPercent);
-            framesToPause = Mathf.Min(framesToPause, JuiceConfig.ImpactPauseDurationMaxFrames);
-
-            StartCoroutine(DoImpactPause(framesToPause));
+            if(_impactPauseCoroutine != null)
+                StopCoroutine(_impactPauseCoroutine);
+            _impactPauseCoroutine = StartCoroutine(DoImpactPause(timeToPause));
         }
 
-        private IEnumerator DoImpactPause(int frames)
+        private IEnumerator DoImpactPause(float timeToPause)
         {
             _isOnImpactPause = true;
 
             float originalTimeScale = Time.timeScale;
             Time.timeScale = 0f;
-
-            for (int i = 0; i < frames; i++)
-                yield return null;
+            
+            yield return new WaitForSeconds(timeToPause);
+            // for (int i = 0; i < frames; i++)
+            //     yield return null;
 
             Time.timeScale = originalTimeScale;
 

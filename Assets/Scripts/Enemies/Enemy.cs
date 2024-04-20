@@ -8,6 +8,8 @@ namespace AllieJoe.JuiceIt
     public class Enemy : MonoBehaviour
     {
         [SerializeField] private Collider2D _collider;
+        [SerializeField] private ImpactDetector _impactDetector;
+        [SerializeField] private int _damage;
         
         [Header("Damage")]
         [SerializeField] private GameObject[] _scratch;
@@ -30,6 +32,8 @@ namespace AllieJoe.JuiceIt
             
             _health.OnTakeDamage.AddListener(OnTakeDamage);
             _health.OnDeath.AddListener(OnDeath);
+
+            _impactDetector.SetDamage(_damage);
             
             // Make the hit animation the same duration as the InvisibilityTime
             _animator.SetFloat(HitSpeed_AnimHash, 1/ (_health.InvisibilityTime <= 0 ? 0.15f : _health.InvisibilityTime) );

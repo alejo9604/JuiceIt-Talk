@@ -8,9 +8,8 @@
         ShootingMovementRestriction,
         ShootingAccuracy,
         
-        ImpactPause,
-        //ImpactPauseDuration,
-        
+        ShootImpactPause,
+
         ProjectileSpeed,
         ProjectileRateFire,
         ProjectilePrefab,
@@ -32,6 +31,8 @@
         
         EnemyDeath,
         EnemyScratch,
+        
+        PlayerImpactPause,
         
         _INVALID
     }

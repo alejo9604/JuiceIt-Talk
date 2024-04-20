@@ -73,7 +73,7 @@ namespace AllieJoe.JuiceIt
         {
             TryToApplyDamageToTarget(collision.transform, hitPoint);
             
-            GameManager.Instance.DoImpactPause();
+            GameManager.Instance.DoImpactPause(false);
 
             SpawnImpactVFX(hitPoint, normalHitPoint);
 

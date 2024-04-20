@@ -420,6 +420,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _collider: {fileID: 8260753194290467650}
+  _impactDetector: {fileID: 5864539799456218486}
+  _damage: 1
   _scratch:
   - {fileID: 3215252128842400355}
   - {fileID: 2053698099314836955}
@@ -584,6 +586,7 @@ GameObject:
   - component: {fileID: 5567108577582990657}
   - component: {fileID: 6039651302455026389}
   - component: {fileID: 7394840499900130909}
+  - component: {fileID: 5864539799456218486}
   - component: {fileID: 8260753194290467650}
   m_Layer: 7
   m_Name: Body
@@ -674,6 +677,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _parentHealth: {fileID: 0}
+--- !u!114 &5864539799456218486
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8519018151461791811}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a170338320542cb97c0b0837c156a8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _damage: 0
 --- !u!58 &8260753194290467650
 CircleCollider2D:
   m_ObjectHideFlags: 0

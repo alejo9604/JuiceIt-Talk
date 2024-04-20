@@ -2,40 +2,40 @@
 {
     public enum EConfigKey
     {
-        Intro,
-        Trail,
+        Intro = 0,
+        Trail = 1,
         
-        ShootingMovementRestriction,
-        ShootingAccuracy,
+        ShootingMovementRestriction = 2,
+        ShootingAccuracy = 3,
         
-        ShootImpactPause,
+        ShootImpactPause = 4,
 
-        ProjectileSpeed,
-        ProjectileRateFire,
-        ProjectilePrefab,
-        ProjectileAccuracy,
-        ProjectileHitVFX,
+        ProjectileSpeed = 5,
+        ProjectileRateFire = 6,
+        ProjectilePrefab = 7,
+        ProjectileAccuracy = 8,
+        ProjectileHitVFX = 9,
         
-        MuzzleFlash,
-        WeaponType,
+        MuzzleFlash = 10,
+        WeaponType = 11,
         
-        EnemyHitImpact,
+        EnemyHitImpact = 12,
         
-        CameraPrediction,
-        CameraShake,
-        CameraPerlinNoise,
+        CameraPrediction = 13,
+        CameraShake = 14,
+        CameraPerlinNoise = 15,
         
-        BackgroundSpawnTween,
-        Shadows,
-        Clouds,
+        BackgroundSpawnTween = 16,
+        Shadows = 17,
+        Clouds = 18,
         
-        EnemyDeath,
-        EnemyScratch,
+        EnemyDeath = 19,
+        EnemyScratch = 20,
         
-        PlayerImpactPause,
-        PlayerDamageVFX,
-        PlayerImpactVFX,
+        PlayerImpactPause = 21,
+        PlayerDamageVFX = 22,
+        PlayerImpactVFX = 23,
         
-        _INVALID
+        _INVALID = 50
     }
 }

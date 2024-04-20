@@ -9,13 +9,16 @@ namespace AllieJoe.JuiceIt
         [SerializeField] private GameObject _damageVFX;
 
         private bool _canRecover;
+        private bool _canShowVFX;
         private float _currentHealthFloat;
 
         public void SetCanRecover(bool value) => _canRecover = value;
+
+        public void SetShowVFX(bool value) => _canShowVFX = value;
         
         private void Update()
         {
-            _damageVFX.SetActive(_currentHealth < _totalHealth);
+            _damageVFX.SetActive(_canShowVFX && _currentHealth < _totalHealth);
             if (!_canRecover || IsDeath || _currentHealth >= _totalHealth || IsInvincible)
                 return;
             

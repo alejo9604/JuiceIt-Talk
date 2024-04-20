@@ -68,6 +68,10 @@ namespace AllieJoe.JuiceIt
             _health = GetComponent<RecoverHealthOverTime>();
             
             _health.OnTakeDamage.AddListener(OnTakeDamage);
+            
+            _health.SetShowVFX(GameManager.Instance.GetConfigValue(EConfigKey.PlayerDamageVFX));
+            
+            GameManager.Instance.GameDelegates.OnConfigUpdated += OnConfigUpdated;
         }
 
         void Update()
@@ -135,6 +139,12 @@ namespace AllieJoe.JuiceIt
         {
             if(other.TryGetComponent(out IImpact impact))
                 _health.TakeDamage(impact.GetDamage(), other.ClosestPoint(transform.position));
+        }
+        
+        private void OnConfigUpdated(EConfigKey key)
+        {
+            if (key == EConfigKey.PlayerDamageVFX)
+                _health.SetShowVFX(GameManager.Instance.GetConfigValue(key));
         }
     }
 }

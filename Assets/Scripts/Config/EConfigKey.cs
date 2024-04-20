@@ -33,6 +33,7 @@
         EnemyScratch,
         
         PlayerImpactPause,
+        PlayerDamageVFX,
         
         _INVALID
     }

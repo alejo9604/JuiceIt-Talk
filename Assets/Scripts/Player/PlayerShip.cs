@@ -20,6 +20,9 @@ namespace AllieJoe.JuiceIt
         [SerializeField] private float _movementTurnSpeed = 200f;
         [SerializeField] private float _movementTurnShootingSpeed = 275f;
         [SerializeField] private float _stillTurnSpeed = 350f;
+
+        [Header("Health")]
+        [SerializeField] private GameObject _damageVFX; 
         
         private PlayerShipShoot _shootComponent;
         private RecoverHealthOverTime _health;
@@ -133,6 +136,8 @@ namespace AllieJoe.JuiceIt
         private void OnTakeDamage()
         {
             GameManager.Instance.DoImpactPause(true);
+            if(GameManager.Instance.GetConfigValue(EConfigKey.PlayerImpactVFX))
+                _damageVFX.SetActive(true);
         }
 
         private void OnTriggerEnter2D(Collider2D other)

@@ -13,7 +13,6 @@ MonoBehaviour:
   m_Name: JuiceConfig
   m_EditorClassIdentifier: 
   EnableSequence:
-  - rid: 2534766198637461507
   - rid: 2534766069907980289
   - rid: 2534765774161575957
   - rid: 2534765774161575961
@@ -34,6 +33,9 @@ MonoBehaviour:
   - rid: 2534766198637461504
   - rid: 2534766198637461505
   - rid: 2534766198637461506
+  - rid: 2534766198637461507
+  - rid: 2534766198637461508
+  - rid: 2534766198637461509
   ShootImpactPauseDurationInSec: 0.05
   PlayerImpactPauseDurationInSec: 0.25
   ShootAccuracyPerCannon: 0
@@ -136,7 +138,7 @@ MonoBehaviour:
       data:
         name: ShootImpactPause
         Key: 4
-        Label: Impact Pause
+        Label: Shoot Hitpause
         Comments: Enable/Disable Pause when hitting an enemy
         Enabled: 0
     - rid: 2534765883193294854
@@ -152,9 +154,9 @@ MonoBehaviour:
       data:
         name: EnemyHitImpact
         Key: 12
-        Label: Hit Impact
+        Label: Enemy Hit
         Comments: Enemy Hit Impact
-        Enabled: 0
+        Enabled: 1
     - rid: 2534765911603412993
       type: {class: ConfigEnabledValue, ns: AllieJoe.JuiceIt, asm: Assembly-CSharp}
       data:
@@ -233,6 +235,22 @@ MonoBehaviour:
       data:
         name: PlayerImpactPause
         Key: 21
-        Label: Hit Pause
+        Label: Player Hitpause
         Comments: 
         Enabled: 1
+    - rid: 2534766198637461508
+      type: {class: ConfigEnabledValue, ns: AllieJoe.JuiceIt, asm: Assembly-CSharp}
+      data:
+        name: PlayerDamageVFX
+        Key: 22
+        Label: Player Damage
+        Comments: 
+        Enabled: 0
+    - rid: 2534766198637461509
+      type: {class: ConfigEnabledValue, ns: AllieJoe.JuiceIt, asm: Assembly-CSharp}
+      data:
+        name: PlayerImpactVFX
+        Key: 23
+        Label: Player Impact VFX
+        Comments: 
+        Enabled: 0

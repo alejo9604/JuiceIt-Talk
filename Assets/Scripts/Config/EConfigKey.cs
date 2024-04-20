@@ -34,6 +34,7 @@
         
         PlayerImpactPause,
         PlayerDamageVFX,
+        PlayerImpactVFX,
         
         _INVALID
     }

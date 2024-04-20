@@ -91,7 +91,7 @@ namespace AllieJoe.JuiceIt
             if (_isShooting)
                 _shootComponent.Shoot(_currentSpeed);
 
-            _health.SetCanRecover(!_isAccelerating);
+            _health.SetCanRecover(!_isShooting);
         }
 
         private void FixedUpdate()

@@ -36,7 +36,7 @@ MonoBehaviour:
   - rid: 2534766198637461507
   - rid: 2534766198637461508
   - rid: 2534766198637461509
-  ShootImpactPauseDurationInSec: 0.05
+  ShootImpactPauseDurationInSec: 0.01
   PlayerImpactPauseDurationInSec: 0.25
   ShootAccuracyPerCannon: 0
   TraumaAddPerShoot: 0.2
@@ -156,7 +156,7 @@ MonoBehaviour:
         Key: 12
         Label: Enemy Hit
         Comments: Enemy Hit Impact
-        Enabled: 1
+        Enabled: 0
     - rid: 2534765911603412993
       type: {class: ConfigEnabledValue, ns: AllieJoe.JuiceIt, asm: Assembly-CSharp}
       data:
@@ -205,7 +205,7 @@ MonoBehaviour:
         Key: 17
         Label: Shadows
         Comments: Shadows
-        Enabled: 0
+        Enabled: 1
     - rid: 2534766198637461504
       type: {class: ConfigEnabledValue, ns: AllieJoe.JuiceIt, asm: Assembly-CSharp}
       data:
@@ -237,7 +237,7 @@ MonoBehaviour:
         Key: 21
         Label: Player Hitpause
         Comments: 
-        Enabled: 1
+        Enabled: 0
     - rid: 2534766198637461508
       type: {class: ConfigEnabledValue, ns: AllieJoe.JuiceIt, asm: Assembly-CSharp}
       data:

@@ -194,8 +194,8 @@ Transform:
   m_GameObject: {fileID: 3935079929349908644}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
-  m_LocalPosition: {x: -0.01, y: -0.1, z: 0}
-  m_LocalScale: {x: 1.3925632, y: 1.3925632, z: 1.4996835}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.62, y: 0.62, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1063277309701330368}
@@ -220,7 +220,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: cde3eadca53607b428703b811675372b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -428,7 +428,7 @@ MonoBehaviour:
   - {fileID: 5001631439377285128}
   - {fileID: 6552196195221509539}
   _deathVFX: {fileID: 179512793317467371, guid: 9cfb0e4a7d23fab4fba878dd7131bdf0, type: 3}
-  _maxSpeed: 0
+  _maxSpeed: 10
   _maxSeekForce: 500
   _body: {fileID: 5567108577582990657}
   _bodyMaxDistance: 0.8
@@ -447,7 +447,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e81c29f87f54754c84ab6f94ac5f6fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _totalHealth: 500
+  _totalHealth: 5
   _currentHealth: 5
   _invisibilityTime: 0.15
   OnTakeDamage:
@@ -489,6 +489,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34cea01409d64fa9a1612b5c2afc0b66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _body: {fileID: 5567108577582990657}
   _shadow: {fileID: 1063277309701330368}
   _updateRotation: 1
 --- !u!1 &6552196195221509539
@@ -750,8 +751,8 @@ Transform:
   m_GameObject: {fileID: 8878108137135130337}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.26839143, y: -0.24, z: 0}
-  m_LocalScale: {x: 0.43998596, y: 0.43998596, z: 0.43998596}
+  m_LocalPosition: {x: -0.28, y: -0.34, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5026153940126512141}

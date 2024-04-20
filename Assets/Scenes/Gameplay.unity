@@ -925,7 +925,7 @@ MonoBehaviour:
   _cam: {fileID: 519420031}
   _initDelay: 3
   _nextEnemyDelay: 1.2
-  _maxEnemies: 35
+  _maxEnemies: 10
   _maxEnemiesSpawnTime: 90
   _minSpawnZone: {x: 5, y: 5}
   _maxSpawnZone: {x: 40, y: 30}
@@ -1513,6 +1513,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4047482559493353581, guid: 2142ec989b755a144ad260dab5e56f4c, type: 3}
+      propertyPath: _maxSpeed
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5026153940126512141, guid: 2142ec989b755a144ad260dab5e56f4c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5026153940126512141, guid: 2142ec989b755a144ad260dab5e56f4c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5026153940126512141, guid: 2142ec989b755a144ad260dab5e56f4c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6081405672307001695, guid: 2142ec989b755a144ad260dab5e56f4c, type: 3}
       propertyPath: m_Name
       value: Enemy_UFO
@@ -1554,9 +1570,41 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 946732965982055102, guid: 28226e6cfb96cef42aa6c1126195b515, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 946732965982055102, guid: 28226e6cfb96cef42aa6c1126195b515, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 946732965982055102, guid: 28226e6cfb96cef42aa6c1126195b515, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 946732965982055102, guid: 28226e6cfb96cef42aa6c1126195b515, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: NaN
+      objectReference: {fileID: 0}
     - target: {fileID: 3342460255025341990, guid: 28226e6cfb96cef42aa6c1126195b515, type: 3}
       propertyPath: m_Name
       value: ConfigUI
+      objectReference: {fileID: 0}
+    - target: {fileID: 5923221334079278893, guid: 28226e6cfb96cef42aa6c1126195b515, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5923221334079278893, guid: 28226e6cfb96cef42aa6c1126195b515, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5923221334079278893, guid: 28226e6cfb96cef42aa6c1126195b515, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7547630484729309441, guid: 28226e6cfb96cef42aa6c1126195b515, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

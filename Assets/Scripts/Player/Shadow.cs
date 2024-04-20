@@ -5,16 +5,15 @@ namespace AllieJoe.JuiceIt
 {
     public class Shadow : MonoBehaviour
     {
+        [SerializeField] private Transform _body;
         [SerializeField] private Transform _shadow;
         [SerializeField] private bool _updateRotation;
-        private Vector2 _baseOffset;
+        [SerializeField, HideInInspector] private Vector2 _baseOffset;
 
         private void Start()
         {
-            _baseOffset = _shadow.localPosition;
-            
+            UpdateShadow();
             _shadow.gameObject.SetActive(GameManager.Instance.GetConfigValue(EConfigKey.Shadows));
-            
             GameManager.Instance.GameDelegates.OnConfigUpdated += OnOnConfigUpdated;
         }
 
@@ -25,8 +24,14 @@ namespace AllieJoe.JuiceIt
 
         private void Update()
         {
-            if(_updateRotation)
-                _shadow.localPosition = Quaternion.Euler(0, 0, -transform.eulerAngles.z) * _baseOffset;
+            if (_updateRotation)
+                UpdateShadow();
+        }
+
+        private void UpdateShadow()
+        {
+            float zRot = _body == null ? transform.eulerAngles.z : _body.eulerAngles.z;
+            _shadow.localPosition = Quaternion.Euler(0, 0, -zRot) * _baseOffset;
         }
         
         private void OnOnConfigUpdated(EConfigKey key)
@@ -35,6 +40,11 @@ namespace AllieJoe.JuiceIt
                 return;
             
             _shadow.gameObject.SetActive(GameManager.Instance.GetConfigValue(key));
+        }
+
+        private void OnValidate()
+        {
+            _baseOffset = _shadow.localPosition;
         }
     }
 }

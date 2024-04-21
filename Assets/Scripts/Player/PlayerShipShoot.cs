@@ -114,6 +114,8 @@ namespace AllieJoe.JuiceIt
                 weaponPresetData.ShowMuzzleFlash();
             
             GameManager.Instance.AddTrauma(GameManager.Instance.JuiceConfig.TraumaAddPerShoot);
+            
+            AudioManager.Instance.PlaySound(AudioLibrary.PLAYER_SHOOT);
         }
 
         private void RefreshSelectedWeapon()

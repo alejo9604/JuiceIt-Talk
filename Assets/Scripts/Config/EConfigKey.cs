@@ -35,6 +35,7 @@
         PlayerImpactPause = 21,
         PlayerDamageVFX = 22,
         PlayerImpactVFX = 23,
+        ShockWave = 26,
         
         Music = 24,
         SFX = 25,

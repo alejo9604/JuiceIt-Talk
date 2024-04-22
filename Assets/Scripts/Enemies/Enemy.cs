@@ -82,6 +82,8 @@ namespace AllieJoe.JuiceIt
                 GameObject vfx = Instantiate(_deathVFX, transform.position, Quaternion.identity);
                 Destroy(vfx, 2);
             }
+            
+            AudioManager.Instance.PlaySound(AudioLibrary.ENEMY_DEATH);
         }
 
         //Called via AnimationEvent

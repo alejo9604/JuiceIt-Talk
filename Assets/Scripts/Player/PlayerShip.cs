@@ -136,6 +136,7 @@ namespace AllieJoe.JuiceIt
         private void OnTakeDamage()
         {
             GameManager.Instance.DoImpactPause(true);
+            AudioManager.Instance.PlaySound(AudioLibrary.PLAYER_HIT);
             if(GameManager.Instance.GetConfigValue(EConfigKey.PlayerImpactVFX))
                 _damageVFX.SetActive(true);
         }

@@ -113,8 +113,7 @@ namespace AllieJoe.JuiceIt
             if(GameManager.Instance.GetConfigValue(EConfigKey.MuzzleFlash))
                 weaponPresetData.ShowMuzzleFlash();
             
-            if(GameManager.Instance.GetConfigValue(EConfigKey.SFX))
-                AudioManager.Instance.PlaySound(AudioLibrary.PLAYER_SHOOT);
+            AudioManager.Instance.PlaySound(AudioLibrary.PLAYER_SHOOT);
             
             //For screen shake
             GameManager.Instance.AddTrauma(GameManager.Instance.JuiceConfig.TraumaAddPerShoot);

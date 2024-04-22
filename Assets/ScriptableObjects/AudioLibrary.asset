@@ -16,12 +16,30 @@ MonoBehaviour:
   - Key: PlayerShoot
     Clips:
     - {fileID: 8300000, guid: 95e4787aaa21ecb4195ac833b0922a2d, type: 3}
-    Volume: 1
+    Volume: 0.65
     Pitch: 1
     PitchVariation: 0.15
   - Key: PlayerAccelerate
     Clips:
     - {fileID: 8300000, guid: 61ba54d483cc4e847ab86997134403ca, type: 3}
-    Volume: 0.4
+    Volume: 0.3
+    Pitch: 1
+    PitchVariation: 0
+  - Key: ProjectileImpact
+    Clips:
+    - {fileID: 8300000, guid: 02f13c3e531561042bdde0b4fda58c28, type: 3}
+    Volume: 0.5
+    Pitch: 1
+    PitchVariation: 0
+  - Key: EnemyDeath
+    Clips:
+    - {fileID: 8300000, guid: b249becd9b75be049b6ef858e39fb1fc, type: 3}
+    Volume: 0.7
+    Pitch: 1
+    PitchVariation: 0
+  - Key: PlayerHit
+    Clips:
+    - {fileID: 8300000, guid: e73b2264605f3484d9c03226531e4045, type: 3}
+    Volume: 0.9
     Pitch: 1
     PitchVariation: 0

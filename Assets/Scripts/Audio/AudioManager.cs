@@ -117,6 +117,9 @@ namespace AllieJoe.JuiceIt
 
         public void PlaySound(string soundName)
         {
+            if(!GameManager.Instance.GetConfigValue(EConfigKey.SFX))
+                return;
+            
             AudioSource sfxSource = _sfxPool.Get();
             AudioTuning tuning = _library.GetClipTuning(soundName);
             sfxSource.clip = tuning.GetClip();

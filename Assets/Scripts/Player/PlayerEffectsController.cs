@@ -18,7 +18,7 @@ namespace AllieJoe.JuiceIt
         private void Update()
         {
             UpdateTrails(GameManager.Instance.GetConfigValue(EConfigKey.Trail));
-            TryPlayAccelerateSFX(GameManager.Instance.GetConfigValue(EConfigKey.SFX));
+            TryPlayAccelerateSFX();
         }
 
         private void UpdateTrails(bool enable)
@@ -42,11 +42,11 @@ namespace AllieJoe.JuiceIt
             }
         }
 
-        private void TryPlayAccelerateSFX(bool enable)
+        private void TryPlayAccelerateSFX()
         {
-            if (_playerShip.IsAccelerating && enable)
+            if (_playerShip.IsAccelerating)
             {
-                if (!_wasEmitting)
+                if(!_wasEmitting)
                     AudioManager.Instance.PlaySound(AudioLibrary.PLAYER_ACCELERATE);
                 _wasEmitting = true;
             }

@@ -33,7 +33,7 @@ namespace AllieJoe.JuiceIt
         //KEYS
         public const string PLAYER_SHOOT = "PlayerShoot";
         public const string PLAYER_ACCELERATE = "PlayerAccelerate";
-        public const string PLAYER_HIT = "Player";
+        public const string PLAYER_HIT = "PlayerHit";
         public const string PROJECTILE_IMPACT = "ProjectileImpact";
         public const string ENEMY_DEATH = "EnemyDeath";
 

@@ -76,6 +76,8 @@ namespace AllieJoe.JuiceIt
             GameManager.Instance.DoImpactPause(false);
 
             SpawnImpactVFX(hitPoint, normalHitPoint);
+            
+            AudioManager.Instance.PlaySound(AudioLibrary.PROJECTILE_IMPACT);
 
             DestroyProjectile();
         }

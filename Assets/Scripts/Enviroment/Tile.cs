@@ -18,6 +18,8 @@ namespace AllieJoe.JuiceIt
         private void OnDisable()
         {
             DOTween.Kill(gameObject);
+            _animatedParent.localPosition = Vector3.zero;
+            _animatedParent.localScale = Vector3.one;
         }
 
         public void SetData(int q, int r, int x, int y, Sprite sprite)
@@ -32,6 +34,7 @@ namespace AllieJoe.JuiceIt
         
         public void PlayStartAnimation(TileSpawnTuning tuning, float delayMultiplier = 0, float extraDelay = 0)
         {
+            DOTween.Kill(gameObject);
             if (tuning.UseScale)
             {
                 _animatedParent.DOScale(1f, tuning.ScaleDuration)

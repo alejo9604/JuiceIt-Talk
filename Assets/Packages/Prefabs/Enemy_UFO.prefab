@@ -428,7 +428,8 @@ MonoBehaviour:
   - {fileID: 5001631439377285128}
   - {fileID: 6552196195221509539}
   _deathVFX: {fileID: 179512793317467371, guid: 9cfb0e4a7d23fab4fba878dd7131bdf0, type: 3}
-  _maxSpeed: 10
+  _minSpeed: 7
+  _maxSpeed: 14
   _maxSeekForce: 500
   _body: {fileID: 5567108577582990657}
   _bodyMaxDistance: 0.8

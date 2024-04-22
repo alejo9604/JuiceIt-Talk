@@ -6,6 +6,7 @@ namespace AllieJoe.JuiceIt
     public class EnemyUFO : Enemy
     {
         [Space]
+        [SerializeField] private float _minSpeed = 5;
         [SerializeField] private float _maxSpeed = 5;
         [SerializeField] private float _maxSeekForce = 0.25f;
         
@@ -15,13 +16,20 @@ namespace AllieJoe.JuiceIt
         [SerializeField] private float _bodySpeed = 5;
         [SerializeField] private float _bodyRefreshTime = 1f;
         [SerializeField] private float _bodyRotSpeedDeg = 5;
-        
+
+        private float _speed;
         private Vector3 _velocity;
         private Vector3 _acceleration;
 
         private Vector3 _targetBodyDirection;
         private float _nextBodyPositionRefresh;
-        
+
+        public override void OnSpawn()
+        {
+            base.OnSpawn();
+            _speed = Random.Range(_minSpeed, _maxSpeed);
+        }
+
         private void ApplyForce(Vector3 force)
         {
             //force /= mass;
@@ -30,6 +38,9 @@ namespace AllieJoe.JuiceIt
         
         private void Update()
         {
+            if(IsDeath)
+                return;
+            
             Seek(base.Player);
             Move();
             MoveBody();
@@ -38,12 +49,12 @@ namespace AllieJoe.JuiceIt
         private void Move()
         {
             _velocity += _acceleration * Time.deltaTime;
-            if (_velocity.sqrMagnitude > _maxSpeed * _maxSpeed)
-                _velocity = _velocity.normalized * _maxSpeed;
+            if (_velocity.sqrMagnitude > _speed * _speed)
+                _velocity = _velocity.normalized * _speed;
             
             transform.position += _velocity * Time.deltaTime;
 
-            Debug.DrawLine(transform.position, transform.position + _velocity, Color.red);
+            // Debug.DrawLine(transform.position, transform.position + _velocity, Color.red);
             
             _acceleration *= 0;
         }
@@ -63,13 +74,13 @@ namespace AllieJoe.JuiceIt
 
         private void Seek(Transform target)
         {
-            Vector3 desired = (target.position - transform.position).normalized * _maxSpeed;
+            Vector3 desired = (target.position - transform.position).normalized * _speed;
             Vector3 steer = desired - _velocity;
             if(steer.sqrMagnitude > _maxSeekForce * _maxSeekForce)
                 steer = steer.normalized * _maxSeekForce;
             
-            Debug.DrawLine(transform.position, transform.position + desired, Color.green);
-            Debug.DrawLine(transform.position + _velocity, transform.position + _velocity + steer, Color.blue);
+            // Debug.DrawLine(transform.position, transform.position + desired, Color.green);
+            // Debug.DrawLine(transform.position + _velocity, transform.position + _velocity + steer, Color.blue);
 
             ApplyForce(steer);
         }

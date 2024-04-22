@@ -25,6 +25,8 @@ namespace AllieJoe.JuiceIt
 
         private Action<Enemy> OnDeathCompleteEvent;
 
+        protected bool IsDeath => _health.IsDeath;
+
         private void Start()
         {
             _health = GetComponent<Health>();
@@ -39,7 +41,7 @@ namespace AllieJoe.JuiceIt
             _animator.SetFloat(HitSpeed_AnimHash, 1/ (_health.InvisibilityTime <= 0 ? 0.15f : _health.InvisibilityTime) );
         }
 
-        public void OnSpawn()
+        public virtual void OnSpawn()
         {
             _animator.ResetTrigger(Hit_AnimHash);
             _animator.ResetTrigger(Death_AnimHash);

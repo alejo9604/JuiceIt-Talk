@@ -31,6 +31,7 @@ namespace AllieJoe.JuiceIt
 
         private void OnConfigUpdate(EConfigKey key)
         {
+            Debug.Log("play enter");
             _titleText.text = GameManager.Instance.GetConfigLabel(key);
             PlayEnter();
         }

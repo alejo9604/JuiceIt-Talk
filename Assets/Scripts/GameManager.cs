@@ -78,6 +78,7 @@ namespace AllieJoe.JuiceIt
             JuiceConfig.ActiveAll();
             _currentStep = JuiceConfig.EnableSequence.Count - 1;
             ConfigUI.RefreshAll();
+            GameDelegates.EmitAllConfigUpdated();
         }
         
         public void ResetAllConfig()
@@ -85,9 +86,10 @@ namespace AllieJoe.JuiceIt
             JuiceConfig.ResetToDefault();
             _currentStep = 0;
             ConfigUI.RefreshAll();
+            GameDelegates.EmitAllConfigUpdated();
         }
         
-        public void ReloadLevel()
+        private void ReloadLevel()
         {
             GameDelegates.EmitOnResetLevel();
             //SceneManager.LoadScene(SceneManager.GetActiveScene().name);

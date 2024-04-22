@@ -51,6 +51,7 @@ namespace AllieJoe.JuiceIt
             GenerateInitGroup();
             
             GameManager.Instance.GameDelegates.OnConfigUpdated += OnConfigUpdated;
+            GameManager.Instance.GameDelegates.AllConfigUpdated += OnResetLevel;
             GameManager.Instance.GameDelegates.OnResetLevel += OnResetLevel;
         }
         
@@ -58,6 +59,7 @@ namespace AllieJoe.JuiceIt
         {
             GameManager.Instance.GameDelegates.OnResetLevel -= OnResetLevel;
             GameManager.Instance.GameDelegates.OnConfigUpdated -= OnConfigUpdated;
+            GameManager.Instance.GameDelegates.AllConfigUpdated -= OnResetLevel;
         }
 
         private void OnConfigUpdated(EConfigKey key)

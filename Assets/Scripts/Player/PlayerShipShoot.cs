@@ -55,12 +55,14 @@ namespace AllieJoe.JuiceIt
         {
             RefreshSelectedWeapon();
             GameManager.Instance.GameDelegates.OnConfigUpdated += OnConfigUpdated;
+            GameManager.Instance.GameDelegates.AllConfigUpdated += RefreshSelectedWeapon;
         }
         
 
         private void OnDestroy()
         {
             GameManager.Instance.GameDelegates.OnConfigUpdated -= OnConfigUpdated;
+            GameManager.Instance.GameDelegates.AllConfigUpdated -= RefreshSelectedWeapon;
         }
 
         public void Shoot(float extraSpeed = 0)

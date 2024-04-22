@@ -75,6 +75,7 @@ namespace AllieJoe.JuiceIt
             _health.SetShowVFX(GameManager.Instance.GetConfigValue(EConfigKey.PlayerDamageVFX));
             
             GameManager.Instance.GameDelegates.OnConfigUpdated += OnConfigUpdated;
+            GameManager.Instance.GameDelegates.AllConfigUpdated += RefreshConfig;
         }
 
         void Update()
@@ -153,6 +154,11 @@ namespace AllieJoe.JuiceIt
         {
             if (key == EConfigKey.PlayerDamageVFX)
                 _health.SetShowVFX(GameManager.Instance.GetConfigValue(key));
+        }
+
+        private void RefreshConfig()
+        {
+            _health.SetShowVFX(GameManager.Instance.GetConfigValue(EConfigKey.PlayerDamageVFX));
         }
     }
 }

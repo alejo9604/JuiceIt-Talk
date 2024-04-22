@@ -45,12 +45,14 @@ namespace AllieJoe.JuiceIt
             GenerateInitGroup();
             GameManager.Instance.GameDelegates.OnResetLevel += OnResetLevel;
             GameManager.Instance.GameDelegates.OnConfigUpdated += OnConfigUpdated;
+            GameManager.Instance.GameDelegates.AllConfigUpdated += RefreshConfig;
         }
 
         private void OnDestroy()
         {
             GameManager.Instance.GameDelegates.OnResetLevel -= OnResetLevel;
             GameManager.Instance.GameDelegates.OnConfigUpdated -= OnConfigUpdated;
+            GameManager.Instance.GameDelegates.AllConfigUpdated -= RefreshConfig;
         }
 
         private void Update()
@@ -93,9 +95,14 @@ namespace AllieJoe.JuiceIt
         {
             if (key == EConfigKey.Clouds)
             {
-                _spawnActive = GameManager.Instance.GetConfigValue(EConfigKey.Clouds);
+                RefreshConfig();
                 OnResetLevel();
             }
+        }
+
+        private void RefreshConfig()
+        {
+            _spawnActive = GameManager.Instance.GetConfigValue(EConfigKey.Clouds);
         }
         
         private void GenerateInitGroup()

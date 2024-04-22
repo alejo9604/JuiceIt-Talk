@@ -33,7 +33,7 @@ namespace AllieJoe.JuiceIt
             if(_option == null)
                 return;
             
-            _slider.value = _option.CurrentSelected();
+            _slider.SetValueWithoutNotify(_option.CurrentSelected());
             _slider.minValue = 0;
             _slider.maxValue = _option.Max();
         }

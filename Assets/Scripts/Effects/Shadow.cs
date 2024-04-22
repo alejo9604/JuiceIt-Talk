@@ -15,11 +15,13 @@ namespace AllieJoe.JuiceIt
             UpdateShadow();
             _shadow.gameObject.SetActive(GameManager.Instance.GetConfigValue(EConfigKey.Shadows));
             GameManager.Instance.GameDelegates.OnConfigUpdated += OnOnConfigUpdated;
+            GameManager.Instance.GameDelegates.AllConfigUpdated += RefreshConfig;
         }
 
         private void OnDestroy()
         {
             GameManager.Instance.GameDelegates.OnConfigUpdated -= OnOnConfigUpdated;
+            GameManager.Instance.GameDelegates.AllConfigUpdated -= RefreshConfig;
         }
 
         private void Update()
@@ -38,9 +40,14 @@ namespace AllieJoe.JuiceIt
         {
             if(key != EConfigKey.Shadows)
                 return;
-            
-            _shadow.gameObject.SetActive(GameManager.Instance.GetConfigValue(key));
+            RefreshConfig();
         }
+
+        private void RefreshConfig()
+        {
+            _shadow.gameObject.SetActive(GameManager.Instance.GetConfigValue(EConfigKey.Shadows));
+        }
+        
 
         private void OnValidate()
         {

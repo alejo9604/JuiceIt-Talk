@@ -139,6 +139,8 @@ namespace AllieJoe.JuiceIt
             AudioManager.Instance.PlaySound(AudioLibrary.PLAYER_HIT);
             if(GameManager.Instance.GetConfigValue(EConfigKey.PlayerImpactVFX))
                 _damageVFX.SetActive(true);
+            
+            GameManager.Instance.GameDelegates.EmitOnPlayerHit(transform.position);
         }
 
         private void OnTriggerEnter2D(Collider2D other)

@@ -10,5 +10,9 @@ namespace AllieJoe.JuiceIt
         
         public event Action<EConfigKey> OnConfigUpdated;
         public void EmitOnConfigUpdated(EConfigKey key) => OnConfigUpdated?.Invoke(key);
+        
+        public event Action<Vector3> OnPlayerHit;
+        public void EmitOnPlayerHit(Vector3 pos) => OnPlayerHit?.Invoke(pos);
+        
     }
 }

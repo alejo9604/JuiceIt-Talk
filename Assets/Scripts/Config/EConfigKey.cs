@@ -40,6 +40,8 @@
         Music = 24,
         SFX = 25,
         
+        PlayerShipMovement = 27,
+
         _INVALID = 50
     }
 }

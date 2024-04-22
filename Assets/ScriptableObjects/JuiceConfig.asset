@@ -15,6 +15,7 @@ MonoBehaviour:
   EnableSequence:
   - rid: 2534766069907980289
   - rid: 2534765774161575957
+  - rid: 2534766226261671938
   - rid: 2534765774161575961
   - rid: 2534765774161575964
   - rid: 2534765774161575962
@@ -270,5 +271,13 @@ MonoBehaviour:
         name: ShockWave
         Key: 26
         Label: Shock Wave
+        Comments: 
+        Enabled: 0
+    - rid: 2534766226261671938
+      type: {class: ConfigEnabledValue, ns: AllieJoe.JuiceIt, asm: Assembly-CSharp}
+      data:
+        name: PlayerShipMovement
+        Key: 27
+        Label: Ship Fly Move
         Comments: 
         Enabled: 0

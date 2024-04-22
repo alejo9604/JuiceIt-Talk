@@ -45,6 +45,9 @@ namespace AllieJoe.JuiceIt
         public float SpeedNormalize => _currentSpeed / _maxSpeed;
         public Vector2 AimDirection => transform.up;
 
+        private ShipPartEffector[] Effectors;
+        public Action<Vector2> OnInputChange;
+
         private float GetMaxMovementSpeed()
         {
             //No shooting custom movement
@@ -73,6 +76,10 @@ namespace AllieJoe.JuiceIt
             _health.OnTakeDamage.AddListener(OnTakeDamage);
             
             _health.SetShowVFX(GameManager.Instance.GetConfigValue(EConfigKey.PlayerDamageVFX));
+
+            Effectors = GetComponentsInChildren<ShipPartEffector>();
+            
+            RefreshConfig();
             
             GameManager.Instance.GameDelegates.OnConfigUpdated += OnConfigUpdated;
             GameManager.Instance.GameDelegates.AllConfigUpdated += RefreshConfig;
@@ -93,6 +100,9 @@ namespace AllieJoe.JuiceIt
                 _shootComponent.Shoot(_currentSpeed);
 
             _health.SetCanRecover(!_isShooting);
+
+            foreach (ShipPartEffector effector in Effectors)
+                effector.Apply(_input.normalized);
         }
 
         private void FixedUpdate()
@@ -154,11 +164,20 @@ namespace AllieJoe.JuiceIt
         {
             if (key == EConfigKey.PlayerDamageVFX)
                 _health.SetShowVFX(GameManager.Instance.GetConfigValue(key));
+            if (key == EConfigKey.PlayerShipMovement)
+            {
+                bool active = GameManager.Instance.GetConfigValue(key);
+                foreach (ShipPartEffector effector in Effectors)
+                    effector.SetActive(active);
+            }
         }
 
         private void RefreshConfig()
         {
             _health.SetShowVFX(GameManager.Instance.GetConfigValue(EConfigKey.PlayerDamageVFX));
+            bool active = GameManager.Instance.GetConfigValue(EConfigKey.PlayerShipMovement);
+            foreach (ShipPartEffector effector in Effectors)
+                effector.SetActive(active);
         }
     }
 }

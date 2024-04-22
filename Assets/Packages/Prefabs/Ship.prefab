@@ -155,6 +155,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3182244307561480726}
   - component: {fileID: 8107836648985986991}
+  - component: {fileID: 3604012467502373890}
   m_Layer: 6
   m_Name: Body
   m_TagString: Untagged
@@ -231,6 +232,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &3604012467502373890
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 554614021173347410}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d209d75a62339274d83272612d21e832, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _offset: {x: 0.03, y: 0.03}
+  _rotation: 0
+  _moveSpeed: 8
+  _rotSpeed: 8
 --- !u!1 &608362898674241722
 GameObject:
   m_ObjectHideFlags: 0
@@ -10387,6 +10404,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1633704858429643022}
   - component: {fileID: 1330568614512108063}
+  - component: {fileID: 8971793915514450871}
   m_Layer: 6
   m_Name: Wing_Right
   m_TagString: Untagged
@@ -10462,6 +10480,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &8971793915514450871
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1272038142542809609}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d209d75a62339274d83272612d21e832, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _offset: {x: 0.08, y: -0.05}
+  _rotation: 9
+  _moveSpeed: 8
+  _rotSpeed: 2
 --- !u!1 &2156161662558499487
 GameObject:
   m_ObjectHideFlags: 0
@@ -10589,6 +10623,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1835377137746956583}
   - component: {fileID: 5428177659363066219}
+  - component: {fileID: 1302881927407013357}
   m_Layer: 6
   m_Name: Wing_Left
   m_TagString: Untagged
@@ -10604,7 +10639,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2713231208538809670}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: 0.9659258, w: 0.2588191}
+  m_LocalRotation: {x: 0, y: 0, z: 0.9659258, w: 0.2588191}
   m_LocalPosition: {x: -0.58, y: -0.3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -10664,6 +10699,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1302881927407013357
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2713231208538809670}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d209d75a62339274d83272612d21e832, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _offset: {x: 0.08, y: -0.05}
+  _rotation: 9
+  _moveSpeed: 8
+  _rotSpeed: 2
 --- !u!1 &2901163882831557391
 GameObject:
   m_ObjectHideFlags: 0
@@ -20689,6 +20740,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2238873353083937290}
   - component: {fileID: 95178534133111980}
+  - component: {fileID: 6053110942143884997}
   m_Layer: 6
   m_Name: Propeller_Left
   m_TagString: Untagged
@@ -20765,6 +20817,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &6053110942143884997
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3890523295329261888}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d209d75a62339274d83272612d21e832, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _offset: {x: 0, y: 0.08}
+  _rotation: 0
+  _moveSpeed: 8
+  _rotSpeed: 8
 --- !u!1 &4742556062271827574
 GameObject:
   m_ObjectHideFlags: 0
@@ -25763,6 +25831,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2741179530742137427}
   - component: {fileID: 1871537307805633050}
+  - component: {fileID: 7747227843713263363}
   m_Layer: 6
   m_Name: Propeller_Right
   m_TagString: Untagged
@@ -25839,6 +25908,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &7747227843713263363
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5924790919116753420}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d209d75a62339274d83272612d21e832, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _offset: {x: 0, y: 0.08}
+  _rotation: 0
+  _moveSpeed: 8
+  _rotSpeed: 8
 --- !u!1 &6147112719727466848
 GameObject:
   m_ObjectHideFlags: 0

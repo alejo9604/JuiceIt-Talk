@@ -44,7 +44,7 @@ namespace AllieJoe.JuiceIt
         public Vector2 MovementDirection => _movementDir;
         public float SpeedNormalize => _currentSpeed / _maxSpeed;
         public Vector2 AimDirection => transform.up;
-        
+
         private float GetMaxMovementSpeed()
         {
             //No shooting custom movement

@@ -90,7 +90,8 @@ namespace AllieJoe.JuiceIt
 
         public void PlaySound(string soundName)
         {
-            _sfxSource.PlayOneShot(_library.GetClip(soundName), _sfxVolumePercent * _masterVolumePercent);
+            AudioTuning tuning = _library.GetClipTuning(soundName);
+            _sfxSource.PlayOneShot(tuning.GetClip(), tuning.Volume * _sfxVolumePercent * _masterVolumePercent);
         }
 
         IEnumerator AnimateMusicCrossFade(float duration)

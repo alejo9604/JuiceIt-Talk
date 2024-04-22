@@ -11,16 +11,19 @@ namespace AllieJoe.JuiceIt
             //base.OnGUI(position, property, label);
             SerializedProperty keyProperty = property.FindPropertyRelative("Key");
             SerializedProperty clipsProperty = property.FindPropertyRelative("Clips");
+            SerializedProperty volumeProperty = property.FindPropertyRelative("Volume");
             
             EditorGUI.BeginProperty(position, label, property);
 
             Rect keyRect = new Rect(position.x, position.y, position.width, EditorGUIUtility.singleLineHeight);
-            Rect clipsRect = new Rect(position.x, position.y + EditorGUIUtility.singleLineHeight + EditorGUIUtility.standardVerticalSpacing, position.width, EditorGUI.GetPropertyHeight(clipsProperty));
+            Rect volumeRect = new Rect(position.x, position.y + EditorGUIUtility.singleLineHeight, position.width, EditorGUIUtility.singleLineHeight);
+            Rect clipsRect = new Rect(position.x, position.y + (EditorGUIUtility.singleLineHeight * 2) + EditorGUIUtility.standardVerticalSpacing, position.width, EditorGUI.GetPropertyHeight(clipsProperty));
             
             int selectedIndex = Mathf.Max(0, System.Array.IndexOf(AudioLibrary.TUNING_KEYS, keyProperty.stringValue));
             selectedIndex = EditorGUI.Popup(keyRect, selectedIndex, AudioLibrary.TUNING_KEYS);
             keyProperty.stringValue = AudioLibrary.TUNING_KEYS[selectedIndex];
 
+            volumeProperty.floatValue = EditorGUI.Slider(volumeRect, volumeProperty.name, volumeProperty.floatValue, 0f, 1f);
             EditorGUI.PropertyField(clipsRect, clipsProperty, true);
 
             EditorGUI.EndProperty();

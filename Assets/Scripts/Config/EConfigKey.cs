@@ -36,6 +36,9 @@
         PlayerDamageVFX = 22,
         PlayerImpactVFX = 23,
         
+        Music = 24,
+        SFX = 25,
+        
         _INVALID = 50
     }
 }

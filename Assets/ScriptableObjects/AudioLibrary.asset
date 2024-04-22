@@ -15,4 +15,7 @@ MonoBehaviour:
   Audios:
   - Key: PlayerShoot
     Clips:
-    - {fileID: 8300000, guid: 0a2fe57c1ccad914987a2362f7ada2fe, type: 3}
+    - {fileID: 8300000, guid: 95e4787aaa21ecb4195ac833b0922a2d, type: 3}
+  - Key: PlayerAccelerate
+    Clips:
+    - {fileID: 8300000, guid: 61ba54d483cc4e847ab86997134403ca, type: 3}

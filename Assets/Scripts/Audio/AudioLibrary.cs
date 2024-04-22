@@ -9,6 +9,9 @@ namespace AllieJoe.JuiceIt
     {
         public string Key;
         public AudioClip[] Clips;
+        public float Volume;
+        
+        public AudioClip GetClip() => Clips[Random.Range(0, Clips.Length)];
     }
     
     [CreateAssetMenu(menuName = "Config/AudioLibrary", fileName = "AudioLibrary")]
@@ -16,13 +19,13 @@ namespace AllieJoe.JuiceIt
     {
         public AudioTuning[] Audios;
 
-        public AudioClip GetClip(string key)
+        public AudioTuning GetClipTuning(string key)
         {
             foreach (var tuning in Audios)
                 if (tuning.Key == key)
-                    return tuning.Clips[Random.Range(0, tuning.Clips.Length)];
+                    return tuning;
 
-            return null;
+            return default;
         }
         
         //KEYS

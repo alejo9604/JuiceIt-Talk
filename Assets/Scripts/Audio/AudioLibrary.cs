@@ -5,11 +5,13 @@ using Random = UnityEngine.Random;
 namespace AllieJoe.JuiceIt
 {
     [Serializable]
-    public struct AudioTuning
+    public class AudioTuning
     {
         public string Key;
         public AudioClip[] Clips;
-        public float Volume;
+        public float Volume = 1;
+        public float Pitch = 1;
+        public float PitchVariation = 0;
         
         public AudioClip GetClip() => Clips[Random.Range(0, Clips.Length)];
     }

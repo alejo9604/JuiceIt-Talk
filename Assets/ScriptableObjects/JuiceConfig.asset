@@ -262,4 +262,4 @@ MonoBehaviour:
         Key: 25
         Label: SFXs
         Comments: 
-        Enabled: 0
+        Enabled: 1

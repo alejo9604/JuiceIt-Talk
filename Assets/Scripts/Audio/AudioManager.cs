@@ -1,6 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Pool;
+using Random = UnityEngine.Random;
 
 namespace AllieJoe.JuiceIt
 {
@@ -12,7 +15,6 @@ namespace AllieJoe.JuiceIt
         
         [SerializeField] private AudioLibrary _library;
         
-        private AudioSource _sfxSource;
         private AudioSource[] _musicSources;
         private int _activeMusicSourceIndex;
         
@@ -24,6 +26,9 @@ namespace AllieJoe.JuiceIt
         private const string MUSIC_VOL_KEY = "music_vol";
         private const string SFX_VOL_KEY = "sfx_vol";
 
+        private IObjectPool<AudioSource> _sfxPool;
+        private List<AudioSource> _activeSFX = new();
+
         private void Awake()
         {
             if (Instance != null)
@@ -33,7 +38,7 @@ namespace AllieJoe.JuiceIt
             }
             
             Instance = this;
-            DontDestroyOnLoad(gameObject);
+            //DontDestroyOnLoad(gameObject);
             
             _musicSources = new AudioSource[2];
             for (int i = 0; i < 2; i++)
@@ -42,16 +47,38 @@ namespace AllieJoe.JuiceIt
                 _musicSources[i] = newMusicSource.AddComponent<AudioSource>();
                 newMusicSource.transform.parent = transform;
             }
-
-            GameObject sfxSource = new GameObject("SFX_Source");
-            _sfxSource = sfxSource.AddComponent<AudioSource>();
-            sfxSource.transform.parent = transform;
+            
+            _sfxPool = new ObjectPool<AudioSource>(
+                () =>
+                {
+                    GameObject sfxSource = new GameObject("SFX_Source");
+                    sfxSource.transform.parent = transform;
+                    AudioSource source = sfxSource.AddComponent<AudioSource>();
+                    source.playOnAwake = false;
+                    return source;
+                },
+                source => source.gameObject.SetActive(true),
+                source => source.gameObject.SetActive(false),
+                source => Destroy(source.gameObject),
+                defaultCapacity: 10);
             
             _masterVolumePercent = PlayerPrefs.GetFloat(MASTER_VOL_KEY, 1);
             _sfxVolumePercent = PlayerPrefs.GetFloat(SFX_VOL_KEY, 1);
             _musicVolumePercent = PlayerPrefs.GetFloat(MUSIC_VOL_KEY, 1);
         }
-        
+
+        private void Update()
+        {
+            for (int i = 0; i < _activeSFX.Count; i++)
+            {
+                if (!_activeSFX[i].isPlaying)
+                {
+                    _sfxPool.Release(_activeSFX[i]);
+                    _activeSFX.RemoveAt(i);
+                    i--;
+                }
+            }
+        }
 
         public void SetVolume(float volumePercent, AudioChannel channel)
         {
@@ -90,8 +117,17 @@ namespace AllieJoe.JuiceIt
 
         public void PlaySound(string soundName)
         {
+            AudioSource sfxSource = _sfxPool.Get();
             AudioTuning tuning = _library.GetClipTuning(soundName);
-            _sfxSource.PlayOneShot(tuning.GetClip(), tuning.Volume * _sfxVolumePercent * _masterVolumePercent);
+            sfxSource.clip = tuning.GetClip();
+            sfxSource.volume = tuning.Volume * _sfxVolumePercent * _masterVolumePercent;
+            if(tuning.PitchVariation > 0)
+                sfxSource.pitch = tuning.Pitch + Random.Range(-tuning.PitchVariation, tuning.PitchVariation);
+            else
+                sfxSource.pitch = tuning.Pitch;
+            sfxSource.Play();
+            _activeSFX.Add(sfxSource);
+            
         }
 
         IEnumerator AnimateMusicCrossFade(float duration)

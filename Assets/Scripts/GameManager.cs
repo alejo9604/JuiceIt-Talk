@@ -72,6 +72,20 @@ namespace AllieJoe.JuiceIt
         public bool GetConfigValue(EConfigKey key) => JuiceConfig.GetValue<bool>(key);
 
         public string GetConfigLabel(EConfigKey key) => JuiceConfig.GetLabel(key);
+
+        public void AllConfigActive()
+        {
+            JuiceConfig.ActiveAll();
+            _currentStep = JuiceConfig.EnableSequence.Count - 1;
+            ConfigUI.RefreshAll();
+        }
+        
+        public void ResetAllConfig()
+        {
+            JuiceConfig.ResetToDefault();
+            _currentStep = 0;
+            ConfigUI.RefreshAll();
+        }
         
         public void ReloadLevel()
         {

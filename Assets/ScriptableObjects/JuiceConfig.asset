@@ -37,6 +37,7 @@ MonoBehaviour:
   - rid: 2534766198637461508
   - rid: 2534766198637461509
   - rid: 2534766226261671936
+  - rid: 2534766226261671937
   ShootImpactPauseDurationInSec: 0.01
   PlayerImpactPauseDurationInSec: 0.25
   ShootAccuracyPerCannon: 0
@@ -263,3 +264,11 @@ MonoBehaviour:
         Label: SFXs
         Comments: 
         Enabled: 1
+    - rid: 2534766226261671937
+      type: {class: ConfigEnabledValue, ns: AllieJoe.JuiceIt, asm: Assembly-CSharp}
+      data:
+        name: ShockWave
+        Key: 26
+        Label: Shock Wave
+        Comments: 
+        Enabled: 0

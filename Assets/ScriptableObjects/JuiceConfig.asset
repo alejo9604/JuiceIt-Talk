@@ -39,6 +39,7 @@ MonoBehaviour:
   - rid: 2534766198637461509
   - rid: 2534766226261671936
   - rid: 2534766226261671937
+  - rid: 2534766250387570688
   ShootImpactPauseDurationInSec: 0.01
   PlayerImpactPauseDurationInSec: 0.25
   ShootAccuracyPerCannon: 0
@@ -279,5 +280,13 @@ MonoBehaviour:
         name: PlayerShipMovement
         Key: 27
         Label: Ship Fly Move
+        Comments: 
+        Enabled: 0
+    - rid: 2534766250387570688
+      type: {class: ConfigEnabledValue, ns: AllieJoe.JuiceIt, asm: Assembly-CSharp}
+      data:
+        name: EnemyPermanent
+        Key: 28
+        Label: Enemy Permanent
         Comments: 
         Enabled: 0

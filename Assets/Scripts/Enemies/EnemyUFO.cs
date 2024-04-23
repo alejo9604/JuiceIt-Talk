@@ -17,6 +17,9 @@ namespace AllieJoe.JuiceIt
         [SerializeField] private float _bodyRefreshTime = 1f;
         [SerializeField] private float _bodyRotSpeedDeg = 5;
 
+        [Header("Death")]
+        [SerializeField] private GameObject _crashedUFOPrefab;
+
         private float _speed;
         private Vector3 _velocity;
         private Vector3 _acceleration;
@@ -83,6 +86,15 @@ namespace AllieJoe.JuiceIt
             // Debug.DrawLine(transform.position + _velocity, transform.position + _velocity + steer, Color.blue);
 
             ApplyForce(steer);
+        }
+
+        protected override void OnDeath()
+        {
+            base.OnDeath();
+
+            //TODO: pooling and despawn
+            if(GameManager.Instance.GetConfigValue(EConfigKey.EnemyPermanent))
+                Instantiate(_crashedUFOPrefab, transform.position, Quaternion.identity);
         }
 
         private void OnDrawGizmos()

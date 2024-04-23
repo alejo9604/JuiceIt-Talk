@@ -20,6 +20,9 @@
         WeaponType = 11,
         
         EnemyHitImpact = 12,
+        EnemyDeath = 19,
+        EnemyScratch = 20,
+        EnemyPermanent = 28,
         
         CameraPrediction = 13,
         CameraShake = 14,
@@ -29,8 +32,6 @@
         Shadows = 17,
         Clouds = 18,
         
-        EnemyDeath = 19,
-        EnemyScratch = 20,
         
         PlayerImpactPause = 21,
         PlayerDamageVFX = 22,

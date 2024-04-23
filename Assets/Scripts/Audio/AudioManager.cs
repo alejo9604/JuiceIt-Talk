@@ -29,6 +29,8 @@ namespace AllieJoe.JuiceIt
         private IObjectPool<AudioSource> _sfxPool;
         private List<AudioSource> _activeSFX = new();
 
+        private Coroutine _coroutine;
+
         private void Awake()
         {
             if (Instance != null)
@@ -66,6 +68,19 @@ namespace AllieJoe.JuiceIt
             _sfxVolumePercent = PlayerPrefs.GetFloat(SFX_VOL_KEY, 1);
             _musicVolumePercent = PlayerPrefs.GetFloat(MUSIC_VOL_KEY, 1);
         }
+
+        private void Start()
+        {
+            GameManager.Instance.GameDelegates.OnConfigUpdated += OnOnConfigUpdated;
+            GameManager.Instance.GameDelegates.AllConfigUpdated += RefreshMusic;
+        }
+
+        private void OnDestroy()
+        {
+            GameManager.Instance.GameDelegates.OnConfigUpdated -= OnOnConfigUpdated;
+            GameManager.Instance.GameDelegates.AllConfigUpdated -= RefreshMusic;
+        }
+
 
         private void Update()
         {
@@ -105,14 +120,26 @@ namespace AllieJoe.JuiceIt
         }
 
 
-        public void PlayMusic(AudioClip clip, float fadeDuration = 1)
+        private void PlayMusic(AudioClip clip, float fadeDuration = 1)
         {
             _activeMusicSourceIndex = 1 - _activeMusicSourceIndex;
             _musicSources[_activeMusicSourceIndex].clip = clip;
             _musicSources[_activeMusicSourceIndex].Play();
 
-            StartCoroutine(AnimateMusicCrossFade(fadeDuration));
+            if(_coroutine != null)
+                StopCoroutine(_coroutine);
+            _coroutine = StartCoroutine(AnimateMusicCrossFade(fadeDuration));
         }
+
+        public void StopMusic()
+        {
+            if(_coroutine != null)
+                StopCoroutine(_coroutine);
+            
+            _musicSources[0].Stop();
+            _musicSources[1].Stop();
+        }
+        
         
 
         public void PlaySound(string soundName)
@@ -146,6 +173,21 @@ namespace AllieJoe.JuiceIt
 
                 yield return null;
             }
+            
+            _musicSources[1 - _activeMusicSourceIndex].Stop();
+        }
+        
+        private void OnOnConfigUpdated(EConfigKey key)
+        {
+            RefreshMusic();
+        }
+
+        private void RefreshMusic()
+        {
+            if (GameManager.Instance.GetConfigValue(EConfigKey.Music))
+                PlayMusic(_library.Music, 0.5f);
+            else
+                StopMusic();
         }
     }
 }

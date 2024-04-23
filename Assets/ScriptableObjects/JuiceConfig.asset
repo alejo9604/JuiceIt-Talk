@@ -38,6 +38,7 @@ MonoBehaviour:
   - rid: 2534766198637461508
   - rid: 2534766198637461509
   - rid: 2534766226261671936
+  - rid: 2534766250387570689
   - rid: 2534766226261671937
   - rid: 2534766250387570688
   ShootImpactPauseDurationInSec: 0.01
@@ -265,7 +266,7 @@ MonoBehaviour:
         Key: 25
         Label: SFXs
         Comments: 
-        Enabled: 1
+        Enabled: 0
     - rid: 2534766226261671937
       type: {class: ConfigEnabledValue, ns: AllieJoe.JuiceIt, asm: Assembly-CSharp}
       data:
@@ -288,5 +289,13 @@ MonoBehaviour:
         name: EnemyPermanent
         Key: 28
         Label: Enemy Permanent
+        Comments: 
+        Enabled: 0
+    - rid: 2534766250387570689
+      type: {class: ConfigEnabledValue, ns: AllieJoe.JuiceIt, asm: Assembly-CSharp}
+      data:
+        name: Music
+        Key: 24
+        Label: Music
         Comments: 
         Enabled: 0

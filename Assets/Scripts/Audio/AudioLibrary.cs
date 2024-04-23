@@ -19,6 +19,7 @@ namespace AllieJoe.JuiceIt
     [CreateAssetMenu(menuName = "Config/AudioLibrary", fileName = "AudioLibrary")]
     public class AudioLibrary : ScriptableObject
     {
+        public AudioClip Music;
         public AudioTuning[] Audios;
 
         public AudioTuning GetClipTuning(string key)

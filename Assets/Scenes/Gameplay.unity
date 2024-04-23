@@ -259,6 +259,8 @@ MonoBehaviour:
   _cam: {fileID: 519420031}
   _safeZoneOffset: {x: 10, y: 10}
   _tweenZoneOffset: {x: 12, y: 12}
+  _perlinNoiseMultiplier: 6.5
+  _waterThreshold: 0.2
 --- !u!114 &185257580
 MonoBehaviour:
   m_ObjectHideFlags: 0

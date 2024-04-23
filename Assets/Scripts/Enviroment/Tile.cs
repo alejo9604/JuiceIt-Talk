@@ -30,7 +30,8 @@ namespace AllieJoe.JuiceIt
         }
 
         public void SetSelected(bool selected) => _selected.SetActive(selected);
-        
+
+        public TextMeshPro debugText;
         
         public void PlayStartAnimation(TileSpawnTuning tuning, float delayMultiplier = 0, float extraDelay = 0)
         {

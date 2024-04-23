@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ad6766a2e14f9f4f9c81dbbea003bb6, type: 3}
   m_Name: AudioLibrary
   m_EditorClassIdentifier: 
+  Music: {fileID: 8300000, guid: 055402c8cfdd81848bf4664eeed7f61c, type: 3}
   Audios:
   - Key: PlayerShoot
     Clips:

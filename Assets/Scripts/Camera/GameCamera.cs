@@ -24,6 +24,7 @@ namespace AllieJoe.JuiceIt
         private Vector3 _targetOffset;
         private Vector2 _targetMovementDirection;
         private Vector2 _LastMovementDirection;
+        private float _movementPredictionPercent = 0;
         
         private Vector3 TargetPos => GameManager.Instance.Player.transform.position;
 
@@ -45,20 +46,20 @@ namespace AllieJoe.JuiceIt
         private void FixedUpdate()
         {
             _targetMovementDirection = GameManager.Instance.Player.MovementDirection;
-            float movementPredictionPercent = 0;
+            
             if (!GameManager.Instance.Player.IsAccelerating)
             {
-                movementPredictionPercent = Mathf.Lerp(movementPredictionPercent, 0, _stopLerpSpeed * Time.deltaTime);
+                _movementPredictionPercent = Mathf.Lerp(_movementPredictionPercent, 0, _stopLerpSpeed * Time.deltaTime);
             }
             else
             {
-                movementPredictionPercent = GameManager.Instance.Player.SpeedNormalize * _movementPredictionAmount;
+                _movementPredictionPercent = GameManager.Instance.Player.SpeedNormalize * _movementPredictionAmount;
                 _LastMovementDirection = GameManager.Instance.Player.AimDirection;
             }
 
             // TODO: Only move if accelerating?
             // TODO: Weight system?
-            UpdateTargetOffsetByPrediction(_targetMovementDirection, movementPredictionPercent, _LastMovementDirection, _stationaryPredictionAmount);
+            UpdateTargetOffsetByPrediction(_targetMovementDirection, _movementPredictionPercent, _LastMovementDirection, _stationaryPredictionAmount);
 
             var pos = TargetPos + _targetOffset;
             //Ensure Z-Offset

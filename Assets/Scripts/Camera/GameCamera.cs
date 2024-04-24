@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 namespace AllieJoe.JuiceIt
@@ -7,9 +8,12 @@ namespace AllieJoe.JuiceIt
     {
         [Header("Lerp")]
         [SerializeField] private float _lerpSpeed = 5;
-        [SerializeField] private float _stopLerpSpeed = 5;
-        [SerializeField] private float _stationaryPredictionAmount = 0;
+        [SerializeField] private float _lerpAcceleration = 5;
+        [SerializeField] private float _lerpDesacceleration = 5;
         [SerializeField] private float _movementPredictionAmount = 5;
+        
+        [Space]
+        [SerializeField] private PointOfInterestManager _pointOfInterestManager;
         
         [Header("Shake")] 
         [SerializeField] private float _maxAngle;
@@ -18,15 +22,15 @@ namespace AllieJoe.JuiceIt
         private bool _usePerlinNoise;
 
         private Vector3 _initPosition;
+        private Vector3 _lastCamPosition;
         private Vector3 _targetPosition;
         private Quaternion _targetRotation;
         
+        private Vector3 _currentOffset;
         private Vector3 _targetOffset;
-        private Vector2 _targetMovementDirection;
-        private Vector2 _LastMovementDirection;
-        private float _movementPredictionPercent = 0;
-        
-        private Vector3 TargetPos => GameManager.Instance.Player.transform.position;
+        private float _targetLerpSpeed;
+
+        private Vector3 PlayerPos => GameManager.Instance.Player.transform.position;
 
         private const int ANGLE_PERLIN_SEED = 100;
         private const int OFFSET_X_PERLIN_SEED = 200;
@@ -34,7 +38,7 @@ namespace AllieJoe.JuiceIt
 
         private void Start()
         {
-            _targetOffset = _initPosition = transform.position;
+            _currentOffset = _initPosition = _lastCamPosition = transform.position;
         }
 
         private void LateUpdate()
@@ -43,45 +47,46 @@ namespace AllieJoe.JuiceIt
             transform.rotation = _targetRotation;
         }
 
+        private Vector3 smoothVel;
+
         private void FixedUpdate()
         {
-            _targetMovementDirection = GameManager.Instance.Player.MovementDirection;
-            
-            if (!GameManager.Instance.Player.IsAccelerating)
+            if (GameManager.Instance.Player.IsAccelerating)
             {
-                _movementPredictionPercent = Mathf.Lerp(_movementPredictionPercent, 0, _stopLerpSpeed * Time.deltaTime);
+                UpdateTargetOffset();
+                _targetLerpSpeed += _lerpAcceleration * Time.deltaTime;
             }
             else
             {
-                _movementPredictionPercent = GameManager.Instance.Player.SpeedNormalize * _movementPredictionAmount;
-                _LastMovementDirection = GameManager.Instance.Player.AimDirection;
+                _targetLerpSpeed -= _lerpDesacceleration * Time.deltaTime;
             }
 
-            // TODO: Only move if accelerating?
-            // TODO: Weight system?
-            UpdateTargetOffsetByPrediction(_targetMovementDirection, _movementPredictionPercent, _LastMovementDirection, _stationaryPredictionAmount);
-
-            var pos = TargetPos + _targetOffset;
-            //Ensure Z-Offset
-            pos.z = _initPosition.z;
+            _targetLerpSpeed = Mathf.Clamp(_targetLerpSpeed, 0, _lerpSpeed);
+            //_currentOffset = Vector3.Lerp(_currentOffset, _targetOffset, _targetLerpSpeed * Time.deltaTime);
+            //var pos = PlayerPos + _currentOffset;
+            //pos.z = _initPosition.z; //Ensure Z-Offset
             
-            _targetPosition = pos;
+            _currentOffset = _targetOffset;
+            _lastCamPosition = Vector3.Lerp(_lastCamPosition, PlayerPos + _currentOffset, _targetLerpSpeed * Time.deltaTime);
+            _lastCamPosition.z = _initPosition.z; //Ensure Z-Offset
+            
+            _targetPosition = _lastCamPosition;
             _targetRotation = Quaternion.identity;
-            
+
             ApplyShake(GameManager.Instance.ShakeValue);
         }
-
-        private void UpdateTargetOffsetByPrediction( Vector2 predictionDirection, float predictionAmount, Vector2 constantOffset, float constantOffsetAmount)
+        
+        private Vector3 GetNextPlayerPosition()
         {
-            if (GameManager.Instance.GetConfigValue(EConfigKey.CameraPrediction))
-            {
-                var offset = constantOffset * constantOffsetAmount + predictionDirection * predictionAmount;
-                _targetOffset = Vector3.Lerp(_targetOffset, offset, _lerpSpeed * Time.deltaTime);
-            }
-            else
-            {
-                _targetOffset = Vector3.zero;
-            }
+            Vector3 movement = GameManager.Instance.Player.MovementDirection * GameManager.Instance.Player.SpeedNormalize * _movementPredictionAmount;
+            return PlayerPos + movement;
+        }
+        
+        private void UpdateTargetOffset()
+        {
+            Vector3 center = _pointOfInterestManager.GetCenter(GetNextPlayerPosition());
+
+            _targetOffset = center - PlayerPos;
         }
         
         private void ApplyShake(float shake)

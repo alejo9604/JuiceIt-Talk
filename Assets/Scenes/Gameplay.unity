@@ -446,6 +446,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 88901854}
+  - {fileID: 1659984716}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &519420033
@@ -460,10 +461,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d15572a1ca63613428e90331f3637c01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _lerpSpeed: 3
-  _stopLerpSpeed: 2
-  _stationaryPredictionAmount: 0.5
+  _lerpSpeed: 2
+  _lerpAcceleration: 3
+  _lerpDesacceleration: 1
   _movementPredictionAmount: 10
+  _pointOfInterestManager: {fileID: 1659984715}
   _maxAngle: 6
   _maxOffset: 1.2
   _perlinNoiseMultiplier: 6
@@ -1088,6 +1090,52 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1659984714
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1659984716}
+  - component: {fileID: 1659984715}
+  m_Layer: 0
+  m_Name: PointOfInterestManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1659984715
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1659984714}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7a54682539649dfa33b36f13abcb71a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inRangeObjects: []
+  _maxRange: 25
+--- !u!4 &1659984716
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1659984714}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 10}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 519420032}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1704773719
 GameObject:
   m_ObjectHideFlags: 0
@@ -1590,10 +1638,6 @@ PrefabInstance:
     - target: {fileID: 3747249834948143457, guid: 60ff8f5562f323042b942c1aaca850f4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4909261097052956929, guid: 60ff8f5562f323042b942c1aaca850f4, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

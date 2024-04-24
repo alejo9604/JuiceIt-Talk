@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6625985128400879834}
   - component: {fileID: 1582652248726049187}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Outer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5457916106091744436}
   - component: {fileID: 6536224981861392756}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Shadow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -178,7 +178,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1637971654286730955}
   - component: {fileID: 4248981739421707494}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Inner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -264,7 +264,7 @@ GameObject:
   - component: {fileID: 5462330328631289347}
   - component: {fileID: 4034846742377285321}
   - component: {fileID: 9151855097566406467}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Projectile_Color
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -352,3 +352,4 @@ MonoBehaviour:
   _body: {fileID: 0}
   _shadow: {fileID: 5457916106091744436}
   _updateRotation: 0
+  _baseOffset: {x: -0.5, y: -0.29999995}

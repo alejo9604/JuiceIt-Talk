@@ -51,6 +51,8 @@ namespace AllieJoe.JuiceIt
                 TraumaUI.ToggleHide();
             if (Input.GetKey(KeyCode.LeftShift) && Input.GetKeyDown(KeyCode.Alpha2))
                 EnemySpawner.ToggleSpawn();
+            if (Input.GetKey(KeyCode.LeftShift) && Input.GetKeyDown(KeyCode.Alpha3))
+                Player.ResetHealth();
 
             // Sequence
             if (Input.GetKeyDown(KeyCode.P))

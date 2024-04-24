@@ -46,7 +46,6 @@ namespace AllieJoe.JuiceIt
         public Vector2 AimDirection => transform.up;
 
         private ShipPartEffector[] Effectors;
-        public Action<Vector2> OnInputChange;
 
         private float GetMaxMovementSpeed()
         {
@@ -67,6 +66,8 @@ namespace AllieJoe.JuiceIt
                 return _isShooting ? _movementTurnShootingSpeed : _movementTurnSpeed;
             return _isShooting ? _movementTurnShootingSpeed : _stillTurnSpeed;
         }
+
+        public void ResetHealth() => _health.Reset();
 
         private void Start()
         {

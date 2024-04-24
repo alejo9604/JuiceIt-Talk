@@ -67,6 +67,8 @@ namespace AllieJoe.JuiceIt
             _masterVolumePercent = PlayerPrefs.GetFloat(MASTER_VOL_KEY, 1);
             _sfxVolumePercent = PlayerPrefs.GetFloat(SFX_VOL_KEY, 1);
             _musicVolumePercent = PlayerPrefs.GetFloat(MUSIC_VOL_KEY, 1);
+            
+            SetVolume(_library.MusicVolume, AudioChannel.Music);
         }
 
         private void Start()

@@ -20,6 +20,8 @@ namespace AllieJoe.JuiceIt
     public class AudioLibrary : ScriptableObject
     {
         public AudioClip Music;
+        [Range(0, 1)] public float MusicVolume;
+        [Space]
         public AudioTuning[] Audios;
 
         public AudioTuning GetClipTuning(string key)

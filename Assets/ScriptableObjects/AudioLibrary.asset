@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: AudioLibrary
   m_EditorClassIdentifier: 
   Music: {fileID: 8300000, guid: 055402c8cfdd81848bf4664eeed7f61c, type: 3}
+  MusicVolume: 0.5
   Audios:
   - Key: PlayerShoot
     Clips:

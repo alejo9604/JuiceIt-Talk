@@ -437,7 +437,6 @@ MonoBehaviour:
   _bodyRefreshTime: 3
   _bodyRotSpeedDeg: 30
   _crashedUFOPrefab: {fileID: 6725792870282776813, guid: 7d7fcb2b07dd0934c9c109806b167dfb, type: 3}
-  _shadowReferencePosition: {fileID: 1063277309701330368}
 --- !u!114 &1153756741634254687
 MonoBehaviour:
   m_ObjectHideFlags: 0

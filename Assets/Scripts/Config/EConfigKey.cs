@@ -19,6 +19,7 @@
         MuzzleFlash = 10,
         WeaponType = 11,
         
+        SpawnEnemies = 28,
         EnemyHitImpact = 12,
         EnemyDeath = 19,
         EnemyScratch = 20,
@@ -42,7 +43,9 @@
         SFX = 25,
         
         PlayerShipMovement = 27,
+        WorldVariation = 29,
 
+        //Next = 30
         _INVALID = 50
     }
 }

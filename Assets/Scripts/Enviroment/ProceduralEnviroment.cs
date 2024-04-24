@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Pool;
@@ -18,6 +19,14 @@ namespace AllieJoe.JuiceIt
         [SerializeField] private Camera _cam;
         [SerializeField] private Vector2 _safeZoneOffset;
         [SerializeField] private Vector2 _tweenZoneOffset;
+        
+        //Map generator
+        [Space]
+        public MapGeneratorTuning Tuning;
+        
+        private float[,] _heightMap;
+        private float[,] _biomeMap;
+        private bool _useBiomeMap;
         
         //private readonly List<Tile> _tiles = new();
         private readonly Dictionary<Vector2Int, Tile> _tiles = new();
@@ -47,7 +56,10 @@ namespace AllieJoe.JuiceIt
                 tile => tile.gameObject.SetActive(true),
                 tile => tile.gameObject.SetActive(false),
                 tile => Destroy(tile.gameObject));
-                
+
+            _useBiomeMap = GameManager.Instance.GetConfigValue(EConfigKey.WorldVariation);
+            _heightMap = Noise.GenerateNoiseMap (Tuning.mapSize, Tuning.mapSize, Tuning.seed, Tuning.noiseScale, Tuning.octaves, Tuning.persistance, Tuning.lacunarity, Tuning.offset);
+            _biomeMap = Noise.GenerateBiomeMap(Tuning.mapSize, Tuning.mapSize, Tuning.biomeSeed);
             GenerateInitGroup();
             
             GameManager.Instance.GameDelegates.OnConfigUpdated += OnConfigUpdated;
@@ -64,12 +76,14 @@ namespace AllieJoe.JuiceIt
 
         private void OnConfigUpdated(EConfigKey key)
         {
-            if (key == EConfigKey.BackgroundSpawnTween)
+            if (key is EConfigKey.BackgroundSpawnTween or EConfigKey.WorldVariation)
                 OnResetLevel();
+            
         }
         
         private void OnResetLevel()
         {
+            _useBiomeMap = GameManager.Instance.GetConfigValue(EConfigKey.WorldVariation);
             ClearTiles();
             GenerateInitGroup();
         }
@@ -258,12 +272,23 @@ namespace AllieJoe.JuiceIt
         {
             Tile tile = _tilePool.Get();
             
-            // int r = currentX;
-            // int q = currentY;
-            // (int col, int row) = AxialToOddR(q, r);
-            
             (int q, int r) = OddRToAxial(col, row);
-            tile.SetData(q, r, col, row, _config.GetRandomTileSet() );
+
+            float height = 0;
+            float biome = 0;
+            int offset = Tuning.mapSize / 2;
+            
+            if (Mathf.Abs(col) >= offset || Mathf.Abs(row) >= offset)
+                Debug.LogWarning($"{col}, {height} bigger than noise map");
+            else
+            {
+                height = _heightMap[col + offset, row + offset];
+                biome = _biomeMap[col + offset, row + offset];
+            }
+
+            Sprite sprite = _config.GetTileByHeightValue(height, biome, _useBiomeMap);
+            
+            tile.SetData(q, r, col, row, sprite);
 
             tile.transform.localScale = Vector3.one * _config.Scale;
             tile.transform.localPosition = AxialToPoint(q, r);

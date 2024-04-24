@@ -27,8 +27,18 @@ namespace AllieJoe.JuiceIt
 
         protected bool IsDeath => _health.IsDeath;
 
+        private bool _hasInitialize;
+
         private void Start()
         {
+            Init();
+        }
+
+        protected virtual void Init()
+        {
+            if(_hasInitialize)
+                return;
+            
             _health = GetComponent<Health>();
             _animator = GetComponent<Animator>();
             
@@ -39,10 +49,13 @@ namespace AllieJoe.JuiceIt
             
             // Make the hit animation the same duration as the InvisibilityTime
             _animator.SetFloat(HitSpeed_AnimHash, 1/ (_health.InvisibilityTime <= 0 ? 0.15f : _health.InvisibilityTime) );
+            
+            _hasInitialize = true;
         }
 
         public virtual void OnSpawn()
         {
+            Init();
             _animator.ResetTrigger(Hit_AnimHash);
             _animator.ResetTrigger(Death_AnimHash);
             _collider.enabled = true;

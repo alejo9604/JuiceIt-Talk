@@ -32,6 +32,7 @@ MonoBehaviour:
   - rid: 2534766069907980288
   - rid: 2534765883193294853
   - rid: 2534766198637461504
+  - rid: 2534766272308051969
   - rid: 2534766198637461505
   - rid: 2534766198637461506
   - rid: 2534766198637461507
@@ -41,6 +42,7 @@ MonoBehaviour:
   - rid: 2534766250387570689
   - rid: 2534766226261671937
   - rid: 2534766250387570688
+  - rid: 2534766272308051968
   ShootImpactPauseDurationInSec: 0.01
   PlayerImpactPauseDurationInSec: 0.25
   ShootAccuracyPerCannon: 0
@@ -297,5 +299,21 @@ MonoBehaviour:
         name: Music
         Key: 24
         Label: Music
+        Comments: 
+        Enabled: 0
+    - rid: 2534766272308051968
+      type: {class: ConfigEnabledValue, ns: AllieJoe.JuiceIt, asm: Assembly-CSharp}
+      data:
+        name: WorldVariation
+        Key: 29
+        Label: World Variation
+        Comments: 
+        Enabled: 0
+    - rid: 2534766272308051969
+      type: {class: ConfigEnabledValue, ns: AllieJoe.JuiceIt, asm: Assembly-CSharp}
+      data:
+        name: EnemyPermanent
+        Key: 28
+        Label: Spawn Enemies
         Comments: 
         Enabled: 0

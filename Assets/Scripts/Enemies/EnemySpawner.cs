@@ -55,6 +55,9 @@ namespace AllieJoe.JuiceIt
 
         private void Update()
         {
+            if (!_canSpawn)
+                return;
+            
             float spawn_delta = Mathf.Clamp(1 - (_progressiveMaxEnemiesSpawnTime - Time.time) / _maxEnemiesSpawnTime, 0, 1);
             int calculated_max = Mathf.CeilToInt((_maxEnemies - 3) * spawn_delta);
             

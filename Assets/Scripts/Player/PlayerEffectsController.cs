@@ -5,6 +5,7 @@ namespace AllieJoe.JuiceIt
     public class PlayerEffectsController : MonoBehaviour
     {
         [SerializeField] private ParticleSystem[] _trails;
+        [SerializeField] private GameObject _stopVFX;
 
         private PlayerShip _playerShip;
         private bool _wasEmitting;
@@ -36,9 +37,11 @@ namespace AllieJoe.JuiceIt
                 foreach (var trail in _trails)
                 {
                     if (trail.isEmitting)
-                        trail.Stop();
+                    {
+                        trail.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+                        Instantiate(_stopVFX, trail.transform.position, trail.transform.rotation);
+                    }
                 }
-
             }
         }
 

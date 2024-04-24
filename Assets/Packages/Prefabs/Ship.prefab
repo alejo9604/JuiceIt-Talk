@@ -10271,6 +10271,7 @@ MonoBehaviour:
   _trails:
   - {fileID: 3133771262792767306}
   - {fileID: 2200983108701418711}
+  _stopVFX: {fileID: 4403725420663499602, guid: 153f42ccdc9d72d41bf3d98715752efd, type: 3}
 --- !u!50 &593143919316531384
 Rigidbody2D:
   serializedVersion: 4

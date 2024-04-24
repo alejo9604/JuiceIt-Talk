@@ -4,6 +4,7 @@
     {
         Intro = 0,
         Trail = 1,
+        TrailStopVFX = 30,
         
         ShootingMovementRestriction = 2,
         ShootingAccuracy = 3,
@@ -45,7 +46,7 @@
         PlayerShipMovement = 27,
         WorldVariation = 29,
 
-        //Next = 30
+        //Next = 31
         _INVALID = 50
     }
 }

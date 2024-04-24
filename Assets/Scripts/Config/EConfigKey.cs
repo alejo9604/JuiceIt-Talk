@@ -26,7 +26,8 @@
         EnemyScratch = 20,
         EnemyPermanent = 28,
         
-        CameraPrediction = 13,
+        CameraLerp = 13,
+        CameraPointOfInterest = 31,
         CameraShake = 14,
         CameraPerlinNoise = 15,
         
@@ -46,7 +47,7 @@
         PlayerShipMovement = 27,
         WorldVariation = 29,
 
-        //Next = 31
+        //Next = 32
         _INVALID = 50
     }
 }

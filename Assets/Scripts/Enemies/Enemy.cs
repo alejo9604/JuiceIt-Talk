@@ -56,6 +56,7 @@ namespace AllieJoe.JuiceIt
         public virtual void OnSpawn()
         {
             Init();
+            _health.Reset();
             _animator.ResetTrigger(Hit_AnimHash);
             _animator.ResetTrigger(Death_AnimHash);
             _collider.enabled = true;

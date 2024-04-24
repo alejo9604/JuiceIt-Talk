@@ -17,6 +17,8 @@ namespace AllieJoe.JuiceIt
             ConfigKey = configValue.Key;
         }
 
+        public void SetSelected(bool selected) => _selected.SetActive(selected);
+
         public virtual void Refresh(){}
 
         protected void OnValueUpdated()

@@ -18,6 +18,7 @@ namespace AllieJoe.JuiceIt
         [Header("Game")] 
         public GameDelegates GameDelegates;
         public PlayerShip Player;
+        public EnemySpawner EnemySpawner;
 
         [Header("Trauma System")] 
         [Min(1)] public float _traumaDecreaseSpeed = 0.5f;
@@ -48,6 +49,8 @@ namespace AllieJoe.JuiceIt
                 ConfigUI.ToggleHide();
             if(Input.GetKey(KeyCode.LeftShift) && Input.GetKeyDown(KeyCode.Alpha1))
                 TraumaUI.ToggleHide();
+            if (Input.GetKey(KeyCode.LeftShift) && Input.GetKeyDown(KeyCode.Alpha2))
+                EnemySpawner.ToggleSpawn();
 
             // Sequence
             if (Input.GetKeyDown(KeyCode.P))
@@ -56,9 +59,9 @@ namespace AllieJoe.JuiceIt
                 ToPrevStep();
 
             //Trauma-Shake
-            if(Input.GetKeyDown(KeyCode.Space))
+            if(Input.GetKeyDown(KeyCode.N))
                 AddTrauma();
-            if(Input.GetKeyDown(KeyCode.B))
+            if(Input.GetKeyDown(KeyCode.M))
                 AddTrauma(1f);
 
             if (Input.GetKeyDown(KeyCode.R))
@@ -137,6 +140,8 @@ namespace AllieJoe.JuiceIt
             
             if(updatedKey != EConfigKey._INVALID)
                 GameDelegates.EmitOnConfigUpdated(updatedKey);
+            
+            ConfigUI.SetCurrentIndex(_currentStep);
         }
 
         private void ToPrevStep()
@@ -174,6 +179,7 @@ namespace AllieJoe.JuiceIt
             
             //Refresh UI
             ConfigUI.Refresh(step);
+            ConfigUI.SetCurrentIndex(_currentStep);
             GameDelegates.EmitOnConfigUpdated(JuiceConfig.EnableSequence[_currentStep].Key);
         }
 

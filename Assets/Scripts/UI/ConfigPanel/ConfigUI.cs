@@ -56,6 +56,14 @@ namespace AllieJoe.JuiceIt
             foreach (ConfigOptionUI optionUI in _options)
                 optionUI.Refresh();
         }
+
+        public void SetCurrentIndex(int currentIndex)
+        {
+            for (int i = 0; i < _options.Count; i++)
+            {
+                _options[i].SetSelected(currentIndex == i);
+            }
+        }
         
         private ConfigOptionEnabledUI CreateEnabledOption(ConfigValue configValue)
         {

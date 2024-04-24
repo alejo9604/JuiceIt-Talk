@@ -27,13 +27,23 @@ namespace AllieJoe.JuiceIt
         
         private IObjectPool<Enemy> _enemiesPool;
 
+        private bool _canSpawn = false;
+
+        public void ToggleSpawn()
+        {
+            _canSpawn = !_canSpawn;
+            if (_canSpawn)
+                ResetSpawnValues();
+            else
+                ClearAllEnemies();
+        }
+
         private void Start()
         {
             if (_cam == null)
                 _cam = Camera.main;
-            
-            _nextEnemySpawn = Time.time + _initDelay;
-            _progressiveMaxEnemiesSpawnTime = Time.time + _maxEnemiesSpawnTime;
+
+            ResetSpawnValues();
             
             _enemiesPool = new ObjectPool<Enemy>(
                 () => Instantiate(_enemyPrefab),
@@ -53,6 +63,12 @@ namespace AllieJoe.JuiceIt
             SpawnEnemiesOverTime();
         }
 
+        private void ResetSpawnValues()
+        {
+            _nextEnemySpawn = Time.time + _initDelay;
+            _progressiveMaxEnemiesSpawnTime = Time.time + _maxEnemiesSpawnTime;
+        }
+        
         private void SpawnEnemiesOverTime()
         {
             if ( _enemies.Count >= _progressiveMaxEnemies || _nextEnemySpawn > Time.time )
@@ -92,6 +108,13 @@ namespace AllieJoe.JuiceIt
         {
             _enemiesPool.Release(enemy);
             _enemies.Remove(enemy);
+        }
+
+        private void ClearAllEnemies()
+        {
+            foreach (var e in _enemies)
+                _enemiesPool.Release(e);
+            _enemies.Clear();
         }
 
         private Vector2 GetRandomPointInZone(float minX, float maxX, float minY, float maxY)

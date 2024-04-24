@@ -20,7 +20,6 @@
         MuzzleFlash = 10,
         WeaponType = 11,
         
-        SpawnEnemies = 28,
         EnemyHitImpact = 12,
         EnemyDeath = 19,
         EnemyScratch = 20,

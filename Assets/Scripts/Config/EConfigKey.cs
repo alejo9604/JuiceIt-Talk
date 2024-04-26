@@ -46,9 +46,10 @@
         
         PlayerShipMovement = 27,
         WorldVariation = 29,
+        ProceduralWorld = 34,
         Monster = 33,
 
-        //Next = 34
+        //Next = 35
         _INVALID = 50
     }
 }

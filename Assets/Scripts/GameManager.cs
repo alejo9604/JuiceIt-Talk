@@ -158,6 +158,13 @@ namespace AllieJoe.JuiceIt
         {
             if(_currentStep < 0)
                 return;
+
+            if (_currentStep >= JuiceConfig.EnableSequence.Count)
+            {
+                _currentStep--;
+                ToPrevStep();
+                return;
+            }
             
             //TODO: WIP, it's not reseting the proper one
             ConfigValue step = JuiceConfig.EnableSequence[_currentStep];

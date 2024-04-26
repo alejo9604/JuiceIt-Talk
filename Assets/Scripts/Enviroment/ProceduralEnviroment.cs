@@ -26,6 +26,7 @@ namespace AllieJoe.JuiceIt
         
         private float[,] _heightMap;
         private float[,] _biomeMap;
+        private bool _useProceduralMap;
         private bool _useBiomeMap;
         
         //private readonly List<Tile> _tiles = new();
@@ -76,7 +77,7 @@ namespace AllieJoe.JuiceIt
 
         private void OnConfigUpdated(EConfigKey key)
         {
-            if (key is EConfigKey.BackgroundSpawnTween or EConfigKey.WorldVariation)
+            if (key is EConfigKey.BackgroundSpawnTween or EConfigKey.WorldVariation or EConfigKey.ProceduralWorld)
                 OnResetLevel();
             
         }
@@ -84,6 +85,7 @@ namespace AllieJoe.JuiceIt
         private void OnResetLevel()
         {
             _useBiomeMap = GameManager.Instance.GetConfigValue(EConfigKey.WorldVariation);
+            _useProceduralMap = GameManager.Instance.GetConfigValue(EConfigKey.ProceduralWorld);
             ClearTiles();
             GenerateInitGroup();
         }
@@ -273,7 +275,20 @@ namespace AllieJoe.JuiceIt
             Tile tile = _tilePool.Get();
             
             (int q, int r) = OddRToAxial(col, row);
+            
+            tile.SetData(q, r, col, row, GetTileSprite(col, row));
 
+            tile.transform.localScale = Vector3.one * _config.Scale;
+            tile.transform.localPosition = AxialToPoint(q, r);
+            
+            return tile;
+        }
+
+        private Sprite GetTileSprite(int col, int row)
+        {
+            if (!_useProceduralMap)
+                return _config.DefaultSprite;
+            
             float height = 0;
             float biome = 0;
             int offset = Tuning.mapSize / 2;
@@ -285,15 +300,8 @@ namespace AllieJoe.JuiceIt
                 height = _heightMap[col + offset, row + offset];
                 biome = _biomeMap[col + offset, row + offset];
             }
-
-            Sprite sprite = _config.GetTileByHeightValue(height, biome, _useBiomeMap);
             
-            tile.SetData(q, r, col, row, sprite);
-
-            tile.transform.localScale = Vector3.one * _config.Scale;
-            tile.transform.localPosition = AxialToPoint(q, r);
-            
-            return tile;
+            return _config.GetTileByHeightValue(height, biome, _useBiomeMap);
         }
 
         private Vector2 GetSafeZone()

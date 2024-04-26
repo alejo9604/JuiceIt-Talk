@@ -18,7 +18,8 @@ namespace AllieJoe.JuiceIt
         
         private void Update()
         {
-            _damageVFX.SetActive(_canShowVFX && _currentHealth < _totalHealth);
+            if(_damageVFX != null)
+                _damageVFX.SetActive(_canShowVFX && _currentHealth < _totalHealth);
             if (!_canRecover || IsDeath || _currentHealth >= _totalHealth || IsInvincible)
                 return;
             

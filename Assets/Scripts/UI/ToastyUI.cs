@@ -12,17 +12,21 @@ namespace AllieJoe.JuiceIt
         {
             _toasty.gameObject.SetActive(false);
 
+            GameManager.Instance.GameDelegates.OnConfigUpdated += OnConfigUpdate;
+            GameManager.Instance.GameDelegates.AllConfigUpdated += RefreshConfig;
             GameManager.Instance.GameDelegates.OnEnemyDeath += Play;
         }
 
         private void OnDestroy()
         {
+            GameManager.Instance.GameDelegates.OnConfigUpdated -= OnConfigUpdate;
+            GameManager.Instance.GameDelegates.AllConfigUpdated -= RefreshConfig;
             GameManager.Instance.GameDelegates.OnEnemyDeath -= Play;
         }
 
         private void Play()
         {
-            if(!GameManager.Instance.GetConfigValue(EConfigKey.Toasty))
+            if(!_toasty.gameObject.activeSelf)
                 return;
             
             _toasty.gameObject.SetActive(true);
@@ -35,6 +39,17 @@ namespace AllieJoe.JuiceIt
             });
             
             AudioManager.Instance.PlaySound(AudioLibrary.TOASTY);
+        }
+        
+        private void OnConfigUpdate(EConfigKey key)
+        {
+            if(key is EConfigKey.Toasty)
+                RefreshConfig();
+        }
+        
+        private void RefreshConfig()
+        {
+            _toasty.gameObject.SetActive(GameManager.Instance.GetConfigValue(EConfigKey.Monster));
         }
     }
 }

@@ -58,7 +58,7 @@ namespace AllieJoe.JuiceIt
             _currentHealth = Mathf.Max(0, health);
         }
         
-        private void Death()
+        protected virtual void Death()
         {
             if(_isDeath)
                 return;

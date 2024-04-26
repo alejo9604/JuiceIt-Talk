@@ -130,6 +130,7 @@ namespace AllieJoe.JuiceIt
             _targetRotation = Quaternion.Euler(rot);
         }
 
+        //TODO: Handle values
         private float GetRandomFloatNegOneToOne() => Random.Range(-1f, 1f);
         private float GetPerlin(float seed) => (Mathf.PerlinNoise(seed, Time.time * _perlinNoiseMultiplier) - 0.5f) * 2f;
 

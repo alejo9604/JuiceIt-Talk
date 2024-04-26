@@ -1,7 +1,5 @@
 using System;
-using System.Collections.Generic;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
 namespace AllieJoe.JuiceIt
 {
@@ -31,6 +29,7 @@ namespace AllieJoe.JuiceIt
 
         [Space] 
         public Tile TilePrefab;
+        public Sprite DefaultSprite;
         public TileGroupWeight[] TilesGroupsWeights = Array.Empty<TileGroupWeight>();
 
        

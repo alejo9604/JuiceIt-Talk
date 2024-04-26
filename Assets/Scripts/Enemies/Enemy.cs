@@ -47,9 +47,6 @@ namespace AllieJoe.JuiceIt
 
             _impactDetector.SetDamage(_damage);
             
-            // Make the hit animation the same duration as the InvisibilityTime
-            _animator.SetFloat(HitSpeed_AnimHash, 1/ (_health.InvisibilityTime <= 0 ? 0.15f : _health.InvisibilityTime) );
-            
             _hasInitialize = true;
         }
 
@@ -69,6 +66,9 @@ namespace AllieJoe.JuiceIt
             //Hit animation
             if (GameManager.Instance.GetConfigValue(EConfigKey.EnemyHitImpact))
             {
+                // Make the hit animation the same duration as the InvisibilityTime
+                _animator.SetFloat(HitSpeed_AnimHash, 1/ (_health.InvisibilityTime <= 0 ? 0.15f : _health.InvisibilityTime) );
+                
                 _animator.ResetTrigger(Hit_AnimHash);
                 _animator.SetTrigger(Hit_AnimHash);
             }

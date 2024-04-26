@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a415a34581f94191b4ecbdaadb27512d, type: 3}
-  m_Name: Wave2
+  m_Name: 2.Delay
   m_EditorClassIdentifier: 
   UseScale: 1
   ScaleFrom: 0
-  ScaleDelayPerDistance: 0.1
-  ScaleDuration: 0.5
-  ScaleEase: 24
-  UseMove: 1
-  MoveFrom: 0.5
-  MoveDelayPerDistance: 0.1
-  MoveDuration: 0.4
-  MoveEase: 10
+  ScaleDelayPerDistance: 0.08
+  ScaleDuration: 0.1
+  ScaleEase: 1
+  UseMove: 0
+  MoveFrom: -0.8
+  MoveDelayPerDistance: 0.08
+  MoveDuration: 0
+  MoveEase: 1

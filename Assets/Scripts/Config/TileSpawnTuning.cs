@@ -13,7 +13,7 @@ namespace AllieJoe.JuiceIt
         public float ScaleDuration = 0.1f;
         public Ease ScaleEase = Ease.Linear;
 
-        [Header("Scale Animation")] 
+        [Header("Move Animation")] 
         public bool UseMove;
         public float MoveFrom = -.5f;
         public float MoveDelayPerDistance = 0;

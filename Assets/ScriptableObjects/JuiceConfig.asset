@@ -62,7 +62,7 @@ MonoBehaviour:
         Key: 1
         Label: Trail
         Comments: Enable/Disable Ship trails
-        Enabled: 1
+        Enabled: 0
     - rid: 2534765774161575958
       type: {class: ConfigEnabledValue, ns: AllieJoe.JuiceIt, asm: Assembly-CSharp}
       data:
@@ -70,7 +70,7 @@ MonoBehaviour:
         Key: 2
         Label: Shoot + Move
         Comments: Enable/Disable Less movement when shooting
-        Enabled: 1
+        Enabled: 0
     - rid: 2534765774161575959
       type: {class: ConfigEnabledValue, ns: AllieJoe.JuiceIt, asm: Assembly-CSharp}
       data:
@@ -78,7 +78,7 @@ MonoBehaviour:
         Key: 3
         Label: Shoot Accuracy
         Comments: Enable/Disable Less accuracy when shooting
-        Enabled: 1
+        Enabled: 0
     - rid: 2534765774161575961
       type: {class: ConfigSelectFloatOptionsValue, ns: AllieJoe.JuiceIt, asm: Assembly-CSharp}
       data:
@@ -146,7 +146,7 @@ MonoBehaviour:
         Key: 9
         Label: Hit VFX
         Comments: Projectile Hit VFX
-        Enabled: 1
+        Enabled: 0
     - rid: 2534765883193294853
       type: {class: ConfigEnabledValue, ns: AllieJoe.JuiceIt, asm: Assembly-CSharp}
       data:
@@ -154,7 +154,7 @@ MonoBehaviour:
         Key: 4
         Label: Shoot Hitpause
         Comments: Enable/Disable Pause when hitting an enemy
-        Enabled: 1
+        Enabled: 0
     - rid: 2534765883193294854
       type: {class: ConfigEnabledValue, ns: AllieJoe.JuiceIt, asm: Assembly-CSharp}
       data:
@@ -162,7 +162,7 @@ MonoBehaviour:
         Key: 10
         Label: Muzzle Flash
         Comments: Muzzle Flash
-        Enabled: 1
+        Enabled: 0
     - rid: 2534765911603412992
       type: {class: ConfigEnabledValue, ns: AllieJoe.JuiceIt, asm: Assembly-CSharp}
       data:
@@ -170,7 +170,7 @@ MonoBehaviour:
         Key: 12
         Label: Enemy Hit
         Comments: Enemy Hit Impact
-        Enabled: 1
+        Enabled: 0
     - rid: 2534765911603412993
       type: {class: ConfigEnabledValue, ns: AllieJoe.JuiceIt, asm: Assembly-CSharp}
       data:
@@ -204,8 +204,14 @@ MonoBehaviour:
         Comments: Background Tiles Spawn Tweens
         Options:
         - {fileID: 11400000, guid: ee471bc3f03a7724690edc36c492e167, type: 2}
-        - {fileID: 11400000, guid: ef4cd70b19ddd904784bc3d48125a1ec, type: 2}
+        - {fileID: 11400000, guid: 8b2e806e28cf0c143ae9e5d2fc9c23cf, type: 2}
+        - {fileID: 11400000, guid: b26e7a95cdd182f45b6ce06273b0e350, type: 2}
+        - {fileID: 11400000, guid: 4e75a06a66d3e0f4a886e45f225728c6, type: 2}
+        - {fileID: 11400000, guid: cdaf505ddd93a7349b8a09c2d8f2c719, type: 2}
         OptionsLabel:
+        - None
+        - Scale
+        - 
         - 
         - 
         _useToggleGroup: 1
@@ -216,7 +222,7 @@ MonoBehaviour:
         Key: 17
         Label: Shadows
         Comments: Shadows
-        Enabled: 1
+        Enabled: 0
     - rid: 2534766198637461504
       type: {class: ConfigEnabledValue, ns: AllieJoe.JuiceIt, asm: Assembly-CSharp}
       data:
@@ -224,7 +230,7 @@ MonoBehaviour:
         Key: 18
         Label: Clouds
         Comments: 
-        Enabled: 1
+        Enabled: 0
     - rid: 2534766198637461505
       type: {class: ConfigEnabledValue, ns: AllieJoe.JuiceIt, asm: Assembly-CSharp}
       data:
@@ -232,7 +238,7 @@ MonoBehaviour:
         Key: 19
         Label: Enemy Death
         Comments: 
-        Enabled: 1
+        Enabled: 0
     - rid: 2534766198637461506
       type: {class: ConfigEnabledValue, ns: AllieJoe.JuiceIt, asm: Assembly-CSharp}
       data:
@@ -240,7 +246,7 @@ MonoBehaviour:
         Key: 20
         Label: Enemy Sratches
         Comments: 
-        Enabled: 1
+        Enabled: 0
     - rid: 2534766198637461507
       type: {class: ConfigEnabledValue, ns: AllieJoe.JuiceIt, asm: Assembly-CSharp}
       data:
@@ -288,7 +294,7 @@ MonoBehaviour:
         Key: 27
         Label: Fly!
         Comments: 
-        Enabled: 1
+        Enabled: 0
     - rid: 2534766250387570688
       type: {class: ConfigEnabledValue, ns: AllieJoe.JuiceIt, asm: Assembly-CSharp}
       data:
@@ -310,7 +316,7 @@ MonoBehaviour:
       data:
         name: WorldVariation
         Key: 29
-        Label: World Variation
+        Label: Variation
         Comments: 
         Enabled: 1
     - rid: 2534766272308051971
@@ -320,7 +326,7 @@ MonoBehaviour:
         Key: 30
         Label: Stop VFX
         Comments: 
-        Enabled: 1
+        Enabled: 0
     - rid: 2534766272308051972
       type: {class: ConfigEnabledValue, ns: AllieJoe.JuiceIt, asm: Assembly-CSharp}
       data:
@@ -350,6 +356,6 @@ MonoBehaviour:
       data:
         name: ProceduralWorld
         Key: 34
-        Label: 
+        Label: Procedural
         Comments: 
         Enabled: 1

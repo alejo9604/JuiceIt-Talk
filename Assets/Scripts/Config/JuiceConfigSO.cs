@@ -16,6 +16,7 @@ namespace AllieJoe.JuiceIt
 
         [Header("Shooting")]
         public bool ShootAccuracyPerCannon = false;
+        public float ShootAccuracy = 4f;
         public float TraumaAddPerShoot = 0.2f;
 
         [Header("Background/Tiles")] 
@@ -32,7 +33,7 @@ namespace AllieJoe.JuiceIt
         
         public string GetLabel(EConfigKey key)
         {
-            return GetConfig(key).Label;
+            return GetConfig(key).GetLabel();
         }
         
         private ConfigValue GetConfig(EConfigKey key)

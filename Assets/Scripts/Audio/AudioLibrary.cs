@@ -39,8 +39,9 @@ namespace AllieJoe.JuiceIt
         public const string PLAYER_HIT = "PlayerHit";
         public const string PROJECTILE_IMPACT = "ProjectileImpact";
         public const string ENEMY_DEATH = "EnemyDeath";
+        public const string TOASTY = "Toasty";
 
         public static readonly string[] TUNING_KEYS = 
-            { PLAYER_SHOOT, PLAYER_ACCELERATE, PLAYER_HIT, PROJECTILE_IMPACT, ENEMY_DEATH };
+            { PLAYER_SHOOT, PLAYER_ACCELERATE, PLAYER_HIT, PROJECTILE_IMPACT, ENEMY_DEATH, TOASTY };
     }
 }

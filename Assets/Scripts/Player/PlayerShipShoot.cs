@@ -83,7 +83,7 @@ namespace AllieJoe.JuiceIt
             WeaponPreset weaponPresetData = GetCurrentPresetActive();
             
             float accuracy = 0;
-            float accuracyBaseValue = GameManager.Instance.GetConfigValue<float>(EConfigKey.ProjectileAccuracy);
+            float accuracyBaseValue = GameManager.Instance.JuiceConfig.ShootAccuracy;//GameManager.Instance.GetConfigValue<float>(EConfigKey.ProjectileAccuracy);
             bool accuracyEnabled = GameManager.Instance.GetConfigValue(EConfigKey.ShootingAccuracy);
             if(accuracyEnabled && !GameManager.Instance.JuiceConfig.ShootAccuracyPerCannon)
                 accuracy = Random.Range(-accuracyBaseValue, accuracyBaseValue);

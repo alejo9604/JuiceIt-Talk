@@ -39,14 +39,18 @@ namespace AllieJoe.JuiceIt
         private void PlayEnter()
         {
             float from = _animParent.rect.height;
-            _animParent.DOAnchorPosY(-33, .65f).From(Vector2.up * from).SetEase(Ease.OutBounce);
+            DOTween.Kill(gameObject);
+            _animParent.DOAnchorPosY(-33, .65f).From(Vector2.up * from).SetEase(Ease.OutBounce)
+                .SetUpdate(UpdateType.Normal, true).SetId(gameObject);;
             _hideTimer = _timeToHide + .65f;
         }
 
         private void PlayExit()
         {
-            _animParent.DOAnchorPosY(_animParent.rect.height, .4f).SetEase(Ease.InBack);
+            DOTween.Kill(gameObject);
+            _animParent.DOAnchorPosY(_animParent.rect.height, .4f).SetEase(Ease.InBack)
+                .SetUpdate(UpdateType.Normal, true).SetId(gameObject);;
         }
-        
+
     }
 }

@@ -10,6 +10,9 @@ namespace AllieJoe.JuiceIt
         public List<PointOfInterest> inRangeObjects = new();
         
         [SerializeField] private float _maxRange;
+
+        private bool _hasPointsInRange = false;
+        public bool HasPointsInRange => _hasPointsInRange;
         
         private void Awake()
         {
@@ -36,12 +39,14 @@ namespace AllieJoe.JuiceIt
             
             Vector3 center = initPoint;
             float totalWeight = refPoint.HasValue ? 1 : 0;
-            
+
+            _hasPointsInRange = false;
             foreach (PointOfInterest point in inRangeObjects)
             {
                 if((initPoint - point.transform.position).sqrMagnitude >sqrMaxRange)
                     continue;
-                
+
+                _hasPointsInRange = true;
                 center += point.transform.position * point.Weight;
                 totalWeight += point.Weight;
             }

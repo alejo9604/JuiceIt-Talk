@@ -68,6 +68,14 @@ namespace AllieJoe.JuiceIt
 
             if (Input.GetKeyDown(KeyCode.R))
                 ReloadLevel();
+
+            if (Input.GetKeyDown(KeyCode.T))
+            {
+                if (Time.timeScale < 1)
+                    Time.timeScale = 1;
+                else
+                    Time.timeScale = 0.1f;
+            }
             
             ReduceTrauma(Time.deltaTime);
         }
@@ -182,7 +190,8 @@ namespace AllieJoe.JuiceIt
             //Refresh UI
             ConfigUI.Refresh(step);
             ConfigUI.SetCurrentIndex(_currentStep);
-            GameDelegates.EmitOnConfigUpdated(JuiceConfig.EnableSequence[_currentStep].Key);
+            if(_currentStep > 0)
+                GameDelegates.EmitOnConfigUpdated(JuiceConfig.EnableSequence[_currentStep - 1].Key);
         }
 
         public WeaponTuning GetWeaponTuningSelected()

@@ -42,11 +42,13 @@
         
         Music = 24,
         SFX = 25,
+        Toasty = 32,
         
         PlayerShipMovement = 27,
         WorldVariation = 29,
+        Monster = 33,
 
-        //Next = 32
+        //Next = 34
         _INVALID = 50
     }
 }

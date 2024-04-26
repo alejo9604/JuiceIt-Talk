@@ -39,6 +39,12 @@ MonoBehaviour:
     Volume: 0.7
     Pitch: 1
     PitchVariation: 0
+  - Key: Toasty
+    Clips:
+    - {fileID: 8300000, guid: 6b4c74ef8c52bc9429c19848f7798f7d, type: 3}
+    Volume: 0.9
+    Pitch: 1
+    PitchVariation: 0
   - Key: PlayerHit
     Clips:
     - {fileID: 8300000, guid: e73b2264605f3484d9c03226531e4045, type: 3}

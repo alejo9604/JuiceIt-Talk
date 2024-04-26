@@ -15,7 +15,8 @@ namespace AllieJoe.JuiceIt
         public abstract void Reset();
         public abstract void FullActive();
 
-        public void OnValidate()
+        public virtual string GetLabel() => Label;
+        public virtual void OnValidate()
         {
             name = Key.ToString();
         }
@@ -49,6 +50,7 @@ namespace AllieJoe.JuiceIt
     public abstract class ConfigSelectOptionsValue<T> : ConfigValue<T>, IConfigSelectOption
     {
         public T[] Options;
+        public string[] OptionsLabel;
         [NonSerialized] 
         private int _currentSelected = 0;
 
@@ -68,8 +70,26 @@ namespace AllieJoe.JuiceIt
         public override T GetValue() => Options[_currentSelected];
         public override void Reset() => _currentSelected = 0;
         public override void FullActive() => _currentSelected = Options.Length - 1;
-        
+
+        public override string GetLabel()
+        {
+            if (OptionsLabel == null || OptionsLabel.Length == 0)
+                return base.GetLabel();
+            return OptionsLabel[_currentSelected];
+        }
+
         public virtual bool UseToggleGroup() => _useToggleGroup;
+
+        public override void OnValidate()
+        {
+            base.OnValidate();
+            if(Options == null)
+                return;
+            if (OptionsLabel == null)
+                OptionsLabel = new string[Options.Length];
+            else if(OptionsLabel.Length != Options.Length)
+                Array.Resize(ref OptionsLabel, Options.Length);
+        }
     }
 
     //=================================================================================================

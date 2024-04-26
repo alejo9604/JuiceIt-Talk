@@ -111,6 +111,8 @@ namespace AllieJoe.JuiceIt
         {
             _enemiesPool.Release(enemy);
             _enemies.Remove(enemy);
+            
+            GameManager.Instance.GameDelegates.EmitOnEnemyDeath();
         }
 
         private void ClearAllEnemies()

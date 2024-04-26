@@ -13,40 +13,42 @@ MonoBehaviour:
   m_Name: JuiceConfig
   m_EditorClassIdentifier: 
   EnableSequence:
-  - rid: 2534766069907980289
   - rid: 2534765774161575957
   - rid: 2534766272308051971
   - rid: 2534766226261671938
+  - rid: 2534765774161575958
   - rid: 2534765774161575961
   - rid: 2534765774161575964
   - rid: 2534765774161575962
   - rid: 2534765883193294854
-  - rid: 2534765774161575958
   - rid: 2534765774161575959
-  - rid: 2534765844572667904
+  - rid: 2534765883193294853
   - rid: 2534765883193294852
-  - rid: 2534765883193294851
+  - rid: 2534766272308051970
+  - rid: 2534766069907980289
+  - rid: 2534766198637461504
+  - rid: 2534766069907980288
   - rid: 2534765911603412992
+  - rid: 2534766198637461506
+  - rid: 2534766198637461505
+  - rid: 2534766250387570688
+  - rid: 2534766198637461509
+  - rid: 2534766198637461508
+  - rid: 2534766198637461507
+  - rid: 2534766226261671937
   - rid: 2534765911603412993
   - rid: 2534766003270975488
   - rid: 2534765957868158976
   - rid: 2534766272308051972
-  - rid: 2534766069907980288
-  - rid: 2534765883193294853
-  - rid: 2534766198637461504
-  - rid: 2534766198637461505
-  - rid: 2534766198637461506
-  - rid: 2534766198637461507
-  - rid: 2534766198637461508
-  - rid: 2534766198637461509
   - rid: 2534766226261671936
   - rid: 2534766250387570689
-  - rid: 2534766226261671937
-  - rid: 2534766250387570688
-  - rid: 2534766272308051970
+  - rid: 2534766318661926913
+  - rid: 2534766318661926912
+  - rid: 2534765883193294851
   ShootImpactPauseDurationInSec: 0.01
   PlayerImpactPauseDurationInSec: 0.25
   ShootAccuracyPerCannon: 0
+  ShootAccuracy: 4
   TraumaAddPerShoot: 0.2
   InitExtraDelay: 0.25
   references:
@@ -59,7 +61,7 @@ MonoBehaviour:
         Key: 1
         Label: Trail
         Comments: Enable/Disable Ship trails
-        Enabled: 0
+        Enabled: 1
     - rid: 2534765774161575958
       type: {class: ConfigEnabledValue, ns: AllieJoe.JuiceIt, asm: Assembly-CSharp}
       data:
@@ -67,7 +69,7 @@ MonoBehaviour:
         Key: 2
         Label: Shoot + Move
         Comments: Enable/Disable Less movement when shooting
-        Enabled: 0
+        Enabled: 1
     - rid: 2534765774161575959
       type: {class: ConfigEnabledValue, ns: AllieJoe.JuiceIt, asm: Assembly-CSharp}
       data:
@@ -87,6 +89,10 @@ MonoBehaviour:
         - 18
         - 35
         - 50
+        OptionsLabel:
+        - Projectile Speed - Meh
+        - Projectile Faster
+        - FASTER!!!!!
         _useToggleGroup: 0
     - rid: 2534765774161575962
       type: {class: ConfigSelectPrefabOptionsValue, ns: AllieJoe.JuiceIt, asm: Assembly-CSharp}
@@ -94,11 +100,15 @@ MonoBehaviour:
         name: ProjectilePrefab
         Key: 7
         Label: Projectile prefabs
-        Comments: Projectile prefabs
+        Comments: Projectiles
         Options:
         - {fileID: 5462330328631289347, guid: fdce87e5430397744a97209582a80dff, type: 3}
         - {fileID: 5462330328631289347, guid: c1bcd4c4509f3194dbf99337f111823f, type: 3}
         - {fileID: 4875225825700702124, guid: 8c7e4a60f076f6a47a76bac8f13a778a, type: 3}
+        OptionsLabel:
+        - Normal - Meh
+        - Bigger and Color
+        - With Trail
         _useToggleGroup: 1
     - rid: 2534765774161575964
       type: {class: ConfigSelectFloatOptionsValue, ns: AllieJoe.JuiceIt, asm: Assembly-CSharp}
@@ -111,18 +121,10 @@ MonoBehaviour:
         - 0.5
         - 0.25
         - 0.15
-        _useToggleGroup: 0
-    - rid: 2534765844572667904
-      type: {class: ConfigSelectFloatOptionsValue, ns: AllieJoe.JuiceIt, asm: Assembly-CSharp}
-      data:
-        name: ProjectileAccuracy
-        Key: 8
-        Label: Accuracy
-        Comments: Projectile accuracy
-        Options:
-        - 2
-        - 4
-        - 5
+        OptionsLabel:
+        - Rate Fire - Meh
+        - Shoot Faster
+        - MORE!!!!!
         _useToggleGroup: 0
     - rid: 2534765883193294851
       type: {class: ConfigSelectWeaponOptionsValue, ns: AllieJoe.JuiceIt, asm: Assembly-CSharp}
@@ -132,6 +134,9 @@ MonoBehaviour:
         Label: Weapon
         Comments: Weapon Type
         Options: 0000000001000000
+        OptionsLabel:
+        - Normal
+        - Machinegun
         _useToggleGroup: 0
     - rid: 2534765883193294852
       type: {class: ConfigEnabledValue, ns: AllieJoe.JuiceIt, asm: Assembly-CSharp}
@@ -180,7 +185,7 @@ MonoBehaviour:
         Key: 13
         Label: Camera Lerp
         Comments: Camera Lerp prediction
-        Enabled: 1
+        Enabled: 0
     - rid: 2534766003270975488
       type: {class: ConfigEnabledValue, ns: AllieJoe.JuiceIt, asm: Assembly-CSharp}
       data:
@@ -205,6 +210,15 @@ MonoBehaviour:
         - {fileID: 11400000, guid: 8ce96ad0945f1f44fa23bb5782f1b5d9, type: 2}
         - {fileID: 11400000, guid: ef4cd70b19ddd904784bc3d48125a1ec, type: 2}
         - {fileID: 11400000, guid: c4c57d7d5f25a40428e3b8f00697c46c, type: 2}
+        OptionsLabel:
+        - 
+        - 
+        - 
+        - 
+        - 
+        - 
+        - 
+        - 
         _useToggleGroup: 1
     - rid: 2534766069907980289
       type: {class: ConfigEnabledValue, ns: AllieJoe.JuiceIt, asm: Assembly-CSharp}
@@ -283,13 +297,13 @@ MonoBehaviour:
       data:
         name: PlayerShipMovement
         Key: 27
-        Label: Ship Fly Move
+        Label: Fly!
         Comments: 
-        Enabled: 0
+        Enabled: 1
     - rid: 2534766250387570688
       type: {class: ConfigEnabledValue, ns: AllieJoe.JuiceIt, asm: Assembly-CSharp}
       data:
-        name: SpawnEnemies
+        name: EnemyPermanent
         Key: 28
         Label: Enemy Permanent
         Comments: 
@@ -315,9 +329,9 @@ MonoBehaviour:
       data:
         name: TrailStopVFX
         Key: 30
-        Label: Trail Stop VFX
+        Label: Stop VFX
         Comments: 
-        Enabled: 0
+        Enabled: 1
     - rid: 2534766272308051972
       type: {class: ConfigEnabledValue, ns: AllieJoe.JuiceIt, asm: Assembly-CSharp}
       data:
@@ -325,4 +339,20 @@ MonoBehaviour:
         Key: 31
         Label: Cam PoI
         Comments: 
-        Enabled: 1
+        Enabled: 0
+    - rid: 2534766318661926912
+      type: {class: ConfigEnabledValue, ns: AllieJoe.JuiceIt, asm: Assembly-CSharp}
+      data:
+        name: Toasty
+        Key: 32
+        Label: Yep
+        Comments: 
+        Enabled: 0
+    - rid: 2534766318661926913
+      type: {class: ConfigEnabledValue, ns: AllieJoe.JuiceIt, asm: Assembly-CSharp}
+      data:
+        name: Monster
+        Key: 33
+        Label: Monster
+        Comments: 
+        Enabled: 0

@@ -39,6 +39,10 @@ namespace AllieJoe.JuiceIt
         private float _changeDirectionDotValue;
         private float _rotAngleChange;
 
+        public bool IsRecovering => _health.CurrentHealth < _health.TotalHealth;
+
+        public bool IsShooting => _isShooting;
+        
         public bool IsAccelerating => _isAccelerating;
         public Vector2 CurrentVelocity => _rb.velocity;
         public Vector2 MovementDirection => _movementDir;

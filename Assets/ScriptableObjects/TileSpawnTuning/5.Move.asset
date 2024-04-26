@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UseScale: 1
   ScaleFrom: 0
-  ScaleDelayPerDistance: 0.08
-  ScaleDuration: 0.1
-  ScaleEase: 1
+  ScaleDelayPerDistance: 0.1
+  ScaleDuration: 0.5
+  ScaleEase: 30
   UseMove: 1
-  MoveFrom: -0.8
-  MoveDelayPerDistance: 0.08
-  MoveDuration: 0.5
-  MoveEase: 1
+  MoveFrom: 0.8
+  MoveDelayPerDistance: 0.1
+  MoveDuration: 0.7
+  MoveEase: 10

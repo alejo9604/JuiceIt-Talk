@@ -206,14 +206,16 @@ MonoBehaviour:
         - {fileID: 11400000, guid: ee471bc3f03a7724690edc36c492e167, type: 2}
         - {fileID: 11400000, guid: 8b2e806e28cf0c143ae9e5d2fc9c23cf, type: 2}
         - {fileID: 11400000, guid: b26e7a95cdd182f45b6ce06273b0e350, type: 2}
-        - {fileID: 11400000, guid: 4e75a06a66d3e0f4a886e45f225728c6, type: 2}
         - {fileID: 11400000, guid: cdaf505ddd93a7349b8a09c2d8f2c719, type: 2}
+        - {fileID: 11400000, guid: 268b882da4fdd204ead64f5109830674, type: 2}
+        - {fileID: 11400000, guid: 4e75a06a66d3e0f4a886e45f225728c6, type: 2}
         OptionsLabel:
-        - None
+        - Tweens?
         - Scale
-        - 
-        - 
-        - 
+        - +Delay
+        - Tweens!!!
+        - +Tweens
+        - +Movement
         _useToggleGroup: 1
     - rid: 2534766069907980289
       type: {class: ConfigEnabledValue, ns: AllieJoe.JuiceIt, asm: Assembly-CSharp}

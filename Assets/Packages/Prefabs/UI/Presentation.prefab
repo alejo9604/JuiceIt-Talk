@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: TITLE
+  m_text: JUICE IT
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8c7bfb7f971ab3440aa43788374de72e, type: 2}
   m_sharedMaterial: {fileID: 7466883189094164420, guid: 8c7bfb7f971ab3440aa43788374de72e, type: 2}

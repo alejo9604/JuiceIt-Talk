@@ -16,7 +16,7 @@ MonoBehaviour:
   ScaleFrom: 0
   ScaleDelayPerDistance: 0.1
   ScaleDuration: 0.5
-  ScaleEase: 24
+  ScaleEase: 30
   UseMove: 0
   MoveFrom: -0.8
   MoveDelayPerDistance: 0.08

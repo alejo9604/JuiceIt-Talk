@@ -30,6 +30,7 @@ namespace AllieJoe.JuiceIt
         private List<AudioSource> _activeSFX = new();
         
         
+        private bool _useMusic = false;
         private bool _useSFX = false;
         private bool _usePitchVariation = false;
 
@@ -192,10 +193,15 @@ namespace AllieJoe.JuiceIt
         {
             _useSFX = GameManager.Instance.GetConfigValue(EConfigKey.SFX);
             _usePitchVariation = GameManager.Instance.GetConfigValue(EConfigKey.Pitch);
-            if (GameManager.Instance.GetConfigValue(EConfigKey.Music))
-                PlayMusic(_library.Music, 0.5f);
-            else
-                StopMusic();
+            bool musicValue = GameManager.Instance.GetConfigValue(EConfigKey.Music);
+            if (_useMusic != musicValue)
+            {
+                _useMusic = musicValue;
+                if(_useMusic)
+                    PlayMusic(_library.Music, 0.5f);
+                else
+                    StopMusic();
+            }
         }
         
      }

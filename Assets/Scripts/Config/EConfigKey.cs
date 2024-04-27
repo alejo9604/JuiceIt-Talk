@@ -51,6 +51,7 @@
         Monster = 33,
         
         //Next = 36
+        End = 40,
         _INVALID = 50
     }
 }

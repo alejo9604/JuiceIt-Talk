@@ -733,7 +733,7 @@ MonoBehaviour:
   _pointOfInterestManager: {fileID: 1659984715}
   _maxAngle: 6
   _maxOffset: 1.2
-  _perlinNoiseMultiplier: 6
+  _perlinNoiseMultiplier: 8
 --- !u!114 &519420034
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1746,6 +1746,7 @@ MonoBehaviour:
   WeaponTuningLibrary: {fileID: 11400000, guid: ec18cd1d35985ae4aa154c8f0bae4fe3, type: 2}
   ConfigUI: {fileID: 428316391}
   TraumaUI: {fileID: 2194159954476885243}
+  CameraLines: {fileID: 671037716}
   GameDelegates: {fileID: 1387227990}
   Player: {fileID: 479177601}
   EnemySpawner: {fileID: 1548263862}
@@ -1964,9 +1965,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _enemyPrefab: {fileID: 4047482559493353581, guid: 2142ec989b755a144ad260dab5e56f4c, type: 3}
   _cam: {fileID: 519420031}
-  _initDelay: 3
-  _nextEnemyDelay: 1.2
-  _maxEnemies: 10
+  _initDelay: 2
+  _nextEnemyDelay: 2
+  _maxEnemies: 8
   _maxEnemiesSpawnTime: 90
   _minSpawnZone: {x: 5, y: 5}
   _maxSpawnZone: {x: 40, y: 30}

@@ -14,6 +14,7 @@ namespace AllieJoe.JuiceIt
         [Header("UI")]
         public ConfigUI ConfigUI;
         public TraumaUI TraumaUI;
+        public GameObject CameraLines;
 
         [Header("Game")] 
         public GameDelegates GameDelegates;
@@ -55,6 +56,8 @@ namespace AllieJoe.JuiceIt
                 Player.ResetHealth();
             if (Input.GetKey(KeyCode.LeftShift) && Input.GetKeyDown(KeyCode.Alpha4))
                 Player.ToggleCanMove();
+            if (Input.GetKey(KeyCode.LeftShift) && Input.GetKeyDown(KeyCode.Alpha5))
+                CameraLines.SetActive(!CameraLines.activeSelf);
 
             // Sequence
             if (Input.GetKeyDown(KeyCode.P))
@@ -201,8 +204,12 @@ namespace AllieJoe.JuiceIt
             //Refresh UI
             ConfigUI.Refresh(step);
             ConfigUI.SetCurrentIndex(_currentStep);
-            if(indexToEmit >= 0)
+            if (indexToEmit >= 0)
+            {
+                if(indexToEmit != _currentStep)
+                    GameDelegates.EmitOnConfigUpdated(JuiceConfig.EnableSequence[_currentStep].Key);
                 GameDelegates.EmitOnConfigUpdated(JuiceConfig.EnableSequence[indexToEmit].Key);
+            }
         }
 
         public WeaponTuning GetWeaponTuningSelected()
@@ -251,8 +258,6 @@ namespace AllieJoe.JuiceIt
             //If player override the impact. If it's not player damage just ignore it
             if (_isOnImpactPause && timeToPause > _impactPauseIntensity)
                 return;
-
-            Debug.Log("Hit impact");
             
             if(_impactPauseCoroutine != null)
                 StopCoroutine(_impactPauseCoroutine);

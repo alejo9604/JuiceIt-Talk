@@ -430,7 +430,7 @@ MonoBehaviour:
   - {fileID: 6552196195221509539}
   _deathVFX: {fileID: 179512793317467371, guid: 9cfb0e4a7d23fab4fba878dd7131bdf0, type: 3}
   _minSpeed: 7
-  _maxSpeed: 14
+  _maxSpeed: 12
   _maxSeekForce: 500
   _body: {fileID: 5567108577582990657}
   _bodyMaxDistance: 0.8
@@ -450,9 +450,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e81c29f87f54754c84ab6f94ac5f6fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _totalHealth: 5
-  _currentHealth: 5
-  _invisibilityTime: 0.15
+  _totalHealth: 3
+  _currentHealth: 3
+  _invisibilityTime: 0.12
   OnTakeDamage:
     m_PersistentCalls:
       m_Calls: []

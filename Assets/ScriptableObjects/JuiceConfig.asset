@@ -29,8 +29,8 @@ MonoBehaviour:
   - rid: 2534765774161575958
   - rid: 2534766318661926914
   - rid: 2534766272308051970
-  - rid: 2534766198637461504
   - rid: 2534766069907980289
+  - rid: 2534766198637461504
   - rid: 2534765911603412993
   - rid: 2534766003270975488
   - rid: 2534765957868158976
@@ -44,9 +44,10 @@ MonoBehaviour:
   - rid: 2534766226261671936
   - rid: 2534766341543165952
   - rid: 2534766250387570689
+  - rid: 2534765883193294851
   - rid: 2534766318661926913
   - rid: 2534766318661926912
-  - rid: 2534765883193294851
+  - rid: 2534766341543165953
   ShootImpactPauseDurationInSec: 0.01
   PlayerImpactPauseDurationInSec: 0.25
   ShootAccuracyPerCannon: 0
@@ -193,7 +194,7 @@ MonoBehaviour:
       data:
         name: CameraPerlinNoise
         Key: 15
-        Label: Camera Perlin
+        Label: Perlin Noise
         Comments: Camera Shake with Perlin Noise
         Enabled: 0
     - rid: 2534766069907980288
@@ -370,3 +371,11 @@ MonoBehaviour:
         Label: Pitch
         Comments: 
         Enabled: 0
+    - rid: 2534766341543165953
+      type: {class: ConfigEnabledValue, ns: AllieJoe.JuiceIt, asm: Assembly-CSharp}
+      data:
+        name: End
+        Key: 40
+        Label: Fin :D
+        Comments: 
+        Enabled: 1

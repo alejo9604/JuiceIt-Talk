@@ -33,5 +33,11 @@ namespace AllieJoe.JuiceIt
             base.SetHealth(health);
             _currentHealthFloat = _currentHealth;
         }
+
+        protected override void Death()
+        {
+            //Hack to prevent player from dying. Annoying while presenting
+            //base.Death();
+        }
     }
 }

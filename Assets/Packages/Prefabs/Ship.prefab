@@ -10203,7 +10203,7 @@ MonoBehaviour:
   OnDeath:
     m_PersistentCalls:
       m_Calls: []
-  _recoverPerSecond: 0.25
+  _recoverPerSecond: 1
   _damageVFX: {fileID: 703135099317913494}
 --- !u!114 &728990081606781385
 MonoBehaviour:

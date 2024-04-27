@@ -15,6 +15,7 @@ namespace AllieJoe.JuiceIt
             GameManager.Instance.GameDelegates.OnConfigUpdated += OnConfigUpdate;
             GameManager.Instance.GameDelegates.AllConfigUpdated += RefreshConfig;
             GameManager.Instance.GameDelegates.OnEnemyDeath += Play;
+            GameManager.Instance.GameDelegates.OnDummyEnemyDeath += Play;
         }
 
         private void OnDestroy()
@@ -22,6 +23,7 @@ namespace AllieJoe.JuiceIt
             GameManager.Instance.GameDelegates.OnConfigUpdated -= OnConfigUpdate;
             GameManager.Instance.GameDelegates.AllConfigUpdated -= RefreshConfig;
             GameManager.Instance.GameDelegates.OnEnemyDeath -= Play;
+            GameManager.Instance.GameDelegates.OnDummyEnemyDeath -= Play;
         }
 
         private void Play()

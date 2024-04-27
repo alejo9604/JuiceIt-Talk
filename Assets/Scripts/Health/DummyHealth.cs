@@ -15,6 +15,8 @@ namespace AllieJoe.JuiceIt
                 
             gameObject.SetActive(true);
             OnReset?.Invoke();
+            
+            GameManager.Instance.GameDelegates.EmitOnDummyEnemyDeath();
         }
     }
 }

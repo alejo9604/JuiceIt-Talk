@@ -170,7 +170,7 @@ namespace AllieJoe.JuiceIt
             
             //TODO: WIP, it's not reseting the proper one
             ConfigValue step = JuiceConfig.EnableSequence[_currentStep];
-            
+            int indexToEmit = _currentStep - 1;
             if (step is IConfigEnabledOption enabledOption)
             {
                 //Already disabled. Reset next one
@@ -192,15 +192,17 @@ namespace AllieJoe.JuiceIt
                     ToPrevStep();
                     return;
                 }
-                
+
                 selectOption.Prev();
+                if (selectOption.CurrentSelected() > 0)
+                    indexToEmit = _currentStep;
             }
             
             //Refresh UI
             ConfigUI.Refresh(step);
             ConfigUI.SetCurrentIndex(_currentStep);
-            if(_currentStep > 0)
-                GameDelegates.EmitOnConfigUpdated(JuiceConfig.EnableSequence[_currentStep - 1].Key);
+            if(indexToEmit >= 0)
+                GameDelegates.EmitOnConfigUpdated(JuiceConfig.EnableSequence[indexToEmit].Key);
         }
 
         public WeaponTuning GetWeaponTuningSelected()

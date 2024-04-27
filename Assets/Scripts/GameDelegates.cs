@@ -20,5 +20,8 @@ namespace AllieJoe.JuiceIt
         public event Action OnEnemyDeath;
         public void EmitOnEnemyDeath() => OnEnemyDeath?.Invoke();
         
+        public event Action OnDummyEnemyDeath;
+        public void EmitOnDummyEnemyDeath() => OnDummyEnemyDeath?.Invoke();
+        
     }
 }

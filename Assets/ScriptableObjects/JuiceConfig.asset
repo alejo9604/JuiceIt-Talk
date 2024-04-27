@@ -13,34 +13,34 @@ MonoBehaviour:
   m_Name: JuiceConfig
   m_EditorClassIdentifier: 
   EnableSequence:
-  - rid: 2534765774161575957
-  - rid: 2534766272308051971
-  - rid: 2534766226261671938
-  - rid: 2534765774161575958
-  - rid: 2534765774161575961
   - rid: 2534765774161575964
+  - rid: 2534765774161575961
   - rid: 2534765774161575962
   - rid: 2534765883193294854
   - rid: 2534765774161575959
-  - rid: 2534765883193294853
   - rid: 2534765883193294852
-  - rid: 2534766069907980289
-  - rid: 2534766198637461504
-  - rid: 2534766318661926914
-  - rid: 2534766272308051970
-  - rid: 2534766069907980288
   - rid: 2534765911603412992
   - rid: 2534766198637461506
   - rid: 2534766198637461505
   - rid: 2534766250387570688
-  - rid: 2534766198637461509
-  - rid: 2534766198637461508
-  - rid: 2534766198637461507
-  - rid: 2534766226261671937
+  - rid: 2534765774161575957
+  - rid: 2534766272308051971
+  - rid: 2534766226261671938
+  - rid: 2534765774161575958
+  - rid: 2534766318661926914
+  - rid: 2534766272308051970
+  - rid: 2534766198637461504
+  - rid: 2534766069907980289
   - rid: 2534765911603412993
   - rid: 2534766003270975488
   - rid: 2534765957868158976
   - rid: 2534766272308051972
+  - rid: 2534766069907980288
+  - rid: 2534766198637461509
+  - rid: 2534766198637461508
+  - rid: 2534766198637461507
+  - rid: 2534765883193294853
+  - rid: 2534766226261671937
   - rid: 2534766226261671936
   - rid: 2534766341543165952
   - rid: 2534766250387570689
@@ -77,7 +77,7 @@ MonoBehaviour:
       data:
         name: ShootingAccuracy
         Key: 3
-        Label: Shoot Accuracy
+        Label: Accuracy
         Comments: Enable/Disable Less accuracy when shooting
         Enabled: 0
     - rid: 2534765774161575961
@@ -110,7 +110,7 @@ MonoBehaviour:
         OptionsLabel:
         - Normal - Meh
         - Bigger and Color
-        - With Trail
+        - A bit more
         _useToggleGroup: 1
     - rid: 2534765774161575964
       type: {class: ConfigSelectFloatOptionsValue, ns: AllieJoe.JuiceIt, asm: Assembly-CSharp}
@@ -153,7 +153,7 @@ MonoBehaviour:
       data:
         name: ShootImpactPause
         Key: 4
-        Label: Shoot Hitpause
+        Label: Shoot Hit pause
         Comments: Enable/Disable Pause when hitting an enemy
         Enabled: 0
     - rid: 2534765883193294854
@@ -170,7 +170,7 @@ MonoBehaviour:
         name: EnemyHitImpact
         Key: 12
         Label: Enemy Hit
-        Comments: Enemy Hit Impact
+        Comments: Enemy Hit Anim
         Enabled: 0
     - rid: 2534765911603412993
       type: {class: ConfigEnabledValue, ns: AllieJoe.JuiceIt, asm: Assembly-CSharp}
@@ -204,7 +204,7 @@ MonoBehaviour:
         Label: Spawn Tween
         Comments: Background Tiles Spawn Tweens
         Options:
-        - {fileID: 11400000, guid: ee471bc3f03a7724690edc36c492e167, type: 2}
+        - {fileID: 11400000, guid: 13448685a270fcc4f9cdec426d19d2e9, type: 2}
         - {fileID: 11400000, guid: 8b2e806e28cf0c143ae9e5d2fc9c23cf, type: 2}
         - {fileID: 11400000, guid: b26e7a95cdd182f45b6ce06273b0e350, type: 2}
         - {fileID: 11400000, guid: cdaf505ddd93a7349b8a09c2d8f2c719, type: 2}
@@ -212,10 +212,10 @@ MonoBehaviour:
         - {fileID: 11400000, guid: 4e75a06a66d3e0f4a886e45f225728c6, type: 2}
         OptionsLabel:
         - Tweens?
-        - Scale
+        - Tweens?
         - +Delay
-        - Tweens!!!
-        - +Tweens
+        - Ease!!! Elastic
+        - +Ease Cubic
         - +Movement
         _useToggleGroup: 1
     - rid: 2534766069907980289
@@ -239,7 +239,7 @@ MonoBehaviour:
       data:
         name: EnemyDeath
         Key: 19
-        Label: Enemy Death
+        Label: Death
         Comments: 
         Enabled: 0
     - rid: 2534766198637461506
@@ -247,7 +247,7 @@ MonoBehaviour:
       data:
         name: EnemyScratch
         Key: 20
-        Label: Enemy Sratches
+        Label: Sratches
         Comments: 
         Enabled: 0
     - rid: 2534766198637461507
@@ -255,7 +255,7 @@ MonoBehaviour:
       data:
         name: PlayerImpactPause
         Key: 21
-        Label: Player Hitpause
+        Label: Hit pause
         Comments: 
         Enabled: 0
     - rid: 2534766198637461508
@@ -263,7 +263,7 @@ MonoBehaviour:
       data:
         name: PlayerDamageVFX
         Key: 22
-        Label: Player Damage
+        Label: Damage
         Comments: 
         Enabled: 0
     - rid: 2534766198637461509
@@ -271,7 +271,7 @@ MonoBehaviour:
       data:
         name: PlayerImpactVFX
         Key: 23
-        Label: Player Impact VFX
+        Label: Player Impact
         Comments: 
         Enabled: 0
     - rid: 2534766226261671936
@@ -281,7 +281,7 @@ MonoBehaviour:
         Key: 25
         Label: SFXs
         Comments: 
-        Enabled: 1
+        Enabled: 0
     - rid: 2534766226261671937
       type: {class: ConfigEnabledValue, ns: AllieJoe.JuiceIt, asm: Assembly-CSharp}
       data:
@@ -295,7 +295,7 @@ MonoBehaviour:
       data:
         name: PlayerShipMovement
         Key: 27
-        Label: Fly!
+        Label: Mover el bote
         Comments: 
         Enabled: 0
     - rid: 2534766250387570688
@@ -303,7 +303,7 @@ MonoBehaviour:
       data:
         name: EnemyPermanent
         Key: 28
-        Label: Enemy Permanent
+        Label: Permanence
         Comments: 
         Enabled: 0
     - rid: 2534766250387570689
@@ -327,7 +327,7 @@ MonoBehaviour:
       data:
         name: TrailStopVFX
         Key: 30
-        Label: Stop VFX
+        Label: Stop
         Comments: 
         Enabled: 0
     - rid: 2534766272308051972
@@ -351,7 +351,7 @@ MonoBehaviour:
       data:
         name: Monster
         Key: 33
-        Label: Monster
+        Label: Personality
         Comments: 
         Enabled: 0
     - rid: 2534766318661926914
@@ -369,4 +369,4 @@ MonoBehaviour:
         Key: 35
         Label: Pitch
         Comments: 
-        Enabled: 1
+        Enabled: 0

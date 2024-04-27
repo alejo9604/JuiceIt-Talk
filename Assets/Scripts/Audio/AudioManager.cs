@@ -28,6 +28,10 @@ namespace AllieJoe.JuiceIt
 
         private IObjectPool<AudioSource> _sfxPool;
         private List<AudioSource> _activeSFX = new();
+        
+        
+        private bool _useSFX = false;
+        private bool _usePitchVariation = false;
 
         private Coroutine _coroutine;
 
@@ -146,14 +150,14 @@ namespace AllieJoe.JuiceIt
 
         public void PlaySound(string soundName)
         {
-            if(!GameManager.Instance.GetConfigValue(EConfigKey.SFX))
+            if(!_useSFX)
                 return;
             
             AudioSource sfxSource = _sfxPool.Get();
             AudioTuning tuning = _library.GetClipTuning(soundName);
             sfxSource.clip = tuning.GetClip();
             sfxSource.volume = tuning.Volume * _sfxVolumePercent * _masterVolumePercent;
-            if(tuning.PitchVariation > 0)
+            if(_usePitchVariation && tuning.PitchVariation > 0)
                 sfxSource.pitch = tuning.Pitch + Random.Range(-tuning.PitchVariation, tuning.PitchVariation);
             else
                 sfxSource.pitch = tuning.Pitch;
@@ -186,10 +190,13 @@ namespace AllieJoe.JuiceIt
 
         private void RefreshMusic()
         {
+            _useSFX = GameManager.Instance.GetConfigValue(EConfigKey.SFX);
+            _usePitchVariation = GameManager.Instance.GetConfigValue(EConfigKey.Pitch);
             if (GameManager.Instance.GetConfigValue(EConfigKey.Music))
                 PlayMusic(_library.Music, 0.5f);
             else
                 StopMusic();
         }
-    }
+        
+     }
 }

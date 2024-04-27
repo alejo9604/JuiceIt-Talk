@@ -20,7 +20,7 @@ MonoBehaviour:
     - {fileID: 8300000, guid: 95e4787aaa21ecb4195ac833b0922a2d, type: 3}
     Volume: 0.65
     Pitch: 1
-    PitchVariation: 0.15
+    PitchVariation: 0.18
   - Key: PlayerAccelerate
     Clips:
     - {fileID: 8300000, guid: 61ba54d483cc4e847ab86997134403ca, type: 3}

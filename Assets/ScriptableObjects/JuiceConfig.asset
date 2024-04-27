@@ -42,6 +42,7 @@ MonoBehaviour:
   - rid: 2534765957868158976
   - rid: 2534766272308051972
   - rid: 2534766226261671936
+  - rid: 2534766341543165952
   - rid: 2534766250387570689
   - rid: 2534766318661926913
   - rid: 2534766318661926912
@@ -280,7 +281,7 @@ MonoBehaviour:
         Key: 25
         Label: SFXs
         Comments: 
-        Enabled: 0
+        Enabled: 1
     - rid: 2534766226261671937
       type: {class: ConfigEnabledValue, ns: AllieJoe.JuiceIt, asm: Assembly-CSharp}
       data:
@@ -320,7 +321,7 @@ MonoBehaviour:
         Key: 29
         Label: Variation
         Comments: 
-        Enabled: 1
+        Enabled: 0
     - rid: 2534766272308051971
       type: {class: ConfigEnabledValue, ns: AllieJoe.JuiceIt, asm: Assembly-CSharp}
       data:
@@ -359,5 +360,13 @@ MonoBehaviour:
         name: ProceduralWorld
         Key: 34
         Label: Procedural
+        Comments: 
+        Enabled: 0
+    - rid: 2534766341543165952
+      type: {class: ConfigEnabledValue, ns: AllieJoe.JuiceIt, asm: Assembly-CSharp}
+      data:
+        name: Pitch
+        Key: 35
+        Label: Pitch
         Comments: 
         Enabled: 1

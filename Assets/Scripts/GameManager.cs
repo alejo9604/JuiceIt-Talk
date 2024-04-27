@@ -53,6 +53,8 @@ namespace AllieJoe.JuiceIt
                 EnemySpawner.ToggleSpawn();
             if (Input.GetKey(KeyCode.LeftShift) && Input.GetKeyDown(KeyCode.Alpha3))
                 Player.ResetHealth();
+            if (Input.GetKey(KeyCode.LeftShift) && Input.GetKeyDown(KeyCode.Alpha4))
+                Player.ToggleCanMove();
 
             // Sequence
             if (Input.GetKeyDown(KeyCode.P))

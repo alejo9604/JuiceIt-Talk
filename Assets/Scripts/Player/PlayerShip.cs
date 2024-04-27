@@ -38,6 +38,9 @@ namespace AllieJoe.JuiceIt
         private Vector2 _movementDir;
         private float _changeDirectionDotValue;
         private float _rotAngleChange;
+        
+        //Just for the showcase
+        private bool _canMove = true;
 
         public bool IsRecovering => _health.CurrentHealth < _health.TotalHealth;
 
@@ -72,6 +75,8 @@ namespace AllieJoe.JuiceIt
         }
 
         public void ResetHealth() => _health.Reset();
+
+        public void ToggleCanMove() => _canMove = !_canMove;
 
         private void Start()
         {
@@ -144,6 +149,9 @@ namespace AllieJoe.JuiceIt
             //Clamp speed
             _currentSpeed = Mathf.Clamp(_currentSpeed, 0, GetMaxMovementSpeed());
 
+            if(!_canMove)
+                return;
+            
             //Apply to RB
             _rb.rotation += _rotAngleChange;
             _rb.velocity = _movementDir * _currentSpeed;

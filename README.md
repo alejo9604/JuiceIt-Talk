@@ -24,7 +24,7 @@ Assets by [Kenney.nl](https://www.kenney.nl/).
 - **Shift + 5**: Toggle Camera lines.
 
 ## Media
-[![Preview]](./Media/gameplay.mp4 "Preview")
+![](Media/gameplay.mp4)
 
 ## Juice effects - Full list
 **Shooting:**

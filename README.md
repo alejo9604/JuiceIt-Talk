@@ -6,7 +6,9 @@ Medellín, Colombia.
 - Unity 2022.3.10f1 + URP.
 - [Slides](./Media/JuiceIt.pdf).
 
-### Assets
+To play open the [Gameplay](./Assets/Scenes/Gameplay.unity) scene and hit Play. Use **O** and **P** to go over all the Juice effects. You can also enable all the effects at once using the Config window - press **Esc** to open it. Check more [Shortcuts](#shortcuts) below.
+
+## Assets
 Assets by [Kenney.nl](https://www.kenney.nl/).
 
 ## Shortcuts
@@ -26,7 +28,7 @@ Assets by [Kenney.nl](https://www.kenney.nl/).
 ## Media
 https://github.com/alejo9604/juice_it_game_showcase/assets/9322009/1c0e8cd6-7810-4a4b-80c7-00c50ead6a42
 
-## Juice effects - Full list
+## Juice Effects - Full list
 **Shooting:**
 1. Shoot Faster.
 2. MORE!!!

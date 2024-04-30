@@ -5,7 +5,6 @@ Medellín, Colombia.
 ## Project
 - Unity 2022.3.10f1 + URP.
 - [Slides](./Media/JuiceIt.pdf).
-- 
 
 ### Assets
 Assets by [Kenney.nl](https://www.kenney.nl/).
@@ -25,7 +24,7 @@ Assets by [Kenney.nl](https://www.kenney.nl/).
 - **Shift + 5**: Toggle Camera lines.
 
 ## Media
-![](./Media/gameplay.mp4)
+[![Preview]](./Media/gameplay.mp4 "Preview")
 
 ## Juice effects - Full list
 **Shooting:**

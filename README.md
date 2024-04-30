@@ -8,6 +8,8 @@ Medellín, Colombia.
 
 To play open the [Gameplay](./Assets/Scenes/Gameplay.unity) scene and hit Play. Use **O** and **P** to go over all the Juice effects. You can also enable all the effects at once using the Config window - press **Esc** to open it. Check more [Shortcuts](#shortcuts) below.
 
+Move with WASD or Arrows. Shoot with Space.
+
 ## Assets
 Assets by [Kenney.nl](https://www.kenney.nl/).
 

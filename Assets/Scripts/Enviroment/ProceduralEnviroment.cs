@@ -275,8 +275,9 @@ namespace AllieJoe.JuiceIt
             Tile tile = _tilePool.Get();
             
             (int q, int r) = OddRToAxial(col, row);
-            
-            tile.SetData(q, r, col, row, GetTileSprite(col, row));
+
+            (Sprite sprite, Color color) = GetTileSprite(col, row);
+            tile.SetData(q, r, col, row, sprite, color);
 
             tile.transform.localScale = Vector3.one * _config.Scale;
             tile.transform.localPosition = AxialToPoint(q, r);
@@ -284,10 +285,10 @@ namespace AllieJoe.JuiceIt
             return tile;
         }
 
-        private Sprite GetTileSprite(int col, int row)
+        private (Sprite, Color) GetTileSprite(int col, int row)
         {
             if (!_useProceduralMap)
-                return _config.DefaultSprite;
+                return (_config.DefaultSprite, Color.white);
             
             float height = 0;
             float biome = 0;

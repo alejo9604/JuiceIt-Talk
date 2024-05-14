@@ -22,11 +22,12 @@ namespace AllieJoe.JuiceIt
             _animatedParent.localScale = Vector3.one;
         }
 
-        public void SetData(int q, int r, int x, int y, Sprite sprite)
+        public void SetData(int q, int r, int x, int y, Sprite sprite, Color color)
         {
             Axial_Coord = new Vector2Int(q, r);
             OddR_Coord = new Vector2Int(x, y);
             _spriteRenderer.sprite = sprite;
+            _spriteRenderer.color = color;
         }
 
         public void SetSelected(bool selected) => _selected.SetActive(selected);

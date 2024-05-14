@@ -18,6 +18,7 @@ namespace AllieJoe.JuiceIt
         {
             public string Name;
             [Range(0, 100)] public int Height;
+            public Color Tint;
             public TileBiomeGroup[] BiomeGroups;
         }
         
@@ -33,19 +34,20 @@ namespace AllieJoe.JuiceIt
         public TileGroupWeight[] TilesGroupsWeights = Array.Empty<TileGroupWeight>();
 
        
-        public Sprite GetTileByHeightValue(float height, float biomeValue, bool useBiome = true)
+        
+        public (Sprite, Color) GetTileByHeightValue(float height, float biomeValue, bool useBiome = true)
         {
             foreach (var t in TilesGroupsWeights)
             {
                 if (height <= t.Height * 0.01f)
                 {
                     if(useBiome)
-                        return GetRandomBiomeSprite(t.BiomeGroups, biomeValue);
-                    return GetDefaultBiomeSprite(t.BiomeGroups);
+                        return (GetRandomBiomeSprite(t.BiomeGroups, biomeValue), t.Tint);
+                    return (GetDefaultBiomeSprite(t.BiomeGroups), t.Tint);
                 }
             }
 
-            return null;
+            return (null, Color.white);
         }
         
         private Sprite GetRandomBiomeSprite(TileBiomeGroup[] biomeGroups, float biomeRanValue)

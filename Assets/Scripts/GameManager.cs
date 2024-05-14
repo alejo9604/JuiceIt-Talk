@@ -171,7 +171,6 @@ namespace AllieJoe.JuiceIt
                 return;
             }
             
-            //TODO: WIP, it's not reseting the proper one
             ConfigValue step = JuiceConfig.EnableSequence[_currentStep];
             int indexToEmit = _currentStep - 1;
             if (step is IConfigEnabledOption enabledOption)

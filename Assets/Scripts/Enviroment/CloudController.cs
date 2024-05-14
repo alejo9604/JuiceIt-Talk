@@ -94,15 +94,13 @@ namespace AllieJoe.JuiceIt
         private void OnConfigUpdated(EConfigKey key)
         {
             if (key == EConfigKey.Clouds)
-            {
                 RefreshConfig();
-                OnResetLevel();
-            }
         }
 
         private void RefreshConfig()
         {
             _spawnActive = GameManager.Instance.GetConfigValue(EConfigKey.Clouds);
+            OnResetLevel();
         }
         
         private void GenerateInitGroup()

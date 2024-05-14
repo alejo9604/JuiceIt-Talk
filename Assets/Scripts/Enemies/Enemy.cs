@@ -57,6 +57,9 @@ namespace AllieJoe.JuiceIt
             _animator.ResetTrigger(Hit_AnimHash);
             _animator.ResetTrigger(Death_AnimHash);
             _collider.enabled = true;
+            
+            foreach (var s in _scratch)
+                s.SetActive(false);
         }
 
         public void SetDeathCallback(Action<Enemy> onDeath) => OnDeathCompleteEvent = onDeath; 

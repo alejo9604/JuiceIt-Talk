@@ -248,7 +248,7 @@ MonoBehaviour:
       data:
         name: EnemyScratch
         Key: 20
-        Label: Sratches
+        Label: Scratches
         Comments: 
         Enabled: 0
     - rid: 2534766198637461507
@@ -378,4 +378,4 @@ MonoBehaviour:
         Key: 40
         Label: Fin :D
         Comments: 
-        Enabled: 1
+        Enabled: 0

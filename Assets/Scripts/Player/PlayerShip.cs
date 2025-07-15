@@ -47,7 +47,7 @@ namespace AllieJoe.JuiceIt
         public bool IsShooting => _isShooting;
         
         public bool IsAccelerating => _isAccelerating;
-        public Vector2 CurrentVelocity => _rb.velocity;
+        public Vector2 CurrentVelocity => _rb.linearVelocity;
         public Vector2 MovementDirection => _movementDir;
         public float SpeedNormalize => _currentSpeed / _maxSpeed;
         public Vector2 AimDirection => transform.up;
@@ -105,7 +105,7 @@ namespace AllieJoe.JuiceIt
             //TODO: Do we need to normalize? Not for now
             _input.x *= -1; //Invert X-axis. We have our ship rotated 180 Deg
             _isAccelerating = _input.y != 0;
-
+            
             if (_isShooting)
                 _shootComponent.Shoot(_currentSpeed);
 
@@ -154,7 +154,7 @@ namespace AllieJoe.JuiceIt
             
             //Apply to RB
             _rb.rotation += _rotAngleChange;
-            _rb.velocity = _movementDir * _currentSpeed;
+            _rb.linearVelocity = _movementDir * _currentSpeed;
         }
         
         private void OnTakeDamage()

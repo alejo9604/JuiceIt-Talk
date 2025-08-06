@@ -3,17 +3,18 @@ using UnityEngine;
 
 namespace AllieJoe.JuiceIt
 {
-    public class Shadow : MonoBehaviour
+    public class ShadowAndGlow : MonoBehaviour
     {
         [SerializeField] private Transform _body;
         [SerializeField] private Transform _shadow;
+        [SerializeField] private GameObject _glow;
         [SerializeField] private bool _updateRotation;
         [SerializeField, HideInInspector] private Vector2 _baseOffset;
 
         private void Start()
         {
             UpdateShadow();
-            _shadow.gameObject.SetActive(GameManager.Instance.GetConfigValue(EConfigKey.Shadows));
+            RefreshConfig();
             GameManager.Instance.GameDelegates.OnConfigUpdated += OnOnConfigUpdated;
             GameManager.Instance.GameDelegates.AllConfigUpdated += RefreshConfig;
         }
@@ -46,6 +47,8 @@ namespace AllieJoe.JuiceIt
         private void RefreshConfig()
         {
             _shadow.gameObject.SetActive(GameManager.Instance.GetConfigValue(EConfigKey.Shadows));
+            if(_glow != null)
+                _glow.SetActive(GameManager.Instance.GetConfigValue(EConfigKey.Shadows));
         }
         
 

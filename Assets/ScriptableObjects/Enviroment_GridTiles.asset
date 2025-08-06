@@ -15,7 +15,8 @@ MonoBehaviour:
   TileSize: 0.692
   Scale: 1.5
   TilePrefab: {fileID: 1829446852501011004, guid: e6a9b76508123fe408affe1d77baeea7, type: 3}
-  DefaultSprite: {fileID: 21300000, guid: 0bcb954a3cdf2874a88344dba182efba, type: 3}
+  DefaultSprite: {fileID: 0}
+  DefaultTint: {r: 1, g: 1, b: 1, a: 1}
   TilesGroupsWeights:
   - Name: Water
     Height: 40
@@ -23,7 +24,7 @@ MonoBehaviour:
     BiomeGroups: []
   - Name: Sand
     Height: 55
-    Tint: {r: 0.92941177, g: 0.86596155, b: 0.7974353, a: 1}
+    Tint: {r: 0.9811321, g: 0.9811321, b: 0.9811321, a: 1}
     BiomeGroups:
     - Sprite: {fileID: 21300000, guid: b6c95c250fe15214291ad32b86e80955, type: 3}
       Weight: 50
@@ -39,7 +40,7 @@ MonoBehaviour:
       Weight: 15
   - Name: Grass
     Height: 100
-    Tint: {r: 1, g: 1, b: 1, a: 1}
+    Tint: {r: 0.95, g: 0.95, b: 0.95, a: 1}
     BiomeGroups:
     - Sprite: {fileID: 21300000, guid: 0bcb954a3cdf2874a88344dba182efba, type: 3}
       Weight: 50

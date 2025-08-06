@@ -288,7 +288,7 @@ namespace AllieJoe.JuiceIt
         private (Sprite, Color) GetTileSprite(int col, int row)
         {
             if (!_useProceduralMap)
-                return (_config.DefaultSprite, Color.white);
+                return (_config.DefaultSprite, _config.DefaultTint);
             
             float height = 0;
             float biome = 0;

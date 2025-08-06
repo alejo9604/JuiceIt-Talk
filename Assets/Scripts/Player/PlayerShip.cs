@@ -10,6 +10,10 @@ namespace AllieJoe.JuiceIt
     {
         [SerializeField] private Rigidbody2D _rb;
 
+        [Header("Scale")]
+        [SerializeField] private float _scale = 1;
+        [SerializeField] private Transform _scaleRoot;
+
         [Header("Movement")] 
         [SerializeField] private float _acceleration = 16f;
         [SerializeField] private float _desacceleration = 10f;
@@ -192,6 +196,12 @@ namespace AllieJoe.JuiceIt
             bool active = GameManager.Instance.GetConfigValue(EConfigKey.PlayerShipMovement);
             foreach (ShipPartEffector effector in Effectors)
                 effector.SetActive(active);
+        }
+
+        private void OnValidate()
+        {
+            if(_scaleRoot != null)
+                _scaleRoot.localScale = Vector3.one * _scale;
         }
     }
 }

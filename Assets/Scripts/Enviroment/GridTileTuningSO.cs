@@ -31,6 +31,7 @@ namespace AllieJoe.JuiceIt
         [Space] 
         public Tile TilePrefab;
         public Sprite DefaultSprite;
+        public Color DefaultTint = Color.white;
         public TileGroupWeight[] TilesGroupsWeights = Array.Empty<TileGroupWeight>();
 
        

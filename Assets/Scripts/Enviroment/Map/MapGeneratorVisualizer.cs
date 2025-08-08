@@ -25,11 +25,15 @@ namespace AllieJoe.JuiceIt
         
     }
     
-    public class MapGenerator : MonoBehaviour
+    [RequireComponent(typeof(MapDisplay))]
+    public class MapGeneratorVisualizer : MonoBehaviour
     {
         public enum DrawMode {NoiseMap, ColourMap};
         public DrawMode drawMode;
 
+        public MapDisplay mapDisplay;
+        
+        [Space]
         public MapGeneratorTuning Tuning;
 
         public bool autoUpdate;
@@ -53,11 +57,12 @@ namespace AllieJoe.JuiceIt
                 }
             }
 
-            MapDisplay display = FindObjectOfType<MapDisplay> ();
+            if(mapDisplay == null)
+                mapDisplay = GetComponent<MapDisplay>();
             if (drawMode == DrawMode.NoiseMap) {
-                display.DrawTexture (TextureGenerator.TextureFromHeightMap (noiseMap));
+                mapDisplay.DrawTexture (TextureGenerator.TextureFromHeightMap (noiseMap));
             } else if (drawMode == DrawMode.ColourMap) {
-                display.DrawTexture (TextureGenerator.TextureFromColourMap (colourMap, Tuning.mapSize, Tuning.mapSize));
+                mapDisplay.DrawTexture (TextureGenerator.TextureFromColourMap (colourMap, Tuning.mapSize, Tuning.mapSize));
             }
         }
     }
@@ -70,11 +75,11 @@ namespace AllieJoe.JuiceIt
     }
     
 #if UNITY_EDITOR
-    [CustomEditor(typeof (MapGenerator))]
-    public class MapGeneratorEditor : Editor {
+    [CustomEditor(typeof (MapGeneratorVisualizer))]
+    public class MapGeneratorVisualizerEditor : Editor {
 
         public override void OnInspectorGUI() {
-            MapGenerator mapGen = (MapGenerator)target;
+            MapGeneratorVisualizer mapGen = (MapGeneratorVisualizer)target;
 
             if (DrawDefaultInspector ()) {
                 if (mapGen.autoUpdate) {

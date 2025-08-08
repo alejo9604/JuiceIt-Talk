@@ -15,7 +15,7 @@ namespace AllieJoe.JuiceIt
         private void Start()
         {
             _animParent.anchoredPosition = Vector2.up * _animParent.rect.height * 2;
-            GameManager.Instance.GameDelegates.OnConfigUpdated += OnConfigUpdate;
+            GameManager.Instance.GameDelegates.OnTitleAnimRequested += OnConfigUpdate;
         }
 
         private void Update()

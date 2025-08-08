@@ -23,7 +23,13 @@ namespace AllieJoe.JuiceIt
 
         protected void OnValueUpdated()
         {
-            GameManager.Instance.GameDelegates.EmitOnConfigUpdated(ConfigKey);
+            if (Input.GetKey(KeyCode.LeftShift))
+                GameManager.Instance.GameDelegates.EmitOnConfigToggleWithAllPrevious(ConfigKey);
+            else
+            {
+                GameManager.Instance.GameDelegates.EmitOnConfigUpdated(ConfigKey);
+                GameManager.Instance.GameDelegates.EmitOnTitleAnimRequested(ConfigKey);
+            }
         }
     }
 }

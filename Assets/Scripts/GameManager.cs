@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Linq;
 using UnityEngine;
 
 namespace AllieJoe.JuiceIt
@@ -41,29 +42,37 @@ namespace AllieJoe.JuiceIt
         private void Start()
         {
             ConfigUI.Init(JuiceConfig.EnableSequence);
+            
+            GameDelegates.OnConfigToogleWithAllPrevious += OnConfigToggleWithAllPrevious;
         }
-
+        
         private void Update()
         {
             // UI
             if(Input.GetKeyDown(KeyCode.Escape))
                 ConfigUI.ToggleHide();
-            if(Input.GetKey(KeyCode.LeftShift) && Input.GetKeyDown(KeyCode.Alpha1))
-                TraumaUI.ToggleHide();
-            if (Input.GetKey(KeyCode.LeftShift) && Input.GetKeyDown(KeyCode.Alpha2))
-                EnemySpawner.ToggleSpawn();
-            if (Input.GetKey(KeyCode.LeftShift) && Input.GetKeyDown(KeyCode.Alpha3))
-                Player.ResetHealth();
-            if (Input.GetKey(KeyCode.LeftShift) && Input.GetKeyDown(KeyCode.Alpha4))
-                Player.ToggleCanMove();
-            if (Input.GetKey(KeyCode.LeftShift) && Input.GetKeyDown(KeyCode.Alpha5))
-                CameraLines.SetActive(!CameraLines.activeSelf);
+            if (Input.GetKey(KeyCode.LeftShift))
+            {
+                if(Input.GetKeyDown(KeyCode.Alpha1))
+                    TraumaUI.ToggleHide();
+                if (Input.GetKeyDown(KeyCode.Alpha2))
+                    EnemySpawner.ToggleSpawn();
+                if (Input.GetKeyDown(KeyCode.Alpha3))
+                    Player.ResetHealth();
+                if (Input.GetKeyDown(KeyCode.Alpha4))
+                    Player.ToggleCanMove();
+                if (Input.GetKeyDown(KeyCode.Alpha5))
+                    CameraLines.SetActive(!CameraLines.activeSelf);
+            }
 
             // Sequence
-            if (Input.GetKeyDown(KeyCode.P))
+            if (Input.GetKeyDown(KeyCode.T))
                 ToNextStep();
-            if (Input.GetKeyDown(KeyCode.O))
+            if (Input.GetKeyDown(KeyCode.E))
                 ToPrevStep();
+            
+            if (Input.GetKeyDown(KeyCode.R))
+                ReloadLevel();
 
             //Trauma-Shake
             if(Input.GetKeyDown(KeyCode.N))
@@ -71,10 +80,7 @@ namespace AllieJoe.JuiceIt
             if(Input.GetKeyDown(KeyCode.M))
                 AddTrauma(1f);
 
-            if (Input.GetKeyDown(KeyCode.R))
-                ReloadLevel();
-
-            if (Input.GetKeyDown(KeyCode.T))
+            if (Input.GetKeyDown(KeyCode.P))
             {
                 if (Time.timeScale < 1)
                     Time.timeScale = 1;
@@ -124,38 +130,19 @@ namespace AllieJoe.JuiceIt
                 _currentStep = 0;
             
             ConfigValue step = JuiceConfig.EnableSequence[_currentStep];
-            bool nextStep = true;
-            EConfigKey updatedKey = EConfigKey._INVALID;
-            
-            if (step is IConfigEnabledOption enabledOption)
-            {
-                //Enable the option and wait for next input to check the next one
-                if (!enabledOption.IsEnable())
-                {
-                    enabledOption.Set(true);
-                    updatedKey = step.Key;
-                }
-            }
-            else if (step is IConfigSelectOption selectOption)
-            {
-                //Enable the option and wait for next input to check the next one
-                if (selectOption.CurrentSelected() < selectOption.Max())
-                {
-                    selectOption.Next();
-                    updatedKey = step.Key;
-                }
-
-                nextStep = selectOption.CurrentSelected() >= selectOption.Max();
-            }
+            (bool success, bool allConfigStepsSet) = EnableConfigValue(step);
             
             ConfigUI.Refresh(step);
             
-            if(nextStep)
+            if(allConfigStepsSet)
                 _currentStep++;
-            
-            if(updatedKey != EConfigKey._INVALID)
-                GameDelegates.EmitOnConfigUpdated(updatedKey);
-            
+
+            if (success)
+            {
+                GameDelegates.EmitOnConfigUpdated(step.Key);
+                GameDelegates.EmitOnTitleAnimRequested(step.Key);
+            }
+
             ConfigUI.SetCurrentIndex(_currentStep);
         }
 
@@ -172,43 +159,127 @@ namespace AllieJoe.JuiceIt
             }
             
             ConfigValue step = JuiceConfig.EnableSequence[_currentStep];
-            int indexToEmit = _currentStep - 1;
-            if (step is IConfigEnabledOption enabledOption)
+            (bool success, bool allConfigStepsSet) = DisableConfigValue(step);
+            if (!success)
             {
-                //Already disabled. Reset next one
-                if (!enabledOption.IsEnable())
-                {
-                    _currentStep--;
-                    ToPrevStep();
-                    return;
-                }
-                
-                enabledOption.Set(false);
+                _currentStep--;
+                ToPrevStep();
+                return;
             }
-            else if (step is IConfigSelectOption selectOption)
-            {
-                //Already in the min selection. Reset next one
-                if (selectOption.CurrentSelected() <= 0)
-                {
-                    _currentStep--;
-                    ToPrevStep();
-                    return;
-                }
 
-                selectOption.Prev();
-                if (selectOption.CurrentSelected() > 0)
-                    indexToEmit = _currentStep;
-            }
+            int indexToEmit = _currentStep;
+            if(allConfigStepsSet)
+                indexToEmit = _currentStep - 1;
             
             //Refresh UI
             ConfigUI.Refresh(step);
             ConfigUI.SetCurrentIndex(_currentStep);
-            if (indexToEmit >= 0)
+            if (indexToEmit < 0) return;
+            
+            if(indexToEmit != _currentStep)
+                GameDelegates.EmitOnConfigUpdated(JuiceConfig.EnableSequence[_currentStep].Key);
+            GameDelegates.EmitOnConfigUpdated(JuiceConfig.EnableSequence[indexToEmit].Key);
+            GameDelegates.EmitOnTitleAnimRequested(JuiceConfig.EnableSequence[indexToEmit].Key);
+        }
+
+        private (bool success, bool allConfigStepsSet) EnableConfigValue(ConfigValue configValue, bool allSteps = false)
+        {
+            bool success = false;
+            bool allConfigStepsSet = false;
+            switch (configValue)
             {
-                if(indexToEmit != _currentStep)
-                    GameDelegates.EmitOnConfigUpdated(JuiceConfig.EnableSequence[_currentStep].Key);
-                GameDelegates.EmitOnConfigUpdated(JuiceConfig.EnableSequence[indexToEmit].Key);
+                case IConfigEnabledOption enabledOption:
+                {
+                    if (!enabledOption.IsEnable())
+                        enabledOption.Set(true);
+                    allConfigStepsSet = true;
+                    success = true;
+                    break;
+                }
+                case IConfigSelectOption selectOption:
+                {
+                    if (allSteps)
+                        selectOption.SetSelected(selectOption.Max() - 1); //Hack so it enters the next check
+                    
+                    //Enable the option and wait for next input to check the next one
+                    if (selectOption.CurrentSelected() < selectOption.Max())
+                    {
+                        selectOption.Next();
+                        success = true;
+                    }
+
+                    allConfigStepsSet = selectOption.CurrentSelected() >= selectOption.Max();
+                    break;
+                }
             }
+            
+            return (success, allConfigStepsSet);
+        }
+        
+        private (bool success, bool allConfigStepsSet) DisableConfigValue(ConfigValue configValue, bool allSteps = false)
+        {
+            bool success = false;
+            bool allConfigStepsSet = true;
+            switch (configValue)
+            {
+                case IConfigEnabledOption enabledOption:
+                {
+                    if (enabledOption.IsEnable())
+                    {
+                        enabledOption.Set(false);
+                        success = true;
+                    }
+
+                    break;
+                }
+                case IConfigSelectOption selectOption:
+                {
+                    if (allSteps)
+                        selectOption.SetSelected(1); //Hack so it enters the next check
+                    
+                    if (selectOption.CurrentSelected() > 0)
+                    {
+                        selectOption.Prev();
+                        success = true;
+                        allConfigStepsSet = selectOption.CurrentSelected() <= 0;
+                    }
+
+                    break;
+                }
+            }
+            return (success, allConfigStepsSet);
+        }
+        
+        private void OnConfigToggleWithAllPrevious(EConfigKey configKey)
+        {
+            int index = JuiceConfig.EnableSequence.FindIndex(x => x.Key == configKey);
+            while (_currentStep != index)
+            {
+                var step = JuiceConfig.EnableSequence[_currentStep];
+                if (_currentStep > index)
+                {
+                    DisableConfigValue(step, allSteps: true);
+                    _currentStep--;
+                }
+                else
+                {
+                    EnableConfigValue(step, allSteps: true);
+                    _currentStep++;
+                }
+
+                ConfigUI.Refresh(step);
+                GameDelegates.EmitOnConfigUpdated(step.Key);
+            }
+
+            // Make sure to enable the config selected
+            var currentStep = JuiceConfig.EnableSequence[_currentStep];
+            EnableConfigValue(currentStep, allSteps: true);
+            ConfigUI.Refresh(currentStep);
+            GameDelegates.EmitOnConfigUpdated(currentStep.Key);
+            GameDelegates.EmitOnTitleAnimRequested(currentStep.Key);
+            
+            _currentStep++;
+            ConfigUI.SetCurrentIndex(_currentStep);
         }
 
         public WeaponTuning GetWeaponTuningSelected()

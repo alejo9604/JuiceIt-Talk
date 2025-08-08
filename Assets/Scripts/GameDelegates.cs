@@ -11,6 +11,12 @@ namespace AllieJoe.JuiceIt
         public event Action<EConfigKey> OnConfigUpdated;
         public void EmitOnConfigUpdated(EConfigKey key) => OnConfigUpdated?.Invoke(key);
         
+        public event Action<EConfigKey> OnTitleAnimRequested;
+        public void EmitOnTitleAnimRequested(EConfigKey key) => OnTitleAnimRequested?.Invoke(key);
+        
+        public event Action<EConfigKey> OnConfigToogleWithAllPrevious;
+        public void EmitOnConfigToggleWithAllPrevious(EConfigKey key) => OnConfigToogleWithAllPrevious?.Invoke(key);
+        
         public event Action AllConfigUpdated;
         public void EmitAllConfigUpdated() => AllConfigUpdated?.Invoke();
         

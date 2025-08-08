@@ -2,8 +2,11 @@
 Interaction - Abril 2024.
 Medellín, Colombia.
 
+Interaction - Agosto 2025.
+Santa Rosa De Cabal, Colombia.
+
 ## Project
-- Unity 2022.3.10f1 + URP.
+- Unity 6000.0.45f1 + URP.
 - [Slides](https://docs.google.com/presentation/d/11TK9G00dq1EsoPvsZoUk6iQzePjYReUhJ5j_GdY9uVQ/edit?usp=sharing).
 
 To play open the [Gameplay](./Assets/Scenes/Gameplay.unity) scene and hit Play. Use **O** and **P** to go over all the Juice effects. You can also enable all the effects at once using the Config window - press **Esc** to open it. Check more [Shortcuts](#shortcuts) below.

@@ -8,14 +8,20 @@ namespace AllieJoe.JuiceIt
         public event Action OnResetLevel;
         public void EmitOnResetLevel() => OnResetLevel?.Invoke();
         
+        public event Action OnNextStep;
+        public void EmitOnNextStep() => OnNextStep?.Invoke();
+        
+        public event Action OnPrevStep;
+        public void EmitOnPrevStep() => OnPrevStep?.Invoke();
+        
         public event Action<EConfigKey> OnConfigUpdated;
         public void EmitOnConfigUpdated(EConfigKey key) => OnConfigUpdated?.Invoke(key);
         
         public event Action<EConfigKey> OnTitleAnimRequested;
         public void EmitOnTitleAnimRequested(EConfigKey key) => OnTitleAnimRequested?.Invoke(key);
         
-        public event Action<EConfigKey> OnConfigToogleWithAllPrevious;
-        public void EmitOnConfigToggleWithAllPrevious(EConfigKey key) => OnConfigToogleWithAllPrevious?.Invoke(key);
+        public event Action<EConfigKey> OnConfigToggleWithAllPrevious;
+        public void EmitOnConfigToggleWithAllPrevious(EConfigKey key) => OnConfigToggleWithAllPrevious?.Invoke(key);
         
         public event Action AllConfigUpdated;
         public void EmitAllConfigUpdated() => AllConfigUpdated?.Invoke();

@@ -43,7 +43,9 @@ namespace AllieJoe.JuiceIt
         {
             ConfigUI.Init(JuiceConfig.EnableSequence);
             
-            GameDelegates.OnConfigToogleWithAllPrevious += OnConfigToggleWithAllPrevious;
+            GameDelegates.OnConfigToggleWithAllPrevious += OnConfigToggleWithAllPrevious;
+            GameDelegates.OnNextStep += ToNextStep;
+            GameDelegates.OnPrevStep += ToPrevStep;
         }
         
         private void Update()
@@ -54,15 +56,15 @@ namespace AllieJoe.JuiceIt
             if (Input.GetKey(KeyCode.LeftShift))
             {
                 if(Input.GetKeyDown(KeyCode.Alpha1))
-                    TraumaUI.ToggleHide();
-                if (Input.GetKeyDown(KeyCode.Alpha2))
                     EnemySpawner.ToggleSpawn();
+                if (Input.GetKeyDown(KeyCode.Alpha2))
+                    TraumaUI.ToggleHide();
                 if (Input.GetKeyDown(KeyCode.Alpha3))
-                    Player.ResetHealth();
-                if (Input.GetKeyDown(KeyCode.Alpha4))
                     Player.ToggleCanMove();
-                if (Input.GetKeyDown(KeyCode.Alpha5))
+                if (Input.GetKeyDown(KeyCode.Alpha4))
                     CameraLines.SetActive(!CameraLines.activeSelf);
+                if (Input.GetKeyDown(KeyCode.Alpha5))
+                    Player.ResetHealth();
             }
 
             // Sequence

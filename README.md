@@ -14,18 +14,18 @@ Move with WASD or Arrows. Shoot with Space.
 Assets by [Kenney.nl](https://www.kenney.nl/).
 
 ## Shortcuts
-- **P**: Next Juice.
-- **O**: Prev Juice.
+- **Esc**: Config window (All Juice effects).
+- **T**: Next Juice.
+- **E**: Prev Juice.
+- **R**: Reset Background Tiles.
 - **N**: Add low Trauma.
 - **M**: Add high Trauma.
-- **R**: Reset Background Tiles.
-- **T**: Toggle Slowmo.
-- **Esc**: Config window (All Juice effects).
-- **Shift + 1**: Toggle Trauma UI.
-- **Shift + 2**: Toggle enemies spawn.
+- **P**: Toggle Slowmo.
+- **Shift + 1**: Toggle enemies spawn.
+- **Shift + 2**: Toggle Trauma UI.
+- **Shift + 3**: Toggle Player movement.
+- **Shift + 4**: Toggle Camera lines.
 - **Shift + 3**: Reset Player health.
-- **Shift + 4**: Toggle Player movement.
-- **Shift + 5**: Toggle Camera lines.
 
 ## Media
 https://github.com/alejo9604/juice_it_game_showcase/assets/9322009/1c0e8cd6-7810-4a4b-80c7-00c50ead6a42
